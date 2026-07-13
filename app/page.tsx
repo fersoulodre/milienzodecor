@@ -12,7 +12,7 @@ export default function Home() {
   const estilos = estilosOrdenados.filter(e => todosProductos.some(p => p.estilo === e));
 
   return (
-    <main className="max-w-7xl mx-auto px-4 py-12">
+    <main className="max-w-7xl mx-auto px-4 py-5">
       {estilos.map((estilo, index) => {
         const cuadrosEstilo = todosProductos.filter(p => p.estilo === estilo);
         // Usamos estilo en línea para garantizar el color (blanco o gris suave)
