@@ -7,6 +7,8 @@ type Producto = {
   precio?: number;
   estilo: string;
   imagen: string;
+  dimensiones?: string;
+  marco?: string;
 };
 
 type GiftCard = {
