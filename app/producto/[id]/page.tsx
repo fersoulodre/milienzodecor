@@ -38,8 +38,8 @@ const [height, setHeight] = useState<number | ''>('');
   // Lógica de precios
   useEffect(() => {
     if (!producto) return;
-    const wMeters = width / 100;
-    const hMeters = height / 100;
+    const wMeters = Number(width) / 100;
+    const hMeters = Number(height) / 100;
     const area = wMeters * hMeters;
     const perimeter = 2 * (wMeters + hMeters);
     
