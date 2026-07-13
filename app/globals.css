@@ -26,16 +26,3 @@ body {
   }
 }
 
-/* Forzar estilos del menú */
-header nav {
-  display: flex;
-  gap: 1.5rem;
-}
-
-header nav a {
-  color: white;
-}
-
-header nav a:hover {
-  color: #d1d5db; /* gray-300 */
-}
