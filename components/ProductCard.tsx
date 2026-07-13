@@ -1,13 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-type Product = {
+interface Product {
   id: string;
   titulo: string;
-  precio: number;
+  precio?: number;
+  estilo: string;
   imagen: string;
-  disponible: boolean;
-};
+  // ... otros campos
+}
 
 export default function ProductCard({ product }: { product: Product }) {
   return (
