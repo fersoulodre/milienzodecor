@@ -5,7 +5,6 @@ import { useParams, useRouter } from 'next/navigation';
 import { getAllProductos, getConfig } from '@/lib/productos';
 import { useCart } from '@/components/CartContext';
 
-// --- CONFIGURACIÓN DE COSTOS ---
 const PRECIO_POR_M2_IMPRESION = 300; 
 
 export default function ProductDetail() {
@@ -15,27 +14,22 @@ export default function ProductDetail() {
   const [added, setAdded] = useState(false);
   const config = getConfig();
 
-  // Buscar el producto en la lista general
   const producto = getAllProductos().find(p => p.id === params.id);
 
   const [width, setWidth] = useState<number | ''>('');
-const [height, setHeight] = useState<number | ''>('');
+  const [height, setHeight] = useState<number | ''>('');
   const [finalPrice, setFinalPrice] = useState(0);
-  
-  // Estado para cambiar imagen: 'original' o 'mockup'
   const [viewMode, setViewMode] = useState<'original' | 'mockup'>('original');
-
-  // Estado y opciones de marco
- const [marcoSeleccionado, setMarcoSeleccionado] = useState('sin-marco');
+  const [marcoSeleccionado, setMarcoSeleccionado] = useState('sin-marco');
   
+  // Cambiamos 'null' por '' para que TypeScript no se queje
   const opcionesMarco = [
-  { id: 'sin-marco', nombre: 'Sin marco', precioMetroLineal: 0, imagen: null },
-  { id: 'bastidor', nombre: 'Marco bastidor', precioMetroLineal: 40, imagen: '/images/marcos/marco-bastidor.jpg' },
-  { id: 'madera', nombre: 'Marco color madera', precioMetroLineal: 55, imagen: '/images/marcos/marco-color-madera1.jpg' },
-  { id: 'negro', nombre: 'Marco color negro', precioMetroLineal: 50, imagen: '/images/marcos/marco-color-negro1.jpg' }
-];
+    { id: 'sin-marco', nombre: 'Sin marco', precioMetroLineal: 0, imagen: '' },
+    { id: 'bastidor', nombre: 'Marco bastidor', precioMetroLineal: 40, imagen: '/images/marcos/marco-bastidor.jpg' },
+    { id: 'madera', nombre: 'Marco color madera', precioMetroLineal: 55, imagen: '/images/marcos/marco-color-madera1.jpg' },
+    { id: 'negro', nombre: 'Marco color negro', precioMetroLineal: 50, imagen: '/images/marcos/marco-color-negro1.jpg' }
+  ];
 
-  // Lógica de precios
   useEffect(() => {
     if (!producto) return;
     const wMeters = Number(width) / 100;
@@ -50,7 +44,6 @@ const [height, setHeight] = useState<number | ''>('');
     setFinalPrice(Math.round(calculated));
   }, [width, height, producto, marcoSeleccionado]);
 
-  // Generar URL del mockup (inserta -mockup antes de la extensión)
   const mockupUrl = producto ? producto.imagen.replace(/(\.[^.]+)$/, '-mockup$1') : '';
 
   if (!producto) return <div className="p-8">Producto no encontrado</div>;
@@ -61,7 +54,7 @@ const [height, setHeight] = useState<number | ''>('');
       ...producto, 
       precio: finalPrice, 
       dimensiones: `${width}x${height}cm`,
-      marco: marco?.nombre || 'Marco bastidor'
+      marco: marco?.nombre || 'Sin marco'
     });
     setAdded(true);
     setTimeout(() => setAdded(false), 2000);
@@ -75,10 +68,7 @@ const [height, setHeight] = useState<number | ''>('');
         </button>
 
         <div className="grid md:grid-cols-2 gap-12">
-          
-          {/* COLUMNA IZQUIERDA: IMÁGENES */}
           <div>
-            {/* Imagen Principal */}
             <div className="relative aspect-[3/2] bg-gray-100 rounded-lg overflow-hidden mb-2 border border-gray-200">
               <Image 
                 src={viewMode === 'mockup' ? mockupUrl : producto.imagen} 
@@ -88,17 +78,13 @@ const [height, setHeight] = useState<number | ''>('');
               />
             </div>
 
-            {/* THUMBNAILS (Miniaturas) */}
             <div className="flex gap-4">
-              {/* Botón 1: Pintura Original */}
               <button 
                 onClick={() => setViewMode('original')}
                 className={`relative w-24 h-16 cursor-pointer rounded overflow-hidden border-2 ${viewMode === 'original' ? 'border-black' : 'border-gray-300'}`}
               >
                 <Image src={producto.imagen} alt="Original" fill className="object-cover" />
               </button>
-
-              {/* Botón 2: Mockup */}
               <button 
                 onClick={() => setViewMode('mockup')}
                 className={`relative w-24 h-16 cursor-pointer rounded overflow-hidden border-2 ${viewMode === 'mockup' ? 'border-black' : 'border-gray-300'}`}
@@ -108,12 +94,11 @@ const [height, setHeight] = useState<number | ''>('');
             </div>
           </div>
 
-          {/* COLUMNA DERECHA: DATOS */}
           <div className="flex flex-col justify-center">
             <span className="text-sm text-gray-500 uppercase">{producto.estilo}</span>
             <h1 className="text-4xl font-bold mt-2">{producto.titulo}</h1>
             
-                       <div className="mt-2 grid grid-cols-2 gap-1">
+            <div className="mt-2 grid grid-cols-2 gap-1">
               <div>
                 <label className="block text-sm font-bold text-gray-700 mb-1">Ancho (cm)</label>
                 <div className="flex items-center gap-2">
@@ -126,14 +111,14 @@ const [height, setHeight] = useState<number | ''>('');
               <div>
                 <label className="block text-sm font-bold text-gray-700 mb-1">Alto (cm)</label>
                 <div className="flex items-center gap-2">
-                  <input type="number" min="0" value={height} onChange={(e) => setHeight(Number(e.target.value))} placeholder="Ingresa tu medida" className="w-full border border-gray-300 rounded p-2 placeholder-red-400" />                     <svg className="w-8 h-8 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <input type="number" min="0" value={height} onChange={(e) => setHeight(e.target.value === '' ? '' : Number(e.target.value))} placeholder="Ingresa tu medida" className="w-full border border-gray-300 rounded p-2 placeholder-red-400" />
+                  <svg className="w-8 h-8 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16M12 4l-3 3M12 4l3 3M12 20l-3-3M12 20l3-3" />
                   </svg>
                 </div>
               </div>
             </div>
 
-                        {/* Referencias visuales de proporciones */}
             <div className="mt-3">
               <p className="text-sm text-gray-600 mb-3">Referencias de proporciones:</p>
               <div className="grid grid-cols-3 gap-3">
@@ -157,14 +142,10 @@ const [height, setHeight] = useState<number | ''>('');
                 </div>
               </div>
             </div>
-            
 
-            {/* Selector de Marco */}
-                        {/* Selector de Marco */}
             <div className="mt-4">
               <label className="block text-sm font-bold text-gray-700 mb-3">Tipo de Marco</label>
               
-              {/* Botón "Sin marco" */}
               <button
                 onClick={() => setMarcoSeleccionado('sin-marco')}
                 className={`w-full mb-4 cursor-pointer flex items-center justify-center gap-2 py-3 rounded-lg border-2 font-semibold transition-all ${
@@ -181,7 +162,6 @@ const [height, setHeight] = useState<number | ''>('');
                 Sin marco
               </button>
 
-              {/* Grid de marcos con imagen */}
               <div className="grid grid-cols-3 gap-4">
                 {opcionesMarco.filter(m => m.id !== 'sin-marco').map(marco => (
                   <button
@@ -192,9 +172,10 @@ const [height, setHeight] = useState<number | ''>('');
                     }`}
                   >
                     <div className="relative h-24 bg-gray-100">
-                      <Image src={marco.imagen} alt={marco.nombre} fill className="object-cover" />
+                      {/* Usamos 'as string' porque el filtro ya garantiza que no es 'sin-marco' */}
+                      <Image src={marco.imagen as string} alt={marco.nombre} fill className="object-cover" />
                     </div>
-                      <div className="p-2 text-center">
+                    <div className="p-2 text-center">
                       <p className="text-sm font-semibold">{marco.nombre}</p>
                     </div>
                   </button>
