@@ -37,7 +37,7 @@ export default function CarritoPage() {
     if (items.length > 0) {
       mensaje += `🖼️ *CUADROS:*\n`;
       items.forEach(item => {
-        mensaje += `• ${item.titulo} (${item.estilo}) - Bs. ${item.precio.toLocaleString()}\n`;
+        mensaje += `• ${item.titulo} (${item.estilo}) - Bs. ${(item.precio ?? 0).toLocaleString()}\n`;
       });
       mensaje += `\n`;
     }
