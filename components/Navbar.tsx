@@ -28,14 +28,15 @@ export default function Navbar() {
         </nav>
 
                {/* Botón Hamburguesa para Móvil */}
+                {/* Botón Hamburguesa para Móvil */}
         <button 
-          className="md:hidden relative z-50 flex flex-col justify-between w-8 h-6"
+          className="md:hidden relative z-50 flex flex-col justify-between w-8 h-6 cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Abrir menú"
         >
-          <span className={`block w-full h-1 bg-white rounded shadow-sm transition-all ${isOpen ? 'rotate-45 translate-y-2.5' : ''}`}></span>
-          <span className={`block w-full h-1 bg-white rounded shadow-sm transition-all ${isOpen ? 'opacity-0' : ''}`}></span>
-          <span className={`block w-full h-1 bg-white rounded shadow-sm transition-all ${isOpen ? '-rotate-45 -translate-y-2.5' : ''}`}></span>
+          <span className={`block w-full h-1 rounded shadow-sm transition-all ${isOpen ? 'rotate-45 translate-y-2.5' : ''}`} style={{ backgroundColor: '#ffffff' }}></span>
+          <span className={`block w-full h-1 rounded shadow-sm transition-all ${isOpen ? 'opacity-0' : ''}`} style={{ backgroundColor: '#ffffff' }}></span>
+          <span className={`block w-full h-1 rounded shadow-sm transition-all ${isOpen ? '-rotate-45 -translate-y-2.5' : ''}`} style={{ backgroundColor: '#ffffff' }}></span>
         </button>
       </div>
 
