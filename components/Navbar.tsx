@@ -29,14 +29,14 @@ export default function Navbar() {
 
         {/* Botón Hamburguesa para Móvil */}
         <button 
-          className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Abrir menú"
-        >
-          <span className={`block w-6 h-0.5 bg-white transition-all ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
-          <span className={`block w-6 h-0.5 bg-white transition-all ${isOpen ? 'opacity-0' : ''}`}></span>
-          <span className={`block w-6 h-0.5 bg-white transition-all ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
-        </button>
+  className="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5"
+  onClick={() => setIsOpen(!isOpen)}
+  aria-label="Abrir menú"
+>
+  <span className={`block w-6 h-0.5 bg-white transition-all ${isOpen ? 'rotate-45 translate-y-2' : ''}`}></span>
+  <span className={`block w-6 h-0.5 bg-white transition-all ${isOpen ? 'opacity-0' : ''}`}></span>
+  <span className={`block w-6 h-0.5 bg-white transition-all ${isOpen ? '-rotate-45 -translate-y-2' : ''}`}></span>
+</button>
       </div>
 
       {/* Menú Desplegable para Móvil */}
