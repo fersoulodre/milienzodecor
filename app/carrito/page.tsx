@@ -37,7 +37,7 @@ const [applyingCode, setApplyingCode] = useState(false);
     if (items.length > 0) {
       mensaje += `🖼️ *CUADROS:*\n`;
       items.forEach(item => {
-        mensaje += `• ${item.titulo} (${item.estilo}) - ${item.dimensiones} - Marco: ${item.marco} - Bs. ${item.precio.toLocaleString()}\n`;
+        mensaje += `• ${item.titulo} (${item.estilo}) - Marco: ${item.marco} - Bs. ${item.precio.toLocaleString()}\n`;
       });
       mensaje += `\n`;
     }
