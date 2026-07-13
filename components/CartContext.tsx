@@ -4,7 +4,7 @@ import { createContext, useContext, useState, ReactNode } from 'react';
 type Producto = {
   id: string;
   titulo: string;
-  precio: number;
+  precio?: number;
   estilo: string;
   imagen: string;
 };
