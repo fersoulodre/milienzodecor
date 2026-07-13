@@ -7,7 +7,7 @@ interface Product {
   precio?: number;
   estilo: string;
   imagen: string;
-  // ... otros campos
+  disponible?: boolean;
 }
 
 export default function ProductCard({ product }: { product: Product }) {
