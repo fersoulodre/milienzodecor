@@ -21,7 +21,7 @@ export default function Home() {
         return (
           <section 
             key={estilo} 
-            className="mb-16 p-8 rounded-lg"
+            className="mb-4 p-8 rounded-lg"
             style={{ backgroundColor: bgColor }}
           >
             <h2 className="text-4xl font-bold mb-8">{estilo}</h2>
