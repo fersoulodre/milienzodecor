@@ -95,7 +95,7 @@ export default function CarritoPage() {
                   </div>
                   <p className="text-[10px] text-gray-500 mt-1 text-center leading-tight max-w-[128px]">{item.titulo}</p>
                 </div>
-                <p className="font-bold text-sm">Bs. {item.precio.toLocaleString()}</p>
+                <p className="font-bold text-sm"> Bs. {(item.precio ?? 0).toLocaleString()}</p>
               </div>
               <button
                 onClick={() => removeFromCart(item.id)}
