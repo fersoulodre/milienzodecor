@@ -1,0 +1,11 @@
+{
+  "whatsapp": "59162401919",
+  "qrPago": "/images/qr-pago.jpg",
+  "giftCards": [
+    { "id": "gc-50", "monto": 50, "imagen": "/images/gift-cards/gc-50.jpg" },
+    { "id": "gc-100", "monto": 100, "imagen": "/images/gift-cards/gc-100.jpg" },
+    { "id": "gc-200", "monto": 200, "imagen": "/images/gift-cards/gc-200.jpg" },
+    { "id": "gc-500", "monto": 500, "imagen": "/images/gift-cards/gc-500.jpg" },
+    { "id": "gc-1000", "monto": 1000, "imagen": "/images/gift-cards/gc-1000.jpg" }
+  ]
+}

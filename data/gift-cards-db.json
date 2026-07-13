@@ -1,0 +1,15 @@
+[
+  {
+    "code": "ML-NBP3T9",
+    "monto": 100,
+    "used": false,
+    "createdAt": "2026-07-12T03:01:33.260Z"
+  },
+  {
+    "code": "ML-WKESKV",
+    "monto": 50,
+    "imagen": "/images/gift-cards/gc-50.jpg",
+    "used": false,
+    "createdAt": "2026-07-12T15:35:33.452Z"
+  }
+]

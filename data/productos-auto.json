@@ -1,0 +1,316 @@
+{
+  "cuadros": [
+    {
+      "id": "abstractos_forte-F101",
+      "titulo": "F101",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F101.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_forte-F102",
+      "titulo": "F102",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F102.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F103",
+      "titulo": "F103",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F103.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_forte-F104",
+      "titulo": "F104",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F104.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_forte-F105",
+      "titulo": "F105",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F105.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_forte-F106",
+      "titulo": "F106",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F106.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F107",
+      "titulo": "F107",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F107.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F108",
+      "titulo": "F108",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F108.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F109",
+      "titulo": "F109",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F109.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_forte-F110",
+      "titulo": "F110",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F110.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F111",
+      "titulo": "F111",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F111.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_forte-F114",
+      "titulo": "F114",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F114.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F115",
+      "titulo": "F115",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F115.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F116",
+      "titulo": "F116",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F116.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F117",
+      "titulo": "F117",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F117.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F118",
+      "titulo": "F118",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F118.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_forte-F119",
+      "titulo": "F119",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F119.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F120",
+      "titulo": "F120",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F120.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F121",
+      "titulo": "F121",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F121.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_forte-F122",
+      "titulo": "F122",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F122.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F123",
+      "titulo": "F123",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F123.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F124",
+      "titulo": "F124",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F124.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F125",
+      "titulo": "F125",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F125.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F126",
+      "titulo": "F126",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F126.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M50",
+      "titulo": "M50",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M50.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_minimalista-M51",
+      "titulo": "M51",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M51.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_minimalista-M52",
+      "titulo": "M52",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M52.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_minimalista-M53",
+      "titulo": "M53",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M53.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M54",
+      "titulo": "M54",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M54.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_minimalista-M55",
+      "titulo": "M55",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M55.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M56",
+      "titulo": "M56",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M56.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M57",
+      "titulo": "M57",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M57.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_minimalista-M58",
+      "titulo": "M58",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M58.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_minimalista-M59",
+      "titulo": "M59",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M59.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M60",
+      "titulo": "M60",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M60.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_minimalista-M61",
+      "titulo": "M61",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M61.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M62",
+      "titulo": "M62",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M62.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_minimalista-M63",
+      "titulo": "M63",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M63.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M64",
+      "titulo": "M64",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M64.webp",
+      "disponible": true,
+      "destacado": false
+    }
+  ]
+}
