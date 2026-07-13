@@ -55,8 +55,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setGiftCards([]);
   };
 
-  const total = items.reduce((sum, item) => sum + item.precio, 0) +
-                giftCards.reduce((sum, gc) => sum + gc.monto, 0);
+  const total = items.reduce((sum, item) => sum + (item.precio ?? 0), 0) +
+              giftCards.reduce((sum, gc) => sum + gc.monto, 0);
 
   return (
         <CartContext.Provider value={{ items, giftCards, addToCart, removeFromCart, removeGiftCard, addGiftCard, clearCart, total }}>
