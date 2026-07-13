@@ -5,32 +5,32 @@ import { getConfig } from '@/lib/productos';
 import { useState } from 'react';
 import { generateGiftCardCode, validateGiftCardCode } from '@/app/actions';
 
-
 export default function CarritoPage() {
   const { items, giftCards, removeFromCart, removeGiftCard, clearCart, total } = useCart();
   const config = getConfig();
-    const [giftCodeInput, setGiftCodeInput] = useState('');
-const [discount, setDiscount] = useState(0);
-const [giftCardImage, setGiftCardImage] = useState<string | null>(null);
-const [applyingCode, setApplyingCode] = useState(false);
+  const [giftCodeInput, setGiftCodeInput] = useState('');
+  const [discount, setDiscount] = useState(0);
+  const [giftCardImage, setGiftCardImage] = useState<string | null>(null);
+  const [applyingCode, setApplyingCode] = useState(false);
 
   const totalConDescuento = Math.max(0, total - discount);
 
   const aplicarGiftCard = async () => {
-  if (!giftCodeInput) return;
-  setApplyingCode(true);
-  const resultado = await validateGiftCardCode(giftCodeInput);
-  
-  if (resultado.valid) {
-    setDiscount(resultado.monto);
-    setGiftCardImage(resultado.imagen);
-    alert(`¡Gift Card canjeada! Se descuentan Bs. ${resultado.monto.toLocaleString()}`);
-  } else {
-    alert('Código inválido o ya utilizado.');
-  }
-  setApplyingCode(false);
-};
-    const generarPedidoWhatsApp = async () => {
+    if (!giftCodeInput) return;
+    setApplyingCode(true);
+    const resultado = await validateGiftCardCode(giftCodeInput);
+    
+    if (resultado.valid) {
+      setDiscount(resultado.monto);
+      setGiftCardImage(resultado.imagen);
+      alert(`¡Gift Card canjeada! Se descuentan Bs. ${resultado.monto.toLocaleString()}`);
+    } else {
+      alert('Código inválido o ya utilizado.');
+    }
+    setApplyingCode(false);
+  };
+
+  const generarPedidoWhatsApp = async () => {
     let mensaje = `¡Hola! Quiero realizar el siguiente pedido:\n\n`;
     let codigosGenerados = [];
 
@@ -43,15 +43,15 @@ const [applyingCode, setApplyingCode] = useState(false);
     }
 
     if (giftCards.length > 0) {
-  mensaje += `🎁 *GIFT CARDS COMPRADAS:*\n`;
-  for (const gc of giftCards) {
-    const resultado = await generateGiftCardCode(gc.monto, gc.imagen);
-    const codigo = resultado.code;
-    codigosGenerados.push(codigo);
-    mensaje += `• Gift Card Bs. ${gc.monto.toLocaleString()} - Código: ${codigo}\n`;
-  }
-  mensaje += `\n`;
-}
+      mensaje += `🎁 *GIFT CARDS COMPRADAS:*\n`;
+      for (const gc of giftCards) {
+        const resultado = await generateGiftCardCode(gc.monto, gc.imagen);
+        const codigo = resultado.code;
+        codigosGenerados.push(codigo);
+        mensaje += `• Gift Card Bs. ${gc.monto.toLocaleString()} - Código: ${codigo}\n`;
+      }
+      mensaje += `\n`;
+    }
 
     if (discount > 0) {
       mensaje += `🎟️ *GIFT CARD CANJEADA:*\n`;
@@ -79,24 +79,24 @@ const [applyingCode, setApplyingCode] = useState(false);
     );
   }
 
-    return (
+  return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 py-6">
         <h1 className="text-3xl font-bold mb-4">Tu Carrito</h1>
 
-        {/* Items del carrito */}
+        {/* Items del carrito (CUADROS) */}
         <div className="bg-white rounded-lg shadow-sm p-3 mb-4">
           {items.map(item => (
             <div key={item.id} className="flex justify-between items-center py-2 border-b last:border-0">
-             <div className="flex gap-3 items-center">
-  <div className="flex flex-col items-center">
-    <div className="relative w-32 h-20 bg-gray-100 rounded overflow-hidden flex-shrink-0">
-      <Image src={gc.imagen} alt="Gift Card" fill className="object-cover" />
-    </div>
-    <p className="text-[10px] text-gray-500 mt-1 text-center leading-tight">Envíale esta imagen a tu beneficiario.</p>
-  </div>
-  <p className="font-bold text-sm">Bs. {gc.monto.toLocaleString()}</p>
-</div>
+              <div className="flex gap-3 items-center">
+                <div className="flex flex-col items-center">
+                  <div className="relative w-32 h-20 bg-gray-100 rounded overflow-hidden flex-shrink-0">
+                    <Image src={item.imagen} alt={item.titulo} fill className="object-cover" />
+                  </div>
+                  <p className="text-[10px] text-gray-500 mt-1 text-center leading-tight max-w-[128px]">{item.titulo}</p>
+                </div>
+                <p className="font-bold text-sm">Bs. {item.precio.toLocaleString()}</p>
+              </div>
               <button
                 onClick={() => removeFromCart(item.id)}
                 className="bg-red-100 text-red-600 px-2 py-1 rounded cursor-pointer hover:bg-red-200 font-bold text-xs"
@@ -118,7 +118,7 @@ const [applyingCode, setApplyingCode] = useState(false);
           <div className="grid md:grid-cols-2 gap-4 border-t pt-3 mb-3">
             <div>
               <h2 className="font-bold text-base mb-2">🎁 Tus Gift Cards</h2>
-                            {giftCards.map((gc, idx) => (
+              {giftCards.map((gc, idx) => (
                 <div key={idx} className="flex justify-between items-center py-3 border-b last:border-0">
                   <div className="flex gap-3 items-center">
                     <div className="flex flex-col items-center">
