@@ -7,12 +7,12 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 text-white py-3 md:py-4" style={{ backgroundColor: '#94845f' }}>
+    <header className="sticky top-0 z-50 text-white py-3 md:py-4" style={{ backgroundColor: '#734d12' }}>
       <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
         {/* Logo responsive */}
         <Link href="/">
           <Image 
-            src="/images/logo.jpg" 
+            src="/images/logo.png" 
             alt="Mi Lienzo Decor" 
             width={333} 
             height={98} 
