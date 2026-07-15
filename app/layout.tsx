@@ -1,14 +1,20 @@
 import { CartProvider } from '@/components/CartContext';
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer'; // <-- AGREGA ESTA LÍNEA
+import Footer from '@/components/Footer';
 import './globals.css';
 
-// ... (metadata se mantiene igual)
+export const metadata = {
+  title: 'Mi Lienzo Decor',
+  description: 'No vendemos cuadros... Vendemos arte',
+  icons: {
+    icon: '/favicon.ico', // Cambia a '.png' si tu archivo es PNG
+  },
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="es">
-      <body className="bg-gray-50 flex flex-col min-h-screen"> {/* <-- Agrega 'flex flex-col min-h-screen' aquí */}
+      <body className="bg-gray-50 flex flex-col min-h-screen">
         <CartProvider>
           <Navbar />
           
@@ -18,11 +24,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </h3>
           </div>
 
-          <main className="flex-grow"> {/* <-- Envuelve children en un main con flex-grow */}
+          <main className="flex-grow">
             {children}
           </main>
 
-          <Footer /> {/* <-- AGREGA EL FOOTER AQUÍ */}
+          <Footer />
         </CartProvider>
       </body>
     </html>
