@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -29,8 +30,7 @@ export default function Footer() {
           </ul>
         </div>
 
-    
-                {/* Columna 3: Contacto */}
+        {/* Columna 3: Contacto */}
         <div>
           <h4 className="text-white font-semibold mb-4">Contacto</h4>
           <ul className="space-y-3 text-sm">
@@ -40,7 +40,7 @@ export default function Footer() {
                 className="flex items-center justify-center md:justify-start gap-2 hover:text-[#94845f] transition-colors group"
               >
                 <Image 
-                  src="/icons/email.png" 
+                  src="/icons/email3.png" 
                   alt="Email" 
                   width={20} 
                   height={20} 
