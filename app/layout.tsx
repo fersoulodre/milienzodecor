@@ -7,7 +7,7 @@ export const metadata = {
   title: 'Mi Lienzo Decor',
   description: 'No vendemos cuadros... Vendemos arte',
   icons: {
-    icon: '/favicon.ico', // Cambia a '.png' si tu archivo es PNG
+    icon: '/favicon2.png', // Cambia a '.png' si tu archivo es PNG
   },
 };
 
