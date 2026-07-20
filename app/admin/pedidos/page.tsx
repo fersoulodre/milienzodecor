@@ -9,8 +9,13 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
-export default async function AdminPedidos() {
+// Definimos el tipo de searchParams de forma limpia para evitar errores de TypeScript
+type Props = {
+  searchParams?: { saved?: string };
+};
 
+export default async function AdminPedidos({ searchParams }: Props) {
+  
   // 1. Obtener pedidos pendientes de verificación
   const { data: pedidos, error } = await supabaseAdmin
     .from('pedidos')
@@ -18,7 +23,8 @@ export default async function AdminPedidos() {
     .eq('estado', 'pendiente_verificacion')
     .order('fecha_creacion', { ascending: false });
 
-    const { data: tipoCambioData } = await supabaseAdmin
+  // 2. Obtener el tipo de cambio actual
+  const { data: tipoCambioData } = await supabaseAdmin
     .from('tipo_cambio')
     .select('tasa')
     .eq('id', 1)
@@ -28,7 +34,7 @@ export default async function AdminPedidos() {
 
   if (error) return <div className="p-8 text-red-600">Error al cargar pedidos: {error.message}</div>;
 
-  // 2. Función para aprobar/rechazar (Server Action)
+  // 3. Función para aprobar/rechazar (Server Action)
   async function cambiarEstado(formData: FormData) {
     'use server';
     const id = formData.get('id');
@@ -66,7 +72,7 @@ export default async function AdminPedidos() {
                     <p className="text-sm"><span className="font-semibold">Email:</span> {pedido.email}</p>
                     <p className="text-sm"><span className="font-semibold">Nombre:</span> {pedido.nombre || 'No especificado'}</p>
                     <p className="text-sm"><span className="font-semibold">Método de pago:</span> <span className="uppercase font-bold text-blue-600">{pedido.metodo_pago}</span></p>
-                    <p className="text-2xl font-bold text-green-600 mt-4">Total: ${pedido.total}</p>
+                    <p className="text-2xl font-bold text-green-600 mt-4">Total: Bs. {pedido.total}</p>
                   </div>
 
                   {/* Comprobante */}
@@ -118,8 +124,16 @@ export default async function AdminPedidos() {
             ))}
           </div>
         )}
-      </div>
-              {/* Control de Tipo de Cambio */}
+
+        {/* Mensaje de éxito (solo aparece si viene de guardar el tipo de cambio) */}
+        {searchParams?.saved === 'true' && (
+          <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 flex items-center gap-2 mt-8">
+            <span>✅</span>
+            <span>¡Tipo de cambio actualizado correctamente! El carrito ya usa el nuevo valor.</span>
+          </div>
+        )}
+
+        {/* Control de Tipo de Cambio */}
         <div className="bg-white p-6 rounded-lg shadow mt-8 border border-gray-200">
           <h2 className="font-bold mb-4 text-lg text-gray-800">💱 Actualizar Tipo de Cambio USDT</h2>
           
@@ -131,7 +145,8 @@ export default async function AdminPedidos() {
             const tasa = parseFloat(tasaStr);
             await actualizarTipoCambio(tasa);
             
-            revalidatePath('/admin/pedidos');
+            // Redirige a la misma página con el parámetro ?saved=true para mostrar el mensaje
+            redirect('/admin/pedidos?saved=true');
           }} className="flex flex-wrap gap-3 items-end">
             <div>
               <label className="block text-xs font-medium text-gray-700 mb-1">Nueva tasa (Bs por USDT)</label>
@@ -150,9 +165,11 @@ export default async function AdminPedidos() {
           </form>
           
           <p className="text-xs text-gray-500 mt-3">
-            Valor actual: Bs. {valorActual}. Modifícalo y guarda para actualizar el carrito.
+            Valor actual en base de datos: <strong>Bs. {valorActual}</strong>. Modifícalo y guarda.
           </p>
         </div>
+
+      </div>
     </div>
   );
 }
