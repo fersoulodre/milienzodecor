@@ -53,7 +53,7 @@ export async function crearPedido(datos: {
   telefono: string;
   total: number;
   metodo_pago: string;
-  detalles: any[]; // Aquí guardaremos un resumen de lo que compró
+  detalles: any;// Aquí guardaremos un resumen de lo que compró
 }) {
   try {
     const { data, error } = await supabase
