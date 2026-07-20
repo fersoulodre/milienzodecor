@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { redirect } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
 import { actualizarTipoCambio } from '@/app/actions';
+import { revalidatePath } from 'next/cache';
 
 // Inicializa Supabase con variables de entorno del servidor
 const supabaseAdmin = createClient(
@@ -10,12 +10,21 @@ const supabaseAdmin = createClient(
 );
 
 export default async function AdminPedidos() {
+
   // 1. Obtener pedidos pendientes de verificación
   const { data: pedidos, error } = await supabaseAdmin
     .from('pedidos')
     .select('*')
     .eq('estado', 'pendiente_verificacion')
     .order('fecha_creacion', { ascending: false });
+
+    const { data: tipoCambioData } = await supabaseAdmin
+    .from('tipo_cambio')
+    .select('tasa')
+    .eq('id', 1)
+    .single();
+  
+  const valorActual = tipoCambioData?.tasa || 10.73;
 
   if (error) return <div className="p-8 text-red-600">Error al cargar pedidos: {error.message}</div>;
 
@@ -114,44 +123,34 @@ export default async function AdminPedidos() {
         <div className="bg-white p-6 rounded-lg shadow mt-8 border border-gray-200">
           <h2 className="font-bold mb-4 text-lg text-gray-800">💱 Actualizar Tipo de Cambio USDT</h2>
           
-          {/* Leer el valor actual desde la base de datos */}
-          {async () => {
-            const supabase = createClient();
-            const { data } = await supabase.from('tipo_cambio').select('tasa').eq('id', 1).single();
-            const valorActual = data?.tasa || 10.73;
+          <form action={async (formData) => {
+            'use server';
+            const tasaStr = formData.get('tasa') as string;
+            if (!tasaStr) return;
             
-            return (
-              <form action={async (formData) => {
-                'use server';
-                const tasaStr = formData.get('tasa') as string;
-                if (!tasaStr) return;
-                
-                const tasa = parseFloat(tasaStr);
-                await actualizarTipoCambio(tasa);
-                
-                // Forzar redirección para recargar la página
-                revalidatePath('/admin/pedidos');
-              }} className="flex flex-wrap gap-3 items-end">
-                <div>
-                  <label className="block text-xs font-medium text-gray-700 mb-1">Nueva tasa (Bs por USDT)</label>
-                  <input 
-                    name="tasa" 
-                    type="number" 
-                    step="0.01" 
-                    defaultValue={valorActual.toString()}
-                    className="border border-gray-300 p-2 rounded w-32 text-sm" 
-                    required
-                  />
-                </div>
-                <button className="bg-green-600 text-white px-4 py-2 rounded cursor-pointer hover:bg-green-700 text-sm font-semibold">
-                  Guardar Cambio
-                </button>
-              </form>
-            );
-          }}()
+            const tasa = parseFloat(tasaStr);
+            await actualizarTipoCambio(tasa);
+            
+            revalidatePath('/admin/pedidos');
+          }} className="flex flex-wrap gap-3 items-end">
+            <div>
+              <label className="block text-xs font-medium text-gray-700 mb-1">Nueva tasa (Bs por USDT)</label>
+              <input 
+                name="tasa" 
+                type="number" 
+                step="0.01" 
+                defaultValue={valorActual.toString()}
+                className="border border-gray-300 p-2 rounded w-32 text-sm" 
+                required
+              />
+            </div>
+            <button className="bg-green-600 text-white px-4 py-2 rounded cursor-pointer hover:bg-green-700 text-sm font-semibold">
+              Guardar Cambio
+            </button>
+          </form>
           
           <p className="text-xs text-gray-500 mt-3">
-            Valor actual en base de datos. Modifícalo y guarda para actualizar el carrito.
+            Valor actual: Bs. {valorActual}. Modifícalo y guarda para actualizar el carrito.
           </p>
         </div>
     </div>
