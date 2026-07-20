@@ -3,16 +3,15 @@ import Image from 'next/image';
 import { useCart } from '@/components/CartContext';
 import { getConfig } from '@/lib/productos';
 import { useState } from 'react';
-import { generateGiftCardCode, validateGiftCardCode, crearPedido } from '@/app/actions'; // NUEVO: importamos crearPedido
-import { useRouter } from 'next/navigation'; // NUEVO: para redirigir
-const [metodoPago, setMetodoPago] = useState<'banco' | 'binance'>('banco');
+import { generateGiftCardCode, validateGiftCardCode, crearPedido } from '@/app/actions';
+import { useRouter } from 'next/navigation';
 
 export default function CarritoPage() {
   const { items, giftCards, removeFromCart, removeGiftCard, clearCart, total } = useCart();
-  const router = useRouter(); // NUEVO
+  const router = useRouter();
   const config = getConfig();
   
-  // NUEVO: Estados para los datos del cliente
+  // Estados para los datos del cliente y método de pago
   const [email, setEmail] = useState('');
   const [nombre, setNombre] = useState('');
   const [telefono, setTelefono] = useState('');
@@ -22,7 +21,7 @@ export default function CarritoPage() {
   const [discount, setDiscount] = useState(0);
   const [giftCardImage, setGiftCardImage] = useState<string | null>(null);
   const [applyingCode, setApplyingCode] = useState(false);
-  const [procesando, setProcesando] = useState(false); // NUEVO
+  const [procesando, setProcesando] = useState(false);
 
   const totalConDescuento = Math.max(0, total - discount);
 
@@ -41,8 +40,7 @@ export default function CarritoPage() {
     setApplyingCode(false);
   };
 
-  // NUEVO: Función para finalizar la compra y redirigir
-    const finalizarCompra = async () => {
+  const finalizarCompra = async () => {
     if (!email || !nombre) {
       alert('Por favor, ingresa tu nombre y correo electrónico para continuar.');
       return;
@@ -50,8 +48,7 @@ export default function CarritoPage() {
 
     setProcesando(true);
 
-    // 1. Generar códigos de gift cards si hay
-    let codigosGenerados = [];
+    let codigosGenerados: string[] = [];
     if (giftCards.length > 0) {
       for (const gc of giftCards) {
         const resultado = await generateGiftCardCode(gc.monto, gc.imagen);
@@ -59,21 +56,17 @@ export default function CarritoPage() {
       }
     }
 
-    // 2. Crear el pedido en la base de datos
     const respuesta = await crearPedido({
       email,
       nombre,
       telefono,
       total: totalConDescuento,
-         metodo_pago: metodoPago === 'banco' ? 'transferencia_banco' : 'binance_pay',
+      metodo_pago: metodoPago === 'banco' ? 'transferencia_banco' : 'binance_pay',
       detalles: { items, giftCards: codigosGenerados, discount }
     });
 
     if (respuesta.success && respuesta.pedidoId) {
-      // === LÍNEA NUEVA: Guardamos el correo en la memoria del navegador ===
       sessionStorage.setItem('email_compra', email);
-      
-      // Limpiamos el carrito y redirigimos
       clearCart();
       router.push(`/subir-comprobante?pedido=${respuesta.pedidoId}`);
     } else {
@@ -98,7 +91,7 @@ export default function CarritoPage() {
       <div className="max-w-4xl mx-auto px-4 py-6">
         <h1 className="text-3xl font-bold mb-4">Tu Carrito</h1>
 
-        {/* NUEVO: Formulario de datos del cliente */}
+        {/* Formulario de datos del cliente */}
         <div className="bg-white rounded-lg shadow-sm p-4 mb-4">
           <h2 className="font-bold text-lg mb-3">Datos para tu pedido</h2>
           <div className="grid md:grid-cols-2 gap-4">
@@ -158,7 +151,6 @@ export default function CarritoPage() {
             <span className="text-xl font-bold text-green-700">Bs. {totalConDescuento.toLocaleString()}</span>
           </div>
 
-          {/* Gift Cards y QR en 2 columnas */}
           <div className="grid md:grid-cols-2 gap-4 border-t pt-3 mb-3">
             <div>
               <h2 className="font-bold text-base mb-2">🎁 Tus Gift Cards</h2>
@@ -184,51 +176,53 @@ export default function CarritoPage() {
               {giftCards.length === 0 && <p className="text-gray-400 text-xs">Sin Gift Cards</p>}
             </div>
 
-            {/* Selector de Método de Pago */}
-<div className="mb-4">
-  <h2 className="font-bold text-base mb-2">Método de Pago</h2>
-  <div className="grid grid-cols-2 gap-3">
-    <button
-      onClick={() => setMetodoPago('banco')}
-      className={`p-3 rounded-lg border-2 font-semibold transition-all ${
-        metodoPago === 'banco'
-          ? 'border-blue-600 bg-blue-50 text-blue-700'
-          : 'border-gray-300 text-gray-600 hover:border-gray-400'
-      }`}
-    >
-      🏦 Transferencia Bancaria
-    </button>
-    <button
-      onClick={() => setMetodoPago('binance')}
-      className={`p-3 rounded-lg border-2 font-semibold transition-all ${
-        metodoPago === 'binance'
-          ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
-          : 'border-gray-300 text-gray-600 hover:border-gray-400'
-      }`}
-    >
-      💰 Binance Pay
-    </button>
-  </div>
-</div>
+            <div className="flex flex-col">
+              {/* Selector de Método de Pago */}
+              <div className="mb-4">
+                <h2 className="font-bold text-base mb-2">Método de Pago</h2>
+                <div className="grid grid-cols-2 gap-3">
+                  <button
+                    onClick={() => setMetodoPago('banco')}
+                    className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm ${
+                      metodoPago === 'banco'
+                        ? 'border-blue-600 bg-blue-50 text-blue-700'
+                        : 'border-gray-300 text-gray-600 hover:border-gray-400'
+                    }`}
+                  >
+                    🏦 Banco
+                  </button>
+                  <button
+                    onClick={() => setMetodoPago('binance')}
+                    className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm ${
+                      metodoPago === 'binance'
+                        ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
+                        : 'border-gray-300 text-gray-600 hover:border-gray-400'
+                    }`}
+                  >
+                    💰 Binance
+                  </button>
+                </div>
+              </div>
 
-            <div className="flex flex-col items-center">
-  <h2 className="font-bold text-base mb-2 w-full text-left">
-    1. Escanea el QR ({metodoPago === 'banco' ? 'Banco' : 'Binance'})
-  </h2>
-  <div className="relative w-60 h-60 bg-gray-100 rounded-lg overflow-hidden mb-2">
-    <Image 
-      src={metodoPago === 'banco' ? config.qrPago : '/images/binance-qr.jpg'} 
-      alt={`QR de pago ${metodoPago === 'banco' ? 'bancario' : 'Binance'}`} 
-      fill 
-      className="object-contain" 
-    />
-  </div>
-  <p className="text-xs text-gray-600 text-center">
-    {metodoPago === 'banco' 
-      ? 'Escanea el QR con tu app bancaria' 
-      : 'Escanea el QR con tu app de Binance'}
-  </p>
-</div>
+              <div className="flex flex-col items-center">
+                <h2 className="font-bold text-base mb-2 w-full text-left">
+                  1. Escanea el QR ({metodoPago === 'banco' ? 'Banco' : 'Binance'})
+                </h2>
+                <div className="relative w-60 h-60 bg-gray-100 rounded-lg overflow-hidden mb-2 border border-gray-200">
+                  <Image 
+                    src={metodoPago === 'banco' ? config.qrPago : '/images/binance-qr.jpg'} 
+                    alt={`QR de pago ${metodoPago === 'banco' ? 'bancario' : 'Binance'}`} 
+                    fill 
+                    className="object-contain p-2" 
+                  />
+                </div>
+                <p className="text-xs text-gray-600 text-center">
+                  {metodoPago === 'banco' 
+                    ? 'Escanea el QR con tu app bancaria' 
+                    : 'Escanea el QR con tu app de Binance'}
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Canjear Gift Card */}
@@ -255,7 +249,7 @@ export default function CarritoPage() {
             )}
           </div>
 
-          {/* NUEVO: Botón de Finalizar Compra */}
+          {/* Botón de Finalizar Compra */}
           <button
             onClick={finalizarCompra}
             disabled={procesando}
