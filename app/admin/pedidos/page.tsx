@@ -114,9 +114,18 @@ export default async function AdminPedidos() {
           <h2 className="font-bold mb-4 text-lg text-gray-800">💱 Actualizar Tipo de Cambio USDT</h2>
           <form action={async (formData) => {
             'use server';
-            const tasa = parseFloat(formData.get('tasa') as string);
-            await actualizarTipoCambio(tasa);
-            alert('Tipo de cambio actualizado correctamente');
+            const tasaStr = formData.get('tasa') as string;
+            if (!tasaStr) return;
+            
+            const tasa = parseFloat(tasaStr);
+            const resultado = await actualizarTipoCambio(tasa);
+            
+            if (resultado.success) {
+              // Recarga la página para mostrar el éxito
+              // Nota: en Next.js a veces es mejor usar un redirect, pero esto funciona
+            } else {
+              console.error('Fallo al guardar:', resultado.error);
+            }
           }} className="flex flex-wrap gap-3 items-end">
             <div>
               <label className="block text-xs font-medium text-gray-700 mb-1">Nueva tasa (Bs por USDT)</label>
@@ -126,6 +135,7 @@ export default async function AdminPedidos() {
                 step="0.01" 
                 defaultValue="10.73" 
                 className="border border-gray-300 p-2 rounded w-32 text-sm" 
+                required
               />
             </div>
             <button className="bg-green-600 text-white px-4 py-2 rounded cursor-pointer hover:bg-green-700 text-sm font-semibold">
@@ -133,7 +143,7 @@ export default async function AdminPedidos() {
             </button>
           </form>
           <p className="text-xs text-gray-500 mt-3">
-            Al guardar, el nuevo valor se aplicará automáticamente en el carrito de compras para todos los clientes.
+            Al guardar, el nuevo valor se aplicará automáticamente en el carrito de compras.
           </p>
         </div>
     </div>
