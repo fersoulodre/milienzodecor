@@ -77,3 +77,15 @@ export async function crearPedido(datos: {
     return { success: false, error: 'No se pudo crear el pedido' };
   }
 }
+
+export async function actualizarTipoCambio(nuevaTasa: number) {
+  const supabase = createClient(); // ️ Usa la misma importación de supabase que tienes arriba en este archivo
+  
+  const { error } = await supabase
+    .from('tipo_cambio')
+    .update({ tasa: nuevaTasa })
+    .eq('id', 1); // Asume que la fila que creaste tiene id 1
+
+  if (error) return { success: false };
+  return { success: true };
+}

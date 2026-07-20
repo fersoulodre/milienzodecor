@@ -53,7 +53,7 @@ export default function CarritoPage() {
       .catch(() => setTipoCambio(8.50));
   }, []);
 
-  const montoUSDT = totalConDescuento / tipoCambio;
+  const montoUSDT = totalConDescuento / parseFloat(tipoCambio);
   
 
   const aplicarGiftCard = async () => {
@@ -322,7 +322,7 @@ export default function CarritoPage() {
                         {montoUSDT.toFixed(2)} USDT
                       </p>
                       <p className="text-xs text-gray-500">
-                        (Equivalente a Bs. {totalConDescuento.toLocaleString()} al tipo de cambio actual: {tipoCambio.toFixed(2)} Bs/USDT)
+                        (Equivalente a Bs. {totalConDescuento.toLocaleString()} al tipo de cambio actual: {parseFloat(tipoCambio).toFixed(2)} Bs/USDT)
                       </p>
                     </div>
 
