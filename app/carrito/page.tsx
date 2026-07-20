@@ -23,8 +23,14 @@ export default function CarritoPage() {
   const [applyingCode, setApplyingCode] = useState(false);
   const [procesando, setProcesando] = useState(false);
 
- 
+
+
    // Estado explícitamente como número
+   // 1. Primero calculamos el total
+  const totalConDescuento = Math.max(0, total - discount);
+  const totalItems = items.length + giftCards.length;
+
+  // 2. Luego definimos el estado del tipo de cambio
   const [tipoCambio, setTipoCambio] = useState<number>(8.50);
 
   useEffect(() => {
@@ -32,13 +38,13 @@ export default function CarritoPage() {
       .then(res => res.json())
       .then(data => {
         if (data.tasa) {
-          setTipoCambio(Number(data.tasa)); // Convertimos a número por si la API lo envía como texto
+          setTipoCambio(Number(data.tasa));
         }
       })
       .catch(() => setTipoCambio(8.50));
   }, []);
 
-  // Cálculo directo, sin parseFloat
+  // 3. Finalmente calculamos el monto en USDT (ahora totalConDescuento ya existe)
   const montoUSDT = totalConDescuento / tipoCambio;
   
 
