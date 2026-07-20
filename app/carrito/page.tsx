@@ -16,6 +16,7 @@ export default function CarritoPage() {
   const [email, setEmail] = useState('');
   const [nombre, setNombre] = useState('');
   const [telefono, setTelefono] = useState('');
+  const [metodoPago, setMetodoPago] = useState<'banco' | 'binance'>('banco');
   
   const [giftCodeInput, setGiftCodeInput] = useState('');
   const [discount, setDiscount] = useState(0);
