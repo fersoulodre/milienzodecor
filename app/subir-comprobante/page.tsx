@@ -122,15 +122,24 @@ function FormularioComprobante() {
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Archivo (Imagen o PDF)</label>
-            <input
-              type="file"
-              accept="image/*,.pdf"
-              onChange={(e) => setArchivo(e.target.files?.[0] || null)}
-              className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-              required
-            />
+                    <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Archivo (Imagen o PDF)
+            </label>
+            <div className="flex items-center gap-3">
+              <label className="cursor-pointer bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg border border-gray-400 transition-colors">
+                Selecciona tu archivo
+                <input
+                  type="file"
+                  accept="image/*,application/pdf"
+                  onChange={(e) => setArchivo(e.target.files?.[0] || null)}
+                  className="hidden"
+                />
+              </label>
+              <span className="text-sm text-gray-500 truncate max-w-[200px]">
+                {archivo ? archivo.name : 'Ningún archivo seleccionado'}
+              </span>
+            </div>
           </div>
 
           <button

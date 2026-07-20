@@ -24,7 +24,8 @@ export default function CarritoPage() {
   const [procesando, setProcesando] = useState(false);
 
   const totalConDescuento = Math.max(0, total - discount);
-
+  
+  const totalItems = items.length + giftCards.length;
   const aplicarGiftCard = async () => {
     if (!giftCodeInput) return;
     setApplyingCode(true);
@@ -88,13 +89,18 @@ export default function CarritoPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 py-6">
-        <h1 className="text-3xl font-bold mb-4">Tu Carrito</h1>
+      <div className="max-w-4xl mx-auto px-4 py-2">
+        <div className="mb-4 flex items-center gap-4">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-16 h-16 text-gray-800">
+    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+  </svg>
+  <p className="text-xl font-bold text-gray-800">Total pedidos: {totalItems}</p>
+</div>
 
         {/* Formulario de datos del cliente */}
-        <div className="bg-white rounded-lg shadow-sm p-4 mb-4">
-          <h2 className="font-bold text-lg mb-3">Datos para tu pedido</h2>
-          <div className="grid md:grid-cols-2 gap-4">
+        <div className="bg-white rounded-lg shadow-sm p-4 mb-1">
+          <h2 className="font-bold text-lg mb-1">Datos para tu pedido</h2>
+          <div className="grid md:grid-cols-2 gap-1">
             <input 
               type="text" 
               value={nombre} 
@@ -148,7 +154,7 @@ export default function CarritoPage() {
         <div className="bg-white rounded-lg shadow-sm p-3">
           <div className="flex justify-between items-center mb-3">
             <span className="text-lg font-semibold">Total a pagar:</span>
-            <span className="text-xl font-bold text-green-700">Bs. {totalConDescuento.toLocaleString()}</span>
+            <span className="text-xl font-bold text-black">Bs. {totalConDescuento.toLocaleString()}</span>
           </div>
 
           <div className="grid md:grid-cols-2 gap-4 border-t pt-3 mb-3">

@@ -20,7 +20,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           
           <div className="text-center py-2" style={{ backgroundColor: '#efe4cf' }}>
             <h3 className="text-lg md:text-4xl font-light text-gray-500 italic px-4">
-              No vendemos cuadros... LLenamos tu espacio con arte
+              No vendemos cuadros... llenamos tu espacio con arte
             </h3>
           </div>
 
