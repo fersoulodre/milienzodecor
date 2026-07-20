@@ -16,8 +16,8 @@ export default function ProductDetail() {
 
   const producto = getAllProductos().find(p => p.id === params.id);
 
-  const [width, setWidth] = useState<number | ''>('');
-  const [height, setHeight] = useState<number | ''>('');
+const [width, setWidth] = useState<number | ''>('');
+const [height, setHeight] = useState<number | ''>('');
   const [finalPrice, setFinalPrice] = useState(0);
   const [viewMode, setViewMode] = useState<'original' | 'mockup'>('original');
   const [marcoSeleccionado, setMarcoSeleccionado] = useState('sin-marco');
@@ -48,7 +48,15 @@ export default function ProductDetail() {
 
   if (!producto) return <div className="p-8">Producto no encontrado</div>;
 
-  const handleAddToCart = () => {
+        const handleAddToCart = () => {
+    const w = Number(width);
+    const h = Number(height);
+
+    if (width === '' || height === '' || w < 30 || h < 30) {
+      alert('⚠️ La medida mínima para los cuadros es de 30 x 30 cm. Por favor, ajusta las dimensiones.');
+      return; 
+    }
+
     const marco = opcionesMarco.find(m => m.id === marcoSeleccionado);
     addToCart({ 
       ...producto, 
@@ -67,7 +75,7 @@ export default function ProductDetail() {
           ← Volver
         </button>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid md:grid-cols-2 gap-6">
           <div>
             <div className="relative aspect-[3/2] bg-gray-100 rounded-lg overflow-hidden mb-2 border border-gray-200">
               <Image 
@@ -92,34 +100,42 @@ export default function ProductDetail() {
                 <Image src={mockupUrl} alt="Ambiente" fill className="object-cover" />
               </button>
             </div>
+            <button onClick={handleAddToCart} className="mt-20 w-full cursor-pointer bg-black text-white py-4 rounded-lg font-semibold hover:bg-gray-800">
+  {added ? '✓ Agregado' : 'Agregar al Carrito'}
+</button>
           </div>
 
           <div className="flex flex-col justify-center">
             <span className="text-sm text-gray-500 uppercase">{producto.estilo}</span>
             <h1 className="text-4xl font-bold mt-2">{producto.titulo}</h1>
             
-            <div className="mt-2 grid grid-cols-2 gap-1">
-              <div>
-                <label className="block text-sm font-bold text-gray-700 mb-1">Ancho (cm)</label>
-                <div className="flex items-center gap-2">
-                  <input type="number" min="0" value={width} onChange={(e) => setWidth(e.target.value === '' ? '' : Number(e.target.value))} placeholder="Ingresa tu medida" className="w-full border border-gray-300 rounded p-2 placeholder-red-400" />
-                  <svg className="w-8 h-8 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h8M8 7v10M16 7v10M8 17h8" />
-                  </svg>
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-bold text-gray-700 mb-1">Alto (cm)</label>
-                <div className="flex items-center gap-2">
-                  <input type="number" min="0" value={height} onChange={(e) => setHeight(e.target.value === '' ? '' : Number(e.target.value))} placeholder="Ingresa tu medida" className="w-full border border-gray-300 rounded p-2 placeholder-red-400" />
-                  <svg className="w-8 h-8 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16M12 4l-3 3M12 4l3 3M12 20l-3-3M12 20l3-3" />
-                  </svg>
-                </div>
-              </div>
-            </div>
+            <div className="grid grid-cols-2 gap-4 mb-2">
+  <div>
+    <label className="block text-sm font-medium text-gray-700 mb-1">Ancho (cm)</label>
+    <input
+      type="number"
+      value={width}
+      onChange={(e) => setWidth(e.target.value === '' ? '' : Number(e.target.value))}
+      placeholder="0"
+      min="0"
+      className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 outline-none"
+    />
+  </div>
+  <div>
+    <label className="block text-sm font-medium text-gray-700 mb-1">Alto (cm)</label>
+    <input
+      type="number"
+      value={height}
+      onChange={(e) => setHeight(e.target.value === '' ? '' : Number(e.target.value))}
+      placeholder="0"
+      min="0"
+      className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 outline-none"
+    />
+  </div>
+</div>
+<p className="text-xs text-red-500 mb-2 font-semibold">⚠️ Medida mínima permitida: 30 x 30 cm</p>
 
-            <div className="mt-3">
+            <div className="mt-1">
               <p className="text-sm text-gray-600 mb-3">Referencias de proporciones:</p>
               <div className="grid grid-cols-3 gap-3">
                 <div className="text-center">
@@ -143,7 +159,7 @@ export default function ProductDetail() {
               </div>
             </div>
 
-            <div className="mt-4">
+            <div className="mt-2">
               <label className="block text-sm font-bold text-gray-700 mb-3">Tipo de Marco</label>
               
               <button
@@ -183,13 +199,11 @@ export default function ProductDetail() {
               </div>
             </div>
 
-            <div className="mt-3">
+            <div className="mt-2">
               <p className="text-3xl font-bold">Bs. {finalPrice.toLocaleString()}</p>
             </div>
 
-            <button onClick={handleAddToCart} className="mt-3 w-full cursor-pointer bg-black text-white py-4 rounded-lg font-semibold hover:bg-gray-800">
-              {added ? '✓ Agregado' : 'Agregar al Carrito'}
-            </button>
+            
           </div>
         </div>
       </div>

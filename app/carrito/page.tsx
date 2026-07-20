@@ -3,15 +3,24 @@ import Image from 'next/image';
 import { useCart } from '@/components/CartContext';
 import { getConfig } from '@/lib/productos';
 import { useState } from 'react';
-import { generateGiftCardCode, validateGiftCardCode } from '@/app/actions';
+import { generateGiftCardCode, validateGiftCardCode, crearPedido } from '@/app/actions'; // NUEVO: importamos crearPedido
+import { useRouter } from 'next/navigation'; // NUEVO: para redirigir
 
 export default function CarritoPage() {
   const { items, giftCards, removeFromCart, removeGiftCard, clearCart, total } = useCart();
+  const router = useRouter(); // NUEVO
   const config = getConfig();
+  
+  // NUEVO: Estados para los datos del cliente
+  const [email, setEmail] = useState('');
+  const [nombre, setNombre] = useState('');
+  const [telefono, setTelefono] = useState('');
+  
   const [giftCodeInput, setGiftCodeInput] = useState('');
   const [discount, setDiscount] = useState(0);
   const [giftCardImage, setGiftCardImage] = useState<string | null>(null);
   const [applyingCode, setApplyingCode] = useState(false);
+  const [procesando, setProcesando] = useState(false); // NUEVO
 
   const totalConDescuento = Math.max(0, total - discount);
 
@@ -30,42 +39,45 @@ export default function CarritoPage() {
     setApplyingCode(false);
   };
 
-  const generarPedidoWhatsApp = async () => {
-    let mensaje = `¡Hola! Quiero realizar el siguiente pedido:\n\n`;
-    let codigosGenerados = [];
-
-    if (items.length > 0) {
-      mensaje += `🖼️ *CUADROS:*\n`;
-      items.forEach(item => {
-        mensaje += `• ${item.titulo} (${item.estilo}) - Bs. ${(item.precio ?? 0).toLocaleString()}\n`;
-      });
-      mensaje += `\n`;
+  // NUEVO: Función para finalizar la compra y redirigir
+    const finalizarCompra = async () => {
+    if (!email || !nombre) {
+      alert('Por favor, ingresa tu nombre y correo electrónico para continuar.');
+      return;
     }
 
+    setProcesando(true);
+
+    // 1. Generar códigos de gift cards si hay
+    let codigosGenerados = [];
     if (giftCards.length > 0) {
-      mensaje += `🎁 *GIFT CARDS COMPRADAS:*\n`;
       for (const gc of giftCards) {
         const resultado = await generateGiftCardCode(gc.monto, gc.imagen);
-        const codigo = resultado.code;
-        codigosGenerados.push(codigo);
-        mensaje += `• Gift Card Bs. ${gc.monto.toLocaleString()} - Código: ${codigo}\n`;
+        codigosGenerados.push(resultado.code);
       }
-      mensaje += `\n`;
     }
 
-    if (discount > 0) {
-      mensaje += `🎟️ *GIFT CARD CANJEADA:*\n`;
-      mensaje += `• Código: ${giftCodeInput} - Descuento: Bs. ${discount.toLocaleString()}\n\n`;
+    // 2. Crear el pedido en la base de datos
+    const respuesta = await crearPedido({
+      email,
+      nombre,
+      telefono,
+      total: totalConDescuento,
+      metodo_pago: 'qr_banco',
+      detalles: { items, giftCards: codigosGenerados, discount }
+    });
+
+    if (respuesta.success && respuesta.pedidoId) {
+      // === LÍNEA NUEVA: Guardamos el correo en la memoria del navegador ===
+      sessionStorage.setItem('email_compra', email);
+      
+      // Limpiamos el carrito y redirigimos
+      clearCart();
+      router.push(`/subir-comprobante?pedido=${respuesta.pedidoId}`);
+    } else {
+      alert('Hubo un error al procesar tu pedido. Intenta de nuevo.');
+      setProcesando(false);
     }
-
-    mensaje += `💰 *Total a pagar: Bs. ${totalConDescuento.toLocaleString()}*\n\n`;
-    mensaje += `✅ Ya realicé la transferencia al QR. Adjunto comprobante en esta conversación.`;
-
-    const mensajeCodificado = encodeURIComponent(mensaje);
-    const urlWhatsApp = `https://wa.me/${config.whatsapp}?text=${mensajeCodificado}`;
-    
-    window.open(urlWhatsApp, '_blank');
-    clearCart();
   };
 
   if (items.length === 0 && giftCards.length === 0) {
@@ -83,6 +95,36 @@ export default function CarritoPage() {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-4xl mx-auto px-4 py-6">
         <h1 className="text-3xl font-bold mb-4">Tu Carrito</h1>
+
+        {/* NUEVO: Formulario de datos del cliente */}
+        <div className="bg-white rounded-lg shadow-sm p-4 mb-4">
+          <h2 className="font-bold text-lg mb-3">Datos para tu pedido</h2>
+          <div className="grid md:grid-cols-2 gap-4">
+            <input 
+              type="text" 
+              value={nombre} 
+              onChange={(e) => setNombre(e.target.value)}
+              placeholder="Tu nombre completo *"
+              className="border border-gray-300 rounded p-2 text-sm w-full"
+              required
+            />
+            <input 
+              type="email" 
+              value={email} 
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Tu correo electrónico *"
+              className="border border-gray-300 rounded p-2 text-sm w-full"
+              required
+            />
+            <input 
+              type="tel" 
+              value={telefono} 
+              onChange={(e) => setTelefono(e.target.value)}
+              placeholder="Tu número de WhatsApp (opcional)"
+              className="border border-gray-300 rounded p-2 text-sm w-full md:col-span-2"
+            />
+          </div>
+        </div>
 
         {/* Items del carrito (CUADROS) */}
         <div className="bg-white rounded-lg shadow-sm p-3 mb-4">
@@ -110,8 +152,8 @@ export default function CarritoPage() {
         {/* Total, QR y Gift Cards */}
         <div className="bg-white rounded-lg shadow-sm p-3">
           <div className="flex justify-between items-center mb-3">
-            <span className="text-lg font-semibold">Total:</span>
-            <span className="text-xl font-bold">Bs. {totalConDescuento.toLocaleString()}</span>
+            <span className="text-lg font-semibold">Total a pagar:</span>
+            <span className="text-xl font-bold text-green-700">Bs. {totalConDescuento.toLocaleString()}</span>
           </div>
 
           {/* Gift Cards y QR en 2 columnas */}
@@ -141,25 +183,19 @@ export default function CarritoPage() {
             </div>
 
             <div className="flex flex-col items-center">
-              <h2 className="font-bold text-base mb-2 w-full text-left">Realiza tu pago</h2>
+              <h2 className="font-bold text-base mb-2 w-full text-left">1. Realiza tu pago</h2>
               <div className="relative w-60 h-60 bg-gray-100 rounded-lg overflow-hidden mb-2">
                 <Image src={config.qrPago} alt="QR de pago" fill className="object-contain" />
               </div>
               <p className="text-xs text-gray-600 text-center">
-                Escanea el QR con tu app bancaria
+                Escanea el QR con tu app bancaria por el monto exacto.
               </p>
             </div>
           </div>
 
           {/* Canjear Gift Card */}
           <div className="mt-4 p-3 border border-gray-200 rounded-lg bg-gray-50">
-            <h3 className="font-bold text-base mb-2">¿Tienes una Gift Card?</h3>
-            
-            <div className="mb-3 text-xs text-gray-600">
-              <p className="mb-1"><strong>Si USAS una Gift Card:</strong> Ingresa el código y haz clic en "Aplicar".</p>
-              <p className="border-t pt-2 mt-2"><strong>Si COMPRAS una Gift Card:</strong> Ignora este campo, paga y envía el WhatsApp.</p>
-            </div>
-
+            <h3 className="font-bold text-base mb-2">¿Tienes una Gift Card para canjear?</h3>
             <div className="flex gap-2">
               <input 
                 type="text" 
@@ -181,16 +217,27 @@ export default function CarritoPage() {
             )}
           </div>
 
-          {/* Botón WhatsApp */}
+          {/* NUEVO: Botón de Finalizar Compra */}
           <button
-            onClick={generarPedidoWhatsApp}
-            className="w-full cursor-pointer bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors flex items-center justify-center gap-2 mt-4"
+            onClick={finalizarCompra}
+            disabled={procesando}
+            className="w-full cursor-pointer bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 mt-4 disabled:bg-gray-400"
           >
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
-            </svg>
-            Ya pagué, enviar pedido por WhatsApp
+            {procesando ? (
+              'Procesando...'
+            ) : (
+              <>
+                <span>2. Ya pagué - Ir a subir comprobante</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </>
+            )}
           </button>
+          
+          <p className="text-xs text-gray-500 text-center mt-2">
+            Al finalizar, serás redirigido para adjuntar tu captura de pantalla de forma segura.
+          </p>
         </div>
       </div>
     </div>

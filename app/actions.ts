@@ -43,3 +43,37 @@ export async function validateGiftCardCode(code: string) {
 
   return { valid: true, monto: card.monto, imagen: card.imagen };
 }
+
+import { createClient } from '@supabase/supabase-js';
+
+
+export async function crearPedido(datos: {
+  email: string;
+  nombre: string;
+  telefono: string;
+  total: number;
+  metodo_pago: string;
+  detalles: any[]; // Aquí guardaremos un resumen de lo que compró
+}) {
+  try {
+    const { data, error } = await supabase
+      .from('pedidos')
+      .insert({
+        email: datos.email,
+        nombre: datos.nombre,
+        telefono: datos.telefono,
+        total: datos.total,
+        metodo_pago: datos.metodo_pago,
+        estado: 'pendiente_pago',
+        // Puedes agregar un campo 'detalles' a la tabla más adelante si quieres guardar el JSON del carrito
+      })
+      .select()
+      .single();
+
+    if (error) throw error;
+    return { success: true, pedidoId: data.id };
+  } catch (error) {
+    console.error('Error al crear pedido:', error);
+    return { success: false, error: 'No se pudo crear el pedido' };
+  }
+}
