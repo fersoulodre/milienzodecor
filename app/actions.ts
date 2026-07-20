@@ -1,8 +1,8 @@
 'use server';
 
-import { supabase } from '@/lib/supabase'; // Tu importación de supabase
-import { redirect } from 'next/navigation'; // <-- ESTOS IMPORTS VAN ARRIBA DEL TODO
-import { revalidatePath } from 'next/cache';
+import { supabase } from '@/lib/supabase';
+import { readFileSync, writeFileSync } from 'fs';
+import path from 'path';
 
 const DB_PATH = path.join(process.cwd(), 'data', 'gift-cards-db.json');
 
@@ -78,16 +78,9 @@ export async function crearPedido(datos: {
 
 import { revalidatePath } from 'next/cache'; // Asegúrate de que esta línea esté arriba en el archivo
 
-'use server';
-
-import { supabase } from '@/lib/supabase'; // Tu importación de supabase
-import { redirect } from 'next/navigation'; // <-- ESTOS IMPORTS VAN ARRIBA DEL TODO
-import { revalidatePath } from 'next/cache';
-
-// ... (aquí van tus otras funciones: generateGiftCardCode, validateGiftCardCode, crearPedido) ...
-
 export async function actualizarTipoCambio(nuevaTasa: number) {
   try {
+    // Actualizar directamente la fila con id = 1
     const { error } = await supabase
       .from('tipo_cambio')
       .update({ tasa: nuevaTasa })
@@ -98,6 +91,7 @@ export async function actualizarTipoCambio(nuevaTasa: number) {
       return { success: false, error: error.message };
     }
 
+    // Forzar que la caché se actualice
     revalidatePath('/api/tipo-cambio');
     revalidatePath('/carrito');
     
@@ -107,6 +101,7 @@ export async function actualizarTipoCambio(nuevaTasa: number) {
     return { success: false, error: 'Error inesperado' };
   }
 }
+import { redirect } from 'next/navigation'; // Asegúrate de que esta importación esté arriba en el archivo
 
 export async function manejarEstadoPedido(formData: FormData) {
   const id = formData.get('id') as string;
