@@ -5,6 +5,7 @@ import { getConfig } from '@/lib/productos';
 import { useState } from 'react';
 import { generateGiftCardCode, validateGiftCardCode, crearPedido } from '@/app/actions'; // NUEVO: importamos crearPedido
 import { useRouter } from 'next/navigation'; // NUEVO: para redirigir
+const [metodoPago, setMetodoPago] = useState<'banco' | 'binance'>('banco');
 
 export default function CarritoPage() {
   const { items, giftCards, removeFromCart, removeGiftCard, clearCart, total } = useCart();
@@ -63,7 +64,7 @@ export default function CarritoPage() {
       nombre,
       telefono,
       total: totalConDescuento,
-      metodo_pago: 'qr_banco',
+         metodo_pago: metodoPago === 'banco' ? 'transferencia_banco' : 'binance_pay',
       detalles: { items, giftCards: codigosGenerados, discount }
     });
 
@@ -182,15 +183,51 @@ export default function CarritoPage() {
               {giftCards.length === 0 && <p className="text-gray-400 text-xs">Sin Gift Cards</p>}
             </div>
 
+            {/* Selector de Método de Pago */}
+<div className="mb-4">
+  <h2 className="font-bold text-base mb-2">Método de Pago</h2>
+  <div className="grid grid-cols-2 gap-3">
+    <button
+      onClick={() => setMetodoPago('banco')}
+      className={`p-3 rounded-lg border-2 font-semibold transition-all ${
+        metodoPago === 'banco'
+          ? 'border-blue-600 bg-blue-50 text-blue-700'
+          : 'border-gray-300 text-gray-600 hover:border-gray-400'
+      }`}
+    >
+      🏦 Transferencia Bancaria
+    </button>
+    <button
+      onClick={() => setMetodoPago('binance')}
+      className={`p-3 rounded-lg border-2 font-semibold transition-all ${
+        metodoPago === 'binance'
+          ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
+          : 'border-gray-300 text-gray-600 hover:border-gray-400'
+      }`}
+    >
+      💰 Binance Pay
+    </button>
+  </div>
+</div>
+
             <div className="flex flex-col items-center">
-              <h2 className="font-bold text-base mb-2 w-full text-left">1. Realiza tu pago</h2>
-              <div className="relative w-60 h-60 bg-gray-100 rounded-lg overflow-hidden mb-2">
-                <Image src={config.qrPago} alt="QR de pago" fill className="object-contain" />
-              </div>
-              <p className="text-xs text-gray-600 text-center">
-                Escanea el QR con tu app bancaria por el monto exacto.
-              </p>
-            </div>
+  <h2 className="font-bold text-base mb-2 w-full text-left">
+    1. Escanea el QR ({metodoPago === 'banco' ? 'Banco' : 'Binance'})
+  </h2>
+  <div className="relative w-60 h-60 bg-gray-100 rounded-lg overflow-hidden mb-2">
+    <Image 
+      src={metodoPago === 'banco' ? config.qrPago : '/images/binance-qr.jpg'} 
+      alt={`QR de pago ${metodoPago === 'banco' ? 'bancario' : 'Binance'}`} 
+      fill 
+      className="object-contain" 
+    />
+  </div>
+  <p className="text-xs text-gray-600 text-center">
+    {metodoPago === 'banco' 
+      ? 'Escanea el QR con tu app bancaria' 
+      : 'Escanea el QR con tu app de Binance'}
+  </p>
+</div>
           </div>
 
           {/* Canjear Gift Card */}
