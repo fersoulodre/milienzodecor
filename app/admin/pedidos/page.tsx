@@ -1,14 +1,14 @@
 import { createClient } from '@supabase/supabase-js';
 import { redirect } from 'next/navigation';
-import { actualizarTipoCambio } from '@/app/actions';
-import { revalidatePath } from 'next/cache';
+import { actualizarTipoCambio, manejarEstadoPedido } from '@/app/actions';
 
+// Inicializa Supabase con variables de entorno del servidor
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
-// En Next.js 15, searchParams es una Promesa, así que la definimos así:
+// En Next.js 15, searchParams es una Promesa, la definimos así para evitar errores
 type Props = {
   searchParams: Promise<{ saved?: string }>;
 };
@@ -33,21 +33,7 @@ export default async function AdminPedidos({ searchParams }: Props) {
   
   const valorActual = tipoCambioData?.tasa || 10.73;
 
-  if (error) return <div className="p-8 text-red-600">Error al c
-
-  // 3. Función para aprobar/rechazar (Server Action)
-  async function cambiarEstado(formData: FormData) {
-    'use server';
-    const id = formData.get('id');
-    const nuevoEstado = formData.get('estado');
-    
-    await supabaseAdmin
-      .from('pedidos')
-      .update({ estado: nuevoEstado })
-      .eq('id', id);
-      
-    redirect('/admin/pedidos');
-  }
+  if (error) return <div className="p-8 text-red-600">Error al cargar pedidos: {error.message}</div>;
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
@@ -68,7 +54,6 @@ export default async function AdminPedidos({ searchParams }: Props) {
                 </div>
                 
                 <div className="p-6 grid md:grid-cols-2 gap-6">
-                  {/* Información del cliente */}
                   <div className="space-y-2">
                     <p className="text-sm"><span className="font-semibold">Email:</span> {pedido.email}</p>
                     <p className="text-sm"><span className="font-semibold">Nombre:</span> {pedido.nombre || 'No especificado'}</p>
@@ -76,7 +61,6 @@ export default async function AdminPedidos({ searchParams }: Props) {
                     <p className="text-2xl font-bold text-green-600 mt-4">Total: Bs. {pedido.total}</p>
                   </div>
 
-                  {/* Comprobante */}
                   <div className="border-l pl-0 md:pl-6 border-gray-200">
                     <p className="font-semibold mb-2">Comprobante de pago:</p>
                     {pedido.comprobante_url ? (
@@ -97,26 +81,19 @@ export default async function AdminPedidos({ searchParams }: Props) {
                   </div>
                 </div>
 
-                {/* Botones de acción */}
                 <div className="bg-gray-50 px-6 py-4 flex gap-4 border-t border-gray-200">
-                  <form action={cambiarEstado}>
+                  <form action={manejarEstadoPedido}>
                     <input type="hidden" name="id" value={pedido.id} />
                     <input type="hidden" name="estado" value="pagado" />
-                    <button 
-                      type="submit" 
-                      className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded transition duration-200"
-                    >
+                    <button type="submit" className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded transition duration-200">
                       ✅ Aprobar Pago
                     </button>
                   </form>
 
-                  <form action={cambiarEstado}>
+                  <form action={manejarEstadoPedido}>
                     <input type="hidden" name="id" value={pedido.id} />
                     <input type="hidden" name="estado" value="rechazado" />
-                    <button 
-                      type="submit" 
-                      className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded transition duration-200"
-                    >
+                    <button type="submit" className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded transition duration-200">
                       ❌ Rechazar
                     </button>
                   </form>
@@ -126,7 +103,7 @@ export default async function AdminPedidos({ searchParams }: Props) {
           </div>
         )}
 
-        {/* Mensaje de éxito (usa la variable resuelta) */}
+        {/* Mensaje de éxito: usa la variable resuelta (resolvedSearchParams) */}
         {resolvedSearchParams?.saved === 'true' && (
           <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 flex items-center gap-2 mt-8">
             <span>✅</span>
@@ -146,7 +123,6 @@ export default async function AdminPedidos({ searchParams }: Props) {
             const tasa = parseFloat(tasaStr);
             await actualizarTipoCambio(tasa);
             
-            // Redirige a la misma página con el parámetro ?saved=true para mostrar el mensaje
             redirect('/admin/pedidos?saved=true');
           }} className="flex flex-wrap gap-3 items-end">
             <div>
