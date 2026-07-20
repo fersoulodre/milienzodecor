@@ -1,5 +1,6 @@
-import { createClient } from '@supabase/supabase-js';
+import { createClient } from '@/lib/supabase';
 import { redirect } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 import { actualizarTipoCambio } from '@/app/actions';
 
 // Inicializa Supabase con variables de entorno del servidor
@@ -112,38 +113,45 @@ export default async function AdminPedidos() {
               {/* Control de Tipo de Cambio */}
         <div className="bg-white p-6 rounded-lg shadow mt-8 border border-gray-200">
           <h2 className="font-bold mb-4 text-lg text-gray-800">💱 Actualizar Tipo de Cambio USDT</h2>
-          <form action={async (formData) => {
-            'use server';
-            const tasaStr = formData.get('tasa') as string;
-            if (!tasaStr) return;
+          
+          {/* Leer el valor actual desde la base de datos */}
+          {async () => {
+            const supabase = createClient();
+            const { data } = await supabase.from('tipo_cambio').select('tasa').eq('id', 1).single();
+            const valorActual = data?.tasa || 10.73;
             
-            const tasa = parseFloat(tasaStr);
-            const resultado = await actualizarTipoCambio(tasa);
-            
-            if (resultado.success) {
-              // Recarga la página para mostrar el éxito
-              // Nota: en Next.js a veces es mejor usar un redirect, pero esto funciona
-            } else {
-              console.error('Fallo al guardar:', resultado.error);
-            }
-          }} className="flex flex-wrap gap-3 items-end">
-            <div>
-              <label className="block text-xs font-medium text-gray-700 mb-1">Nueva tasa (Bs por USDT)</label>
-              <input 
-                name="tasa" 
-                type="number" 
-                step="0.01" 
-                defaultValue="10.73" 
-                className="border border-gray-300 p-2 rounded w-32 text-sm" 
-                required
-              />
-            </div>
-            <button className="bg-green-600 text-white px-4 py-2 rounded cursor-pointer hover:bg-green-700 text-sm font-semibold">
-              Guardar Cambio
-            </button>
-          </form>
+            return (
+              <form action={async (formData) => {
+                'use server';
+                const tasaStr = formData.get('tasa') as string;
+                if (!tasaStr) return;
+                
+                const tasa = parseFloat(tasaStr);
+                await actualizarTipoCambio(tasa);
+                
+                // Forzar redirección para recargar la página
+                revalidatePath('/admin/pedidos');
+              }} className="flex flex-wrap gap-3 items-end">
+                <div>
+                  <label className="block text-xs font-medium text-gray-700 mb-1">Nueva tasa (Bs por USDT)</label>
+                  <input 
+                    name="tasa" 
+                    type="number" 
+                    step="0.01" 
+                    defaultValue={valorActual.toString()}
+                    className="border border-gray-300 p-2 rounded w-32 text-sm" 
+                    required
+                  />
+                </div>
+                <button className="bg-green-600 text-white px-4 py-2 rounded cursor-pointer hover:bg-green-700 text-sm font-semibold">
+                  Guardar Cambio
+                </button>
+              </form>
+            );
+          }}()
+          
           <p className="text-xs text-gray-500 mt-3">
-            Al guardar, el nuevo valor se aplicará automáticamente en el carrito de compras.
+            Valor actual en base de datos. Modifícalo y guarda para actualizar el carrito.
           </p>
         </div>
     </div>

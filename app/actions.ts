@@ -80,22 +80,24 @@ import { revalidatePath } from 'next/cache'; // Asegúrate de que esta línea es
 
 export async function actualizarTipoCambio(nuevaTasa: number) {
   try {
-    // upsert crea el registro si no existe (id: 1), o lo actualiza si ya existe
+    // Actualizar directamente la fila con id = 1
     const { error } = await supabase
       .from('tipo_cambio')
-      .upsert({ id: 1, tasa: nuevaTasa }, { onConflict: 'id' });
+      .update({ tasa: nuevaTasa })
+      .eq('id', 1);
 
     if (error) {
-      console.error('Error de Supabase al actualizar tipo de cambio:', error);
+      console.error('Error al actualizar tipo de cambio:', error);
       return { success: false, error: error.message };
     }
 
-    // Limpia la caché para que el carrito tome el nuevo valor inmediatamente
+    // Forzar que la caché se actualice
     revalidatePath('/api/tipo-cambio');
+    revalidatePath('/carrito');
     
     return { success: true };
   } catch (err) {
-    console.error('Excepción inesperada en actualizarTipoCambio:', err);
+    console.error('Excepción en actualizarTipoCambio:', err);
     return { success: false, error: 'Error inesperado' };
   }
 }
