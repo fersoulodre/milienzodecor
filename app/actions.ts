@@ -44,8 +44,6 @@ export async function validateGiftCardCode(code: string) {
   return { valid: true, monto: card.monto, imagen: card.imagen };
 }
 
-import { createClient } from '@supabase/supabase-js';
-
 
 export async function crearPedido(datos: {
   email: string;
@@ -79,7 +77,7 @@ export async function crearPedido(datos: {
 }
 
 export async function actualizarTipoCambio(nuevaTasa: number) {
-  const supabase = createClient(); // ️ Usa la misma importación de supabase que tienes arriba en este archivo
+ 
   
   const { error } = await supabase
     .from('tipo_cambio')
