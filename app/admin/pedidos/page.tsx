@@ -3,27 +3,28 @@ import { redirect } from 'next/navigation';
 import { actualizarTipoCambio } from '@/app/actions';
 import { revalidatePath } from 'next/cache';
 
-// Inicializa Supabase con variables de entorno del servidor
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
   process.env.SUPABASE_SERVICE_ROLE_KEY!
 );
 
-// Definimos el tipo de searchParams de forma limpia para evitar errores de TypeScript
+// En Next.js 15, searchParams es una Promesa, así que la definimos así:
 type Props = {
-  searchParams?: { saved?: string };
+  searchParams: Promise<{ saved?: string }>;
 };
 
 export default async function AdminPedidos({ searchParams }: Props) {
-  
-  // 1. Obtener pedidos pendientes de verificación
+  // 1. Esperamos a que se resuelva la promesa de searchParams
+  const resolvedSearchParams = await searchParams;
+
+  // 2. Obtener pedidos pendientes de verificación
   const { data: pedidos, error } = await supabaseAdmin
     .from('pedidos')
     .select('*')
     .eq('estado', 'pendiente_verificacion')
     .order('fecha_creacion', { ascending: false });
 
-  // 2. Obtener el tipo de cambio actual
+  // 3. Obtener el tipo de cambio actual
   const { data: tipoCambioData } = await supabaseAdmin
     .from('tipo_cambio')
     .select('tasa')
@@ -32,7 +33,7 @@ export default async function AdminPedidos({ searchParams }: Props) {
   
   const valorActual = tipoCambioData?.tasa || 10.73;
 
-  if (error) return <div className="p-8 text-red-600">Error al cargar pedidos: {error.message}</div>;
+  if (error) return <div className="p-8 text-red-600">Error al c
 
   // 3. Función para aprobar/rechazar (Server Action)
   async function cambiarEstado(formData: FormData) {
@@ -125,8 +126,8 @@ export default async function AdminPedidos({ searchParams }: Props) {
           </div>
         )}
 
-        {/* Mensaje de éxito (solo aparece si viene de guardar el tipo de cambio) */}
-        {searchParams?.saved === 'true' && (
+        {/* Mensaje de éxito (usa la variable resuelta) */}
+        {resolvedSearchParams?.saved === 'true' && (
           <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4 flex items-center gap-2 mt-8">
             <span>✅</span>
             <span>¡Tipo de cambio actualizado correctamente! El carrito ya usa el nuevo valor.</span>
