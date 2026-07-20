@@ -314,7 +314,7 @@ export default function CarritoPage() {
                         {montoUSDT.toFixed(2)} USDT
                       </p>
                       <p className="text-xs text-gray-500">
-                        (Equivalente a Bs. {totalConDescuento.toLocaleString()} al tipo de cambio actual: {parseFloat(tipoCambio).toFixed(2)} Bs/USDT)
+                        (Equivalente a Bs. {totalConDescuento.toLocaleString()} al tipo de cambio actual: {tipoCambio.toFixed(2)} Bs/USDT)
                       </p>
                     </div>
 
