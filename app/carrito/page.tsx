@@ -23,9 +23,7 @@ export default function CarritoPage() {
   const [applyingCode, setApplyingCode] = useState(false);
   const [procesando, setProcesando] = useState(false);
 
-  // AUTOMÁTICO: Obtiene el precio real del USDT en Bs.
-  const [tipoCambio, setTipoCambio] = useState(8.50); // Valor de respaldo si falla la API
-
+ 
    // Estado explícitamente como número
   const [tipoCambio, setTipoCambio] = useState<number>(8.50);
 
