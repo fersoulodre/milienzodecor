@@ -2,7 +2,7 @@
 import Image from 'next/image';
 import { useCart } from '@/components/CartContext';
 import { getConfig } from '@/lib/productos';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { generateGiftCardCode, validateGiftCardCode, crearPedido } from '@/app/actions';
 import { useRouter } from 'next/navigation';
 
@@ -23,9 +23,39 @@ export default function CarritoPage() {
   const [applyingCode, setApplyingCode] = useState(false);
   const [procesando, setProcesando] = useState(false);
 
+  // AUTOMÁTICO: Obtiene el precio real del USDT en Bs.
+  const [tipoCambio, setTipoCambio] = useState(8.50); // Valor de respaldo si falla la API
+
+  useEffect(() => {
+    fetch('https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=bob')
+      .then(res => res.json())
+      .then(data => {
+        if (data.tether && data.tether.bob) {
+          setTipoCambio(data.tether.bob);
+        }
+      })
+      .catch(err => console.log('No se pudo actualizar el tipo de cambio'));
+  }, []);
+
   const totalConDescuento = Math.max(0, total - discount);
-  
   const totalItems = items.length + giftCards.length;
+    // Estado para el tipo de cambio automático
+  
+
+  useEffect(() => {
+    fetch('/api/tipo-cambio')
+      .then(res => res.json())
+      .then(data => {
+        if (data.tasa) {
+          setTipoCambio(data.tasa);
+        }
+      })
+      .catch(() => setTipoCambio(8.50));
+  }, []);
+
+  const montoUSDT = totalConDescuento / tipoCambio;
+  
+
   const aplicarGiftCard = async () => {
     if (!giftCodeInput) return;
     setApplyingCode(true);
@@ -89,18 +119,20 @@ export default function CarritoPage() {
 
   return (
     <div className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 py-2">
+      <div className="max-w-4xl mx-auto px-4 py-6">
+        
+        {/* Encabezado con ícono y total de pedidos */}
         <div className="mb-4 flex items-center gap-4">
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-16 h-16 text-gray-800">
-    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
-  </svg>
-  <p className="text-xl font-bold text-gray-800">Total pedidos: {totalItems}</p>
-</div>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-16 h-16 text-gray-800">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 00-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 00-16.536-1.84M7.5 14.25L5.106 5.272M6 20.25a.75.75 0 11-1.5 0 .75.75 0 011.5 0zm12.75 0a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" />
+          </svg>
+          <p className="text-xl font-bold text-gray-800">Total pedidos: {totalItems}</p>
+        </div>
 
         {/* Formulario de datos del cliente */}
-        <div className="bg-white rounded-lg shadow-sm p-4 mb-1">
-          <h2 className="font-bold text-lg mb-1">Datos para tu pedido</h2>
-          <div className="grid md:grid-cols-2 gap-1">
+        <div className="bg-white rounded-lg shadow-sm p-4 mb-4">
+          <h2 className="font-bold text-lg mb-3">Datos para tu pedido</h2>
+          <div className="grid md:grid-cols-2 gap-4">
             <input 
               type="text" 
               value={nombre} 
@@ -127,7 +159,7 @@ export default function CarritoPage() {
           </div>
         </div>
 
-        {/* Items del carrito (CUADROS) */}
+        {/* Items del carrito */}
         <div className="bg-white rounded-lg shadow-sm p-3 mb-4">
           {items.map(item => (
             <div key={item.id} className="flex justify-between items-center py-2 border-b last:border-0">
@@ -189,7 +221,7 @@ export default function CarritoPage() {
                 <div className="grid grid-cols-2 gap-3">
                   <button
                     onClick={() => setMetodoPago('banco')}
-                    className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm ${
+                    className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${
                       metodoPago === 'banco'
                         ? 'border-blue-600 bg-blue-50 text-blue-700'
                         : 'border-gray-300 text-gray-600 hover:border-gray-400'
@@ -199,15 +231,25 @@ export default function CarritoPage() {
                   </button>
                   <button
                     onClick={() => setMetodoPago('binance')}
-                    className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm ${
+                    className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${
                       metodoPago === 'binance'
                         ? 'border-yellow-500 bg-yellow-50 text-yellow-700'
                         : 'border-gray-300 text-gray-600 hover:border-gray-400'
                     }`}
                   >
-                    💰 Binance
+                    <Image 
+                      src="/images/logo-binance.png" 
+                      alt="Binance" 
+                      width={20} 
+                      height={20}
+                      className="object-contain"
+                    />
+                    Binance
                   </button>
                 </div>
+                <p className="mt-2 text-xs text-gray-600">
+                   Aceptamos pagos con <strong>USDT (Tether)</strong> y otras criptomonedas vía Binance.
+                </p>
               </div>
 
               <div className="flex flex-col items-center">
@@ -216,7 +258,7 @@ export default function CarritoPage() {
                 </h2>
                 <div className="relative w-60 h-60 bg-gray-100 rounded-lg overflow-hidden mb-2 border border-gray-200">
                   <Image 
-                    src={metodoPago === 'banco' ? config.qrPago : '/images/binance-qr.jpg'} 
+                    src={metodoPago === 'banco' ? config.qrPago : '/images/binance-qr1.jpg'} 
                     alt={`QR de pago ${metodoPago === 'banco' ? 'bancario' : 'Binance'}`} 
                     fill 
                     className="object-contain p-2" 
@@ -227,6 +269,68 @@ export default function CarritoPage() {
                     ? 'Escanea el QR con tu app bancaria' 
                     : 'Escanea el QR con tu app de Binance'}
                 </p>
+
+                {/* INSTRUCCIONES BINANCE CON TIPO DE CAMBIO AUTOMÁTICO */}
+                {metodoPago === 'binance' && (
+                  <div className="mt-3 p-4 bg-yellow-50 border border-yellow-200 rounded-lg w-full">
+                    <h3 className="font-bold text-sm text-yellow-800 mb-3">
+                      💰 Instrucciones para pagar con Binance:
+                    </h3>
+
+                    <ol className="text-xs text-gray-700 space-y-2 list-decimal list-inside mb-3">
+                      <li>
+                        <strong>Escanea el QR</strong> con tu app de Binance, o busca manualmente por ID.
+                      </li>
+                      <li>
+                        Confirma el monto en <strong>USDT</strong> antes de pagar.
+                      </li>
+                      <li>
+                        Guarda la captura de pantalla para subirla como comprobante.
+                      </li>
+                    </ol>
+
+                    <div className="p-3 bg-white rounded border border-yellow-300 mb-3">
+                      <p className="text-xs text-gray-600 mb-1">ID de Binance Pay:</p>
+                      <div className="flex items-center justify-between gap-2">
+                        {/* REEMPLAZA '123456789' CON TU ID REAL DE 9 DÍGITOS */}
+                        <code className="text-sm font-bold text-yellow-700">
+                          437498764
+                        </code>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            navigator.clipboard.writeText('437498764');
+                            alert('ID copiado al portapapeles');
+                          }}
+                          className="text-xs bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 cursor-pointer"
+                        >
+                          Copiar
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* REEMPLAZA 'MLD - Mi Lienzo Decor' CON TU ALIAS REAL */}
+                    <p className="text-xs text-gray-600 mb-1">
+                      <strong>Nombre:</strong> Mi Lienzo Decor
+                    </p>
+
+                    <div className="mt-2 p-2 bg-yellow-100 rounded border border-yellow-300">
+                      <p className="text-xs text-gray-700 mb-1">
+                        <strong>Monto a pagar:</strong>
+                      </p>
+                      <p className="text-lg font-bold text-yellow-700">
+                        {montoUSDT.toFixed(2)} USDT
+                      </p>
+                      <p className="text-xs text-gray-500">
+                        (Equivalente a Bs. {totalConDescuento.toLocaleString()} al tipo de cambio actual: {tipoCambio.toFixed(2)} Bs/USDT)
+                      </p>
+                    </div>
+
+                    <p className="text-xs text-gray-500 mt-3">
+                      💡 El pago es instantáneo. Una vez confirmado, te redirigiremos para subir tu comprobante.
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
