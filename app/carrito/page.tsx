@@ -26,34 +26,22 @@ export default function CarritoPage() {
   // AUTOMÁTICO: Obtiene el precio real del USDT en Bs.
   const [tipoCambio, setTipoCambio] = useState(8.50); // Valor de respaldo si falla la API
 
-  useEffect(() => {
-    fetch('https://api.coingecko.com/api/v3/simple/price?ids=tether&vs_currencies=bob')
-      .then(res => res.json())
-      .then(data => {
-        if (data.tether && data.tether.bob) {
-          setTipoCambio(data.tether.bob);
-        }
-      })
-      .catch(err => console.log('No se pudo actualizar el tipo de cambio'));
-  }, []);
-
-  const totalConDescuento = Math.max(0, total - discount);
-  const totalItems = items.length + giftCards.length;
-    // Estado para el tipo de cambio automático
-  
+   // Estado explícitamente como número
+  const [tipoCambio, setTipoCambio] = useState<number>(8.50);
 
   useEffect(() => {
     fetch('/api/tipo-cambio')
       .then(res => res.json())
       .then(data => {
         if (data.tasa) {
-          setTipoCambio(data.tasa);
+          setTipoCambio(Number(data.tasa)); // Convertimos a número por si la API lo envía como texto
         }
       })
       .catch(() => setTipoCambio(8.50));
   }, []);
 
-  const montoUSDT = totalConDescuento / parseFloat(tipoCambio);
+  // Cálculo directo, sin parseFloat
+  const montoUSDT = totalConDescuento / tipoCambio;
   
 
   const aplicarGiftCard = async () => {
