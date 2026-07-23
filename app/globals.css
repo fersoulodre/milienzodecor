@@ -14,7 +14,7 @@ body {
 /* Forzar fondos claros en contenedores principales */
 .bg-white, 
 .bg-gray-50,
-.bg-\[\#efe4cf\],
+.bg-\[\#eadbc3\],
 .bg-\[\#94845f\] {
   background-color: var(--tw-bg-color, inherit) !important;
 }
