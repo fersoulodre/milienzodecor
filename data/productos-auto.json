@@ -503,6 +503,30 @@
       "imagen": "/images/figuras_humanas/H106.webp",
       "disponible": true,
       "destacado": true
+    },
+    {
+      "id": "figuras_humanas-H107",
+      "titulo": "H107",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H107.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "figuras_humanas-H108",
+      "titulo": "H108",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H108.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "figuras_humanas-H109",
+      "titulo": "H109",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H109.webp",
+      "disponible": true,
+      "destacado": false
     }
   ]
 }
