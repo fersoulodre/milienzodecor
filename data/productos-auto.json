@@ -518,7 +518,7 @@
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H108.webp",
       "disponible": true,
-      "destacado": false
+      "destacado": true
     },
     {
       "id": "figuras_humanas-H109",
