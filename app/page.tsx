@@ -18,7 +18,7 @@ export default function Home() {
       <section className="text-center py-12 mb-0 bg-gray-50 rounded-2xl border border-gray-100">
         
         <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
-          Transforma tus espacios con piezas únicas, exclusivas y hechas para inspirar.
+          Transforma tu mundo con piezas únicas, exclusivas y hechas para inspirar.
         </p>
         
         {/* Barra de Tiempo de Entrega */}

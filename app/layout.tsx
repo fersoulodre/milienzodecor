@@ -4,10 +4,10 @@ import Footer from '@/components/Footer';
 import './globals.css';
 
 export const metadata = {
-  title: 'Mi Lienzo Decor',
-  description: 'Cuadros, arte, decoración, Bolivia, cuadros modernos, regalos, gift cards, decoración de interiores.',
+  title: 'Mi Lienzo Decor | Arte y Cuadros en Bolivia',
+  description: 'Transforma tus espacios con arte único. Venta de cuadros modernos, lienzos personalizados y Gift Cards en Bolivia con envío a todo el país.',
   icons: {
-    icon: '/favicon2.png', // Cambia a '.png' si tu archivo es PNG
+    icon: '/favicon2.png',
   },
 };
 
@@ -18,9 +18,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <CartProvider>
           <Navbar />
           
-          <div className="text-center py-2" style={{ backgroundColor: '#eadbc3' }}>
-            <h3 className="text-lg md:text-4xl font-light text-gray-500 italic px-4">
-              No vendemos cuadros... llenamos tu espacio con arte
+          {/* Slogan Global centrado vertical y horizontalmente */}
+          <div className="flex items-center justify-center py-3 md:py-3" style={{ backgroundColor: '#eadbc3' }}>
+            <h3 className="text-lg md:text-4xl font-light text-gray-700 italic px-4 text-center">
+              No vendemos cuadros... llenamos tus espacios con arte
             </h3>
           </div>
 

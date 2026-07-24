@@ -89,6 +89,22 @@
       "destacado": true
     },
     {
+      "id": "abstractos_forte-F112",
+      "titulo": "F112",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F112.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F113",
+      "titulo": "F113",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F113.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
       "id": "abstractos_forte-F114",
       "titulo": "F114",
       "estilo": "Abstractos Forte",
@@ -177,18 +193,146 @@
       "destacado": false
     },
     {
-      "id": "abstractos_forte-F125",
-      "titulo": "F125",
+      "id": "abstractos_forte-PAI-C-137",
+      "titulo": "PAI C 137",
       "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F125.webp",
+      "imagen": "/images/abstractos_forte/PAI-C-137.webp",
       "disponible": true,
       "destacado": false
     },
     {
-      "id": "abstractos_forte-F126",
-      "titulo": "F126",
+      "id": "abstractos_forte-PAI-C-137F",
+      "titulo": "PAI C 137F",
       "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F126.webp",
+      "imagen": "/images/abstractos_forte/PAI-C-137F.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-PAI-C-140-S. Delaunay-prismes-electriques",
+      "titulo": "PAI C 140 S. Delaunay Prismes Electriques",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/PAI-C-140-S. Delaunay-prismes-electriques.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-PAI-C-140F-S. Delaunay-prismes-electriques",
+      "titulo": "PAI C 140F S. Delaunay Prismes Electriques",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/PAI-C-140F-S. Delaunay-prismes-electriques.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-PAI-H-138-orphism-fruit",
+      "titulo": "PAI H 138 Orphism Fruit",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/PAI-H-138-orphism-fruit.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-PAI-H-138F-orphism-fruit",
+      "titulo": "PAI H 138F Orphism Fruit",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/PAI-H-138F-orphism-fruit.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-PAI-H-139-R. Delaunay-Circular Forms",
+      "titulo": "PAI H 139 R. Delaunay Circular Forms",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/PAI-H-139-R. Delaunay-Circular Forms.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-PAI-H-139F-R. Delaunay-Circular Forms",
+      "titulo": "PAI H 139F R. Delaunay Circular Forms",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/PAI-H-139F-R. Delaunay-Circular Forms.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-PAI-H-141",
+      "titulo": "PAI H 141",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/PAI-H-141.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-PAI-H-141F",
+      "titulo": "PAI H 141F",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/PAI-H-141F.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-PAI-H-143",
+      "titulo": "PAI H 143",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/PAI-H-143.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-PAI-H-143F",
+      "titulo": "PAI H 143F",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/PAI-H-143F.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-PAI-H-147",
+      "titulo": "PAI H 147",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/PAI-H-147.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-PAI-H-147F",
+      "titulo": "PAI H 147F",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/PAI-H-147F.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-PAI-V-136",
+      "titulo": "PAI V 136",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/PAI-V-136.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-PAI-V-136F",
+      "titulo": "PAI V 136F",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/PAI-V-136F.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-PAI-V-142-The foxes",
+      "titulo": "PAI V 142 The foxes",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/PAI-V-142-The foxes.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-PAI-V-142F-The foxes",
+      "titulo": "PAI V 142F The foxes",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/PAI-V-142F-The foxes.webp",
       "disponible": true,
       "destacado": false
     },
@@ -311,6 +455,54 @@
       "imagen": "/images/abstractos_minimalista/M64.webp",
       "disponible": true,
       "destacado": false
+    },
+    {
+      "id": "figuras_humanas-H101",
+      "titulo": "H101",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H101.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "figuras_humanas-H102",
+      "titulo": "H102",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H102.jpg",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "figuras_humanas-H103",
+      "titulo": "H103",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H103.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "figuras_humanas-H104",
+      "titulo": "H104",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H104.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "figuras_humanas-H105",
+      "titulo": "H105",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H105.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "figuras_humanas-H106",
+      "titulo": "H106",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H106.webp",
+      "disponible": true,
+      "destacado": true
     }
   ]
 }
