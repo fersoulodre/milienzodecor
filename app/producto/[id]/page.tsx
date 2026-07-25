@@ -16,13 +16,15 @@ export default function ProductDetail() {
 
   const producto = getAllProductos().find(p => p.id === params.id);
 
-const [width, setWidth] = useState<number | ''>('');
-const [height, setHeight] = useState<number | ''>('');
+  const [width, setWidth] = useState<number | ''>('');
+  const [height, setHeight] = useState<number | ''>('');
   const [finalPrice, setFinalPrice] = useState(0);
   const [viewMode, setViewMode] = useState<'original' | 'mockup'>('original');
   const [marcoSeleccionado, setMarcoSeleccionado] = useState('sin-marco');
   
-  // Cambiamos 'null' por '' para que TypeScript no se queje
+  // Estado para el modal de advertencia
+  const [showMinWarningModal, setShowMinWarningModal] = useState(true);
+
   const opcionesMarco = [
     { id: 'sin-marco', nombre: 'Sin marco', precioMetroLineal: 0, imagen: '' },
     { id: 'bastidor', nombre: 'Marco bastidor', precioMetroLineal: 100, imagen: '/images/marcos/marco-bastidor.jpg' },
@@ -48,12 +50,13 @@ const [height, setHeight] = useState<number | ''>('');
 
   if (!producto) return <div className="p-8">Producto no encontrado</div>;
 
-        const handleAddToCart = () => {
+  const handleAddToCart = () => {
     const w = Number(width);
     const h = Number(height);
 
+    // Validación: mostrar modal en lugar de alert
     if (width === '' || height === '' || w < 30 || h < 30) {
-      alert('⚠️ La medida mínima para los cuadros es de 30 x 30 cm. Por favor, ajusta las dimensiones.');
+      setShowMinWarningModal(true);
       return; 
     }
 
@@ -101,8 +104,8 @@ const [height, setHeight] = useState<number | ''>('');
               </button>
             </div>
             <button onClick={handleAddToCart} className="mt-20 w-full cursor-pointer bg-black text-white py-4 rounded-lg font-semibold hover:bg-gray-800">
-  {added ? '✓ Agregado' : 'Agregar al Carrito'}
-</button>
+              {added ? '✓ Agregado' : 'Agregar al Carrito'}
+            </button>
           </div>
 
           <div className="flex flex-col justify-center">
@@ -110,30 +113,38 @@ const [height, setHeight] = useState<number | ''>('');
             <h1 className="text-4xl font-bold mt-2">{producto.titulo}</h1>
             
             <div className="grid grid-cols-2 gap-4 mb-2">
-  <div>
-    <label className="block text-sm font-medium text-gray-700 mb-1">Ancho (cm)</label>
-    <input
-      type="number"
-      value={width}
-      onChange={(e) => setWidth(e.target.value === '' ? '' : Number(e.target.value))}
-      placeholder="0"
-      min="0"
-      className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 outline-none"
-    />
-  </div>
-  <div>
-    <label className="block text-sm font-medium text-gray-700 mb-1">Alto (cm)</label>
-    <input
-      type="number"
-      value={height}
-      onChange={(e) => setHeight(e.target.value === '' ? '' : Number(e.target.value))}
-      placeholder="0"
-      min="0"
-      className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 outline-none"
-    />
-  </div>
-</div>
-<p className="text-xs text-red-500 mb-2 font-semibold">⚠️ Medida mínima permitida: 30 x 30 cm</p>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Ancho (cm)</label>
+                <input
+                  type="number"
+                  value={width}
+                  onChange={(e) => setWidth(e.target.value === '' ? '' : Number(e.target.value))}
+                  placeholder="0"
+                  min="0"
+                  className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 outline-none"
+                />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">Alto (cm)</label>
+                <input
+                  type="number"
+                  value={height}
+                  onChange={(e) => setHeight(e.target.value === '' ? '' : Number(e.target.value))}
+                  placeholder="0"
+                  min="0"
+                  className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 outline-none"
+                />
+              </div>
+            </div>
+
+            {/* Advertencia visual pequeña */}
+            {(width !== '' && height !== '' && 
+  !isNaN(Number(width)) && !isNaN(Number(height)) && 
+  (Number(width) < 30 || Number(height) < 30)) && (
+              <p className="text-xs text-red-500 mb-2 font-semibold">
+                ⚠️ Mínimo: 30 x 30 cm
+              </p>
+            )}
 
             <div className="mt-1">
               <p className="text-sm text-gray-600 mb-3">Referencias de proporciones:</p>
@@ -188,7 +199,6 @@ const [height, setHeight] = useState<number | ''>('');
                     }`}
                   >
                     <div className="relative h-24 bg-white">
-                      {/* Usamos 'as string' porque el filtro ya garantiza que no es 'sin-marco' */}
                       <Image src={marco.imagen as string} alt={marco.nombre} fill className="object-contain" />
                     </div>
                     <div className="p-2 text-center">
@@ -202,11 +212,71 @@ const [height, setHeight] = useState<number | ''>('');
             <div className="mt-2">
               <p className="text-3xl font-bold">Bs. {finalPrice.toLocaleString()}</p>
             </div>
-
-            
           </div>
         </div>
       </div>
+
+      {/* MODAL DE ADVERTENCIA - Medida mínima */}
+      {showMinWarningModal && (
+        <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4 backdrop-blur-sm">
+          <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 transform transition-all scale-100">
+            {/* Icono de advertencia */}
+            <div className="flex justify-center mb-4">
+              <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
+                <svg className="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>
+              </div>
+            </div>
+
+            {/* Título */}
+            <h3 className="text-xl font-bold text-center text-gray-900 mb-2">
+              Medida mínima no alcanzada
+            </h3>
+
+            {/* Mensaje */}
+            <p className="text-center text-gray-600 mb-6">
+              La medida mínima permitida para los cuadros es de <strong>30 x 30 cm</strong>. 
+              Por favor, ajusta las dimensiones e inténtalo de nuevo.
+            </p>
+
+            {/* Dimensiones actuales */}
+            <div className="bg-gray-50 rounded-lg p-4 mb-6">
+              <p className="text-sm text-gray-600 mb-2">Dimensiones ingresadas:</p>
+              <div className="flex justify-center gap-4 text-sm">
+                <div className="text-center">
+                  <p className="text-gray-500">Ancho</p>
+                  <p className="font-bold text-red-600">{width || 0} cm</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-gray-500">Alto</p>
+                  <p className="font-bold text-red-600">{height || 0} cm</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Botones */}
+            <div className="flex gap-3">
+              <button
+                onClick={() => setShowMinWarningModal(false)}
+                className="flex-1 bg-gray-200 text-gray-800 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
+              >
+                Cerrar
+              </button>
+              <button
+                onClick={() => {
+                  setShowMinWarningModal(false);
+                  // Enfocar el primer input después de cerrar
+                  document.querySelector('input[type="number"]')?.focus();
+                }}
+                className="flex-1 bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors"
+              >
+                Ajustar medidas
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
