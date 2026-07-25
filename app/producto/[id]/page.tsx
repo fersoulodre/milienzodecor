@@ -23,7 +23,7 @@ export default function ProductDetail() {
   const [marcoSeleccionado, setMarcoSeleccionado] = useState('sin-marco');
   
   // Estado para el modal de advertencia
-  const [showMinWarningModal, setShowMinWarningModal] = useState(true);
+  const [showMinWarningModal, setShowMinWarningModal] = useState(false);
 
   const opcionesMarco = [
     { id: 'sin-marco', nombre: 'Sin marco', precioMetroLineal: 0, imagen: '' },
@@ -137,6 +137,10 @@ export default function ProductDetail() {
               </div>
             </div>
 
+             <p className="text-sm text-blue-600 mb-2 font-medium text-center">
+              Ingresa medidas para calcular el precio
+            </p>
+
             {/* Advertencia visual pequeña */}
             {(width !== '' && height !== '' && 
   !isNaN(Number(width)) && !isNaN(Number(height)) && 
@@ -234,8 +238,8 @@ export default function ProductDetail() {
               Medida mínima no alcanzada
             </h3>
 
-            {/* Mensaje */}
-            <p className="text-center text-gray-600 mb-6">
+                        {/* Mensaje con texto más visible */}
+            <p className="text-center text-gray-200 font-medium mb-6 text-base">
               La medida mínima permitida para los cuadros es de <strong>30 x 30 cm</strong>. 
               Por favor, ajusta las dimensiones e inténtalo de nuevo.
             </p>
@@ -255,25 +259,13 @@ export default function ProductDetail() {
               </div>
             </div>
 
-            {/* Botones */}
-            <div className="flex gap-3">
-              <button
-                onClick={() => setShowMinWarningModal(false)}
-                className="flex-1 bg-gray-200 text-gray-800 py-3 rounded-lg font-semibold hover:bg-gray-300 transition-colors"
-              >
-                Cerrar
-              </button>
-              <button
-                onClick={() => {
-                  setShowMinWarningModal(false);
-                  // Enfocar el primer input después de cerrar
-                  (document.querySelector('input[type="number"]') as HTMLInputElement)?.focus();
-                }}
-                className="flex-1 bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors"
-              >
-                Ajustar medidas
-              </button>
-            </div>
+            {/* Botón único de ancho completo */}
+            <button
+              onClick={() => setShowMinWarningModal(false)}
+              className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors"
+            >
+              Entendido, ajustar medidas
+            </button>
           </div>
         </div>
       )}
