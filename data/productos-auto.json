@@ -329,6 +329,46 @@
       "destacado": false
     },
     {
+      "id": "abstractos_forte-F142",
+      "titulo": "F142",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F142.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F143",
+      "titulo": "F143",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F143.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F144",
+      "titulo": "F144",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F144.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F145",
+      "titulo": "F145",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F145.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F146",
+      "titulo": "F146",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F146.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
       "id": "abstractos_minimalista-M50",
       "titulo": "M50",
       "estilo": "Abstractos Minimalistas",
