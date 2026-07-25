@@ -267,7 +267,7 @@ export default function ProductDetail() {
                 onClick={() => {
                   setShowMinWarningModal(false);
                   // Enfocar el primer input después de cerrar
-                  document.querySelector('input[type="number"]')?.focus();
+                  (document.querySelector('input[type="number"]') as HTMLInputElement)?.focus();
                 }}
                 className="flex-1 bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition-colors"
               >
