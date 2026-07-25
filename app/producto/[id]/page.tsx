@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { getAllProductos, getConfig } from '@/lib/productos';
 import { useCart } from '@/components/CartContext';
 
-const PRECIO_POR_M2_IMPRESION = 300; 
+const PRECIO_POR_M2_IMPRESION = 350; 
 
 export default function ProductDetail() {
   const params = useParams();
@@ -25,9 +25,9 @@ const [height, setHeight] = useState<number | ''>('');
   // Cambiamos 'null' por '' para que TypeScript no se queje
   const opcionesMarco = [
     { id: 'sin-marco', nombre: 'Sin marco', precioMetroLineal: 0, imagen: '' },
-    { id: 'bastidor', nombre: 'Marco bastidor', precioMetroLineal: 40, imagen: '/images/marcos/marco-bastidor.jpg' },
-    { id: 'madera', nombre: 'Marco color madera', precioMetroLineal: 55, imagen: '/images/marcos/marco-color-madera1.jpg' },
-    { id: 'negro', nombre: 'Marco color negro', precioMetroLineal: 50, imagen: '/images/marcos/marco-color-negro1.jpg' }
+    { id: 'bastidor', nombre: 'Marco bastidor', precioMetroLineal: 100, imagen: '/images/marcos/marco-bastidor.jpg' },
+    { id: 'madera', nombre: 'Marco color madera', precioMetroLineal: 150, imagen: '/images/marcos/marco-color-madera1.jpg' },
+    { id: 'negro', nombre: 'Marco color negro', precioMetroLineal: 150, imagen: '/images/marcos/marco-color-negro1.jpg' }
   ];
 
   useEffect(() => {

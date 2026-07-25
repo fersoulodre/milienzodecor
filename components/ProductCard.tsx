@@ -13,7 +13,7 @@ interface Product {
 export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link href={`/producto/${product.id}`} className="block group">
-      <div className="relative aspect-[3/2] overflow-hidden bg-gray-100">
+      <div className="relative aspect-[3/2] overflow-hidden bg-gray-100 rounded-lg">
         <Image
           src={product.imagen}
           alt={product.titulo}
@@ -21,14 +21,16 @@ export default function ProductCard({ product }: { product: Product }) {
           className="object-cover group-hover:scale-105 transition-transform duration-300"
         />
         {!product.disponible && (
-          <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
-            <span className="text-white text-2xl font-bold">VENDIDO</span>
+          <div className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-lg">
+            <span className="text-white text-xl md:text-2xl font-bold">VENDIDO</span>
           </div>
         )}
       </div>
-      <div className="mt-1">
-        <h3 className="font-semibold text-lg text-center">{product.titulo}</h3>
-        
+      <div className="mt-1 md:mt-2">
+        {/* CAMBIO AQUÍ: text-sm en móvil, text-lg en escritorio */}
+        <h3 className="font-semibold text-sm md:text-lg text-center leading-tight text-gray-800">
+          {product.titulo}
+        </h3>
       </div>
     </Link>
   );

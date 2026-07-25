@@ -31,7 +31,7 @@ export default function CarritoPage() {
   const totalItems = items.length + giftCards.length;
 
   // 2. Luego definimos el estado del tipo de cambio
-  const [tipoCambio, setTipoCambio] = useState<number>(8.50);
+  const [tipoCambio, setTipoCambio] = useState<number>(11.50);
 
   useEffect(() => {
     fetch('/api/tipo-cambio')
