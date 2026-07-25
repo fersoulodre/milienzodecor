@@ -13,7 +13,7 @@ interface Product {
 export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link href={`/producto/${product.id}`} className="block group">
-      <div className="relative aspect-[3/2] overflow-hidden bg-white rounded-lg">
+      <div className="relative aspect-[3/2] overflow-hidden bg-white">
         <Image
           src={product.imagen}
           alt={product.titulo}
@@ -21,7 +21,7 @@ export default function ProductCard({ product }: { product: Product }) {
           className="object-contain group-hover:scale-105 transition-transform duration-300"
         />
         {!product.disponible && (
-          <div className="absolute inset-0 bg-black/60 flex items-center justify-center rounded-lg">
+          <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
             <span className="text-white text-xl md:text-2xl font-bold">VENDIDO</span>
           </div>
         )}
@@ -35,3 +35,9 @@ export default function ProductCard({ product }: { product: Product }) {
     </Link>
   );
 }
+
+
+
+
+
+      
