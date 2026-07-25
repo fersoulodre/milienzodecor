@@ -5,7 +5,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { getAllProductos, getConfig } from '@/lib/productos';
 import { useCart } from '@/components/CartContext';
 
-const PRECIO_POR_M2_IMPRESION = 350; 
+const PRECIO_POR_M2_IMPRESION = 355; 
 
 export default function ProductDetail() {
   const params = useParams();
