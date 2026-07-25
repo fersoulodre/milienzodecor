@@ -77,12 +77,12 @@ const [height, setHeight] = useState<number | ''>('');
 
         <div className="grid md:grid-cols-2 gap-6">
           <div>
-            <div className="relative aspect-[3/2] bg-gray-100 rounded-lg overflow-hidden mb-2 border border-gray-200">
+            <div className="relative aspect-[3/2] bg-white rounded-lg overflow-hidden mb-2 border border-gray-200">
               <Image 
                 src={viewMode === 'mockup' ? mockupUrl : producto.imagen} 
                 alt={producto.titulo} 
                 fill 
-                className="object-cover" 
+                className="object-contain" 
               />
             </div>
 
@@ -91,13 +91,13 @@ const [height, setHeight] = useState<number | ''>('');
                 onClick={() => setViewMode('original')}
                 className={`relative w-24 h-16 cursor-pointer rounded overflow-hidden border-2 ${viewMode === 'original' ? 'border-black' : 'border-gray-300'}`}
               >
-                <Image src={producto.imagen} alt="Original" fill className="object-cover" />
+                <Image src={producto.imagen} alt="Original" fill className="object-contain" />
               </button>
               <button 
                 onClick={() => setViewMode('mockup')}
                 className={`relative w-24 h-16 cursor-pointer rounded overflow-hidden border-2 ${viewMode === 'mockup' ? 'border-black' : 'border-gray-300'}`}
               >
-                <Image src={mockupUrl} alt="Ambiente" fill className="object-cover" />
+                <Image src={mockupUrl} alt="Ambiente" fill className="object-contain" />
               </button>
             </div>
             <button onClick={handleAddToCart} className="mt-20 w-full cursor-pointer bg-black text-white py-4 rounded-lg font-semibold hover:bg-gray-800">
@@ -139,19 +139,19 @@ const [height, setHeight] = useState<number | ''>('');
               <p className="text-sm text-gray-600 mb-3">Referencias de proporciones:</p>
               <div className="grid grid-cols-3 gap-3">
                 <div className="text-center">
-                  <div className="relative bg-gray-100 rounded overflow-hidden border border-gray-200">
+                  <div className="relative bg-white rounded overflow-hidden border border-gray-200">
                     <Image src="/images/ref-marcos/106x160.jpg" alt="106 x 160" width={200} height={132} />
                   </div>
                   <p className="text-xs text-gray-500 mt-1">106 x 160</p>
                 </div>
                 <div className="text-center">
-                  <div className="relative bg-gray-100 rounded overflow-hidden border border-gray-200">
+                  <div className="relative bg-white rounded overflow-hidden border border-gray-200">
                     <Image src="/images/ref-marcos/180x120.jpg" alt="180 x 120" width={200} height={132} />
                   </div>
                   <p className="text-xs text-gray-500 mt-1">180 x 120</p>
                 </div>
                 <div className="text-center">
-                  <div className="relative bg-gray-100 rounded overflow-hidden border border-gray-200">
+                  <div className="relative bg-white rounded overflow-hidden border border-gray-200">
                     <Image src="/images/ref-marcos/70x70.jpg" alt="70 x 70" width={200} height={132} />
                   </div>
                   <p className="text-xs text-gray-500 mt-1">70 x 70</p>
@@ -166,7 +166,7 @@ const [height, setHeight] = useState<number | ''>('');
                 onClick={() => setMarcoSeleccionado('sin-marco')}
                 className={`w-full mb-4 cursor-pointer flex items-center justify-center gap-2 py-3 rounded-lg border-2 font-semibold transition-all ${
                   marcoSeleccionado === 'sin-marco' 
-                    ? 'border-black bg-gray-100 text-black' 
+                    ? 'border-black bg-white text-black' 
                     : 'border-gray-300 text-gray-600 hover:border-gray-400'
                 }`}
               >
@@ -187,9 +187,9 @@ const [height, setHeight] = useState<number | ''>('');
                       marcoSeleccionado === marco.id ? 'border-black ring-2 ring-black' : 'border-gray-300 hover:border-gray-400'
                     }`}
                   >
-                    <div className="relative h-24 bg-gray-100">
+                    <div className="relative h-24 bg-white">
                       {/* Usamos 'as string' porque el filtro ya garantiza que no es 'sin-marco' */}
-                      <Image src={marco.imagen as string} alt={marco.nombre} fill className="object-cover" />
+                      <Image src={marco.imagen as string} alt={marco.nombre} fill className="object-contain" />
                     </div>
                     <div className="p-2 text-center">
                       <p className="text-sm font-semibold">{marco.nombre}</p>
