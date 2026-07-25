@@ -166,7 +166,7 @@
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F121.webp",
       "disponible": true,
-      "destacado": true
+      "destacado": false
     },
     {
       "id": "abstractos_forte-F122",
