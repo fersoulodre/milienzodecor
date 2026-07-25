@@ -13,7 +13,7 @@ interface Product {
 export default function ProductCard({ product }: { product: Product }) {
   return (
     <Link href={`/producto/${product.id}`} className="block group">
-      <div className="relative aspect-[3/2] overflow-hidden bg-gray-100 rounded-lg">
+      <div className="relative aspect-[3/2] overflow-hidden bg-white rounded-lg">
         <Image
           src={product.imagen}
           alt={product.titulo}
