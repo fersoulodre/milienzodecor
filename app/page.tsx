@@ -39,12 +39,12 @@ export default function Home() {
         return (
           <section 
             key={estilo} 
-            className="mb-8 p-4 md:p-8 rounded-2xl"
+            className="mb-8 px-0 md:px-8 py-8 rounded-2xl"
             style={{ backgroundColor: bgColor }}
           >
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-800">{estilo}</h2>
             <p className="text-gray-500 mb-6">Haz click en una pintura para elegir el tamaño y verlo en un espacio virtual.</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
               {cuadrosEstilo.map(producto => (
                 <ProductCard key={producto.id} product={producto} />
               ))}
