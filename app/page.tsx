@@ -8,7 +8,7 @@ export default function Home() {
   const todosProductos = getAllProductos().filter(p => p.destacado === true);
   
   // Agrupar por estilo
-  const estilosOrdenados = ['Abstractos Minimalistas', 'Abstractos Forte', 'Figuras Humanas'];
+  const estilosOrdenados = ['Abstractos Minimalistas', 'Abstractos Forte', 'Figuras Humanas', 'Paisajes'];
   const estilos = estilosOrdenados.filter(e => todosProductos.some(p => p.estilo === e));
 
   return (

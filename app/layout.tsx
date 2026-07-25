@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {/* Slogan Global centrado vertical y horizontalmente */}
           <div className="flex items-center justify-center py-3 md:py-3" style={{ backgroundColor: '#eadbc3' }}>
             <h3 className="text-lg md:text-4xl font-light text-gray-700 italic px-4 text-center">
-              No vendemos cuadros... llenamos tus espacios con arte
+              No son simples cuadros... llenamos tus espacios con arte
             </h3>
           </div>
 

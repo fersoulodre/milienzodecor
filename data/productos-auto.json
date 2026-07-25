@@ -457,6 +457,14 @@
       "destacado": false
     },
     {
+      "id": "abstractos_minimalista-M65",
+      "titulo": "M65",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M65.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
       "id": "figuras_humanas-H101",
       "titulo": "H101",
       "estilo": "Figuras Humanas",
@@ -565,6 +573,262 @@
       "titulo": "H114",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H114.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P66",
+      "titulo": "P66",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P66.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "paisajes-P67",
+      "titulo": "P67",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P67.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P68",
+      "titulo": "P68",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P68.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P69",
+      "titulo": "P69",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P69.jpg",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P70",
+      "titulo": "P70",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P70.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "paisajes-P71",
+      "titulo": "P71",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P71.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "paisajes-P72",
+      "titulo": "P72",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P72.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P73",
+      "titulo": "P73",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P73.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P74",
+      "titulo": "P74",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P74.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P75",
+      "titulo": "P75",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P75.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P76",
+      "titulo": "P76",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P76.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "paisajes-P77",
+      "titulo": "P77",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P77.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "paisajes-P78",
+      "titulo": "P78",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P78.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P79",
+      "titulo": "P79",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P79.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P80",
+      "titulo": "P80",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P80.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P81",
+      "titulo": "P81",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P81.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P82",
+      "titulo": "P82",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P82.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P83",
+      "titulo": "P83",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P83.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P84",
+      "titulo": "P84",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P84.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P85",
+      "titulo": "P85",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P85.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P86",
+      "titulo": "P86",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P86.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P87",
+      "titulo": "P87",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P87.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P88",
+      "titulo": "P88",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P88.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P89",
+      "titulo": "P89",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P89.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P90",
+      "titulo": "P90",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P90.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P91",
+      "titulo": "P91",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P91.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "paisajes-P92",
+      "titulo": "P92",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P92.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P93",
+      "titulo": "P93",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P93.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "paisajes-P94",
+      "titulo": "P94",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P94.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P95",
+      "titulo": "P95",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P95.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P96",
+      "titulo": "P96",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P96.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "paisajes-P97",
+      "titulo": "P97",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P97.webp",
       "disponible": true,
       "destacado": false
     }
