@@ -214,8 +214,12 @@ export default function ProductDetail() {
             </div>
 
             <div className="mt-2">
-              <p className="text-3xl font-bold">Bs. {finalPrice.toLocaleString()}</p>
-            </div>
+  {width !== '' && height !== '' && Number(width) >= 30 && Number(height) >= 30 ? (
+    <p className="text-3xl font-bold">Bs. {finalPrice.toLocaleString()}</p>
+  ) : (
+    <p className="text-lg text-gray-400 font-medium"></p>
+  )}
+</div>
           </div>
         </div>
       </div>
