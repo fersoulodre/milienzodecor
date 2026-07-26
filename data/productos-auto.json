@@ -38,7 +38,7 @@
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F105.webp",
       "disponible": true,
-      "destacado": true
+      "destacado": false
     },
     {
       "id": "abstractos_forte-F106",
@@ -262,21 +262,13 @@
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F133.webp",
       "disponible": true,
-      "destacado": false
+      "destacado": true
     },
     {
       "id": "abstractos_forte-F134",
       "titulo": "F134",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F134.webp",
-      "disponible": true,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_forte-F135",
-      "titulo": "F135",
-      "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F135.webp",
       "disponible": true,
       "destacado": false
     },
@@ -365,6 +357,22 @@
       "titulo": "F146",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F146.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-dfg.",
+      "titulo": "Dfg.",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/dfg..jpg",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-ert",
+      "titulo": "Ert",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/ert.jpg",
       "disponible": true,
       "destacado": false
     },
@@ -493,6 +501,46 @@
       "titulo": "M65",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M65.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M66",
+      "titulo": "M66",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M66.jpg",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M67",
+      "titulo": "M67",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M67.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-sala muestra",
+      "titulo": "Sala muestra",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/sala muestra.jpg",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-sala muestra3",
+      "titulo": "Sala muestra3",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/sala muestra3.jpg",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-sala vertical",
+      "titulo": "Sala vertical",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/sala vertical.jpg",
       "disponible": true,
       "destacado": false
     },
