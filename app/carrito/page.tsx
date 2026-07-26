@@ -362,7 +362,7 @@ export default function CarritoPage() {
                 📸 Haz un print de pantalla de tu pago para enviar como comprobante
               </p>
               <p className="text-yellow-700 text-sm mt-1">
-                Esta captura será necesaria en el siguiente paso para validar tu pedido. ¡No la borres!
+                Esta captura será necesaria en el siguiente paso para validar tu pedido.
               </p>
             </div>
           </div>
