@@ -30,7 +30,7 @@
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F104.webp",
       "disponible": true,
-      "destacado": true
+      "destacado": false
     },
     {
       "id": "abstractos_forte-F105",
@@ -70,7 +70,7 @@
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F109.webp",
       "disponible": true,
-      "destacado": true
+      "destacado": false
     },
     {
       "id": "abstractos_forte-F110",
@@ -86,7 +86,7 @@
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F111.webp",
       "disponible": true,
-      "destacado": true
+      "destacado": false
     },
     {
       "id": "abstractos_forte-F112",
@@ -254,7 +254,7 @@
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F132.webp",
       "disponible": true,
-      "destacado": false
+      "destacado": true
     },
     {
       "id": "abstractos_forte-F133",
@@ -286,7 +286,7 @@
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F137.webp",
       "disponible": true,
-      "destacado": false
+      "destacado": true
     },
     {
       "id": "abstractos_forte-F138",
@@ -302,7 +302,7 @@
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F139.webp",
       "disponible": true,
-      "destacado": false
+      "destacado": true
     },
     {
       "id": "abstractos_forte-F140",
