@@ -529,22 +529,6 @@
       "destacado": false
     },
     {
-      "id": "abstractos_minimalista-sala muestra3",
-      "titulo": "Sala muestra3",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/sala muestra3.jpg",
-      "disponible": true,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-sala vertical",
-      "titulo": "Sala vertical",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/sala vertical.jpg",
-      "disponible": true,
-      "destacado": false
-    },
-    {
       "id": "figuras_humanas-H101",
       "titulo": "H101",
       "estilo": "Figuras Humanas",
