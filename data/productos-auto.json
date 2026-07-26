@@ -529,6 +529,94 @@
       "destacado": false
     },
     {
+      "id": "juvenil-J78",
+      "titulo": "J78",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J78.jpg",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "juvenil-J79",
+      "titulo": "J79",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J79.jpg",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "juvenil-J80",
+      "titulo": "J80",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J80.jpg",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "juvenil-J81",
+      "titulo": "J81",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J81.jpg",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "juvenil-J82",
+      "titulo": "J82",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J82.jpg",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "juvenil-J83",
+      "titulo": "J83",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J83.jpg",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "juvenil-J84",
+      "titulo": "J84",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J84.jpg",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "juvenil-J85",
+      "titulo": "J85",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J85.jpg",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "juvenil-J86",
+      "titulo": "J86",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J86.jpg",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "juvenil-J87",
+      "titulo": "J87",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J87.jpg",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "juvenil-J88",
+      "titulo": "J88",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J88.jpg",
+      "disponible": true,
+      "destacado": false
+    },
+    {
       "id": "figuras_humanas-H101",
       "titulo": "H101",
       "estilo": "Figuras Humanas",

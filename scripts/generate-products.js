@@ -36,6 +36,7 @@ function leerCarpeta(rutaCarpeta, estiloNombre) {
 const estilos = [
   { nombre: 'Abstractos Forte', carpeta: 'abstractos_forte' },
   { nombre: 'Abstractos Minimalistas', carpeta: 'abstractos_minimalista' },
+  { nombre: 'Juveniles', carpeta: 'juvenil' },
   { nombre: 'Figuras Humanas', carpeta: 'figuras_humanas' },
   { nombre: 'Paisajes', carpeta: 'paisajes' }
 ];
