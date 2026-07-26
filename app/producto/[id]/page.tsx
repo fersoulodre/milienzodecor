@@ -46,7 +46,9 @@ export default function ProductDetail() {
     setFinalPrice(Math.round(calculated / 0.87));
   }, [width, height, producto, marcoSeleccionado]);
 
-  const mockupUrl = producto ? producto.imagen.replace(/(\.[^.]+)$/, '-mockup$1') : '';
+  const mockupUrl = producto ? 
+  producto.imagen.replace(/(\.[^.]+)$/, '-mockup$1') : 
+  '';
 
   if (!producto) return <div className="p-8">Producto no encontrado</div>;
 
@@ -90,19 +92,29 @@ export default function ProductDetail() {
             </div>
 
             <div className="flex gap-4">
-              <button 
-                onClick={() => setViewMode('original')}
-                className={`relative w-24 h-16 cursor-pointer rounded overflow-hidden border-2 ${viewMode === 'original' ? 'border-black' : 'border-gray-300'}`}
-              >
-                <Image src={producto.imagen} alt="Original" fill className="object-contain" />
-              </button>
-              <button 
-                onClick={() => setViewMode('mockup')}
-                className={`relative w-24 h-16 cursor-pointer rounded overflow-hidden border-2 ${viewMode === 'mockup' ? 'border-black' : 'border-gray-300'}`}
-              >
-                <Image src={mockupUrl} alt="Ambiente" fill className="object-contain" />
-              </button>
-            </div>
+  <button 
+    onClick={() => setViewMode('original')}
+    className={`relative w-24 h-16 cursor-pointer rounded overflow-hidden border-2 ${viewMode === 'original' ? 'border-black' : 'border-gray-300'}`}
+  >
+    <Image src={producto.imagen} alt="Original" fill className="object-contain" />
+  </button>
+  
+  {/* Solo renderiza el mockup si existe */}
+  {mockupUrl !== producto.imagen && (
+    <button 
+      onClick={() => setViewMode('mockup')}
+      className={`relative w-24 h-16 cursor-pointer rounded overflow-hidden border-2 ${viewMode === 'mockup' ? 'border-black' : 'border-gray-300'}`}
+    >
+      <Image 
+        src={mockupUrl} 
+        alt="Ambiente" 
+        fill 
+        className="object-contain" 
+        onError={(e) => (e.currentTarget.style.display = 'none')}
+      />
+    </button>
+  )}
+</div>
             <button onClick={handleAddToCart} className="mt-20 w-full cursor-pointer bg-black text-white py-4 rounded-lg font-semibold hover:bg-gray-800">
               {added ? '✓ Agregado' : 'Agregar al Carrito'}
             </button>
