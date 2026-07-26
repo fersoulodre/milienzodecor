@@ -351,6 +351,22 @@ export default function CarritoPage() {
             )}
           </div>
 
+          {/* MENSAJE NOTORIO DE COMPROBANTE */}
+          <div className="mt-6 p-4 bg-yellow-50 border-2 border-yellow-400 rounded-xl flex items-start gap-3 shadow-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-yellow-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <div>
+              <p className="font-bold text-yellow-800 text-base md:text-lg">
+                📸 Haz un print de pantalla de tu pago para enviar como comprobante
+              </p>
+              <p className="text-yellow-700 text-sm mt-1">
+                Esta captura será necesaria en el siguiente paso para validar tu pedido. ¡No la borres!
+              </p>
+            </div>
+          </div>
+
           {/* Botón de Finalizar Compra */}
           <button
             onClick={finalizarCompra}
