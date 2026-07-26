@@ -43,7 +43,7 @@ export default function ProductDetail() {
     const precioMarco = marco ? marco.precioMetroLineal : 0;
     
     const calculated = (area * PRECIO_POR_M2_IMPRESION) + (perimeter * precioMarco);
-    setFinalPrice(Math.round(calculated));
+    setFinalPrice(Math.round(calculated / 0.87));
   }, [width, height, producto, marcoSeleccionado]);
 
   const mockupUrl = producto ? producto.imagen.replace(/(\.[^.]+)$/, '-mockup$1') : '';
@@ -213,9 +213,12 @@ export default function ProductDetail() {
               </div>
             </div>
 
-            <div className="mt-2">
+            <div className="mt-2 flex items-center gap-2 flex-wrap">
   {width !== '' && height !== '' && Number(width) >= 30 && Number(height) >= 30 ? (
-    <p className="text-3xl font-bold">Bs. {finalPrice.toLocaleString()}</p>
+    <>
+      <p className="text-3xl font-bold">Bs. {finalPrice.toLocaleString()}</p>
+      <span className="text-xs text-gray-500">El precio incluye impuestos de ley.</span>
+    </>
   ) : (
     <p className="text-lg text-gray-400 font-medium"></p>
   )}
