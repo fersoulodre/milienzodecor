@@ -361,14 +361,6 @@
       "destacado": false
     },
     {
-      "id": "abstractos_minimalista-ert",
-      "titulo": "Ert",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/ert.jpg",
-      "disponible": true,
-      "destacado": false
-    },
-    {
       "id": "abstractos_minimalista-M50",
       "titulo": "M50",
       "estilo": "Abstractos Minimalistas",
@@ -549,6 +541,14 @@
       "titulo": "M72",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M72.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M73",
+      "titulo": "M73",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M73.webp",
       "disponible": true,
       "destacado": false
     },
