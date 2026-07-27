@@ -518,7 +518,7 @@
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M68.webp",
       "disponible": true,
-      "destacado": true
+      "destacado": false
     },
     {
       "id": "abstractos_minimalista-M69",
