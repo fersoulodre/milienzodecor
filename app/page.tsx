@@ -60,7 +60,7 @@ export default function Home() {
 
       <div>
         <h3 className="font-bold text-gray-800">
-          Entrega rápida
+          Entrega
         </h3>
 
         <p className="text-gray-500">
