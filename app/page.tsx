@@ -27,7 +27,7 @@ export default function Home() {
             
             
             {/* Contenido encima de la capa oscura */}
-            <div className="relative z-10 px-4 translate-y-63">
+            <div className="relative z-10 px-4 translate-y-60">
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-15 drop-shadow-lg">
                 Transforma tu mundo con estilo
               </h2>
@@ -35,84 +35,54 @@ export default function Home() {
               
             </div>
           </section>
-          {/* Barra de beneficios */}
-<section className="mb-12">
+                    {/* Barra de beneficios */}
+          <section className="mb-12">
+            <div className="grid md:grid-cols-3 gap-6">
 
-  <div className="grid md:grid-cols-2 gap-6">
+              {/* 1. Entrega */}
+              <div className="flex items-center gap-4 bg-white rounded-2xl shadow-md p-6 border">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#fac932]/10">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-[#fac932]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-800">Entrega</h3>
+                  <p className="text-gray-500">De 3 a 5 días hábiles.</p>
+                </div>
+              </div>
 
-    {/* Entrega */}
-    <div className="flex items-center gap-4 bg-white rounded-2xl shadow-md p-6 border">
+              {/* 2. Colección */}
+              <div className="flex items-center gap-4 bg-white rounded-2xl shadow-md p-6 border">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#fac932]/10">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-[#fac932]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4-4a2 2 0 012.828 0L16 17m-2-2l1.586-1.586a2 2 0 012.828 0L20 15" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-800">Colección en expansión</h3>
+                  <p className="text-gray-500">Incorporamos nuevas obras constantemente.</p>
+                </div>
+              </div>
 
-      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#fac932]/10">
-        <svg xmlns="http://www.w3.org/2000/svg"
-             className="h-7 w-7 text-[#fac932]"
-             fill="none"
-             viewBox="0 0 24 24"
-             stroke="currentColor">
+              {/* 3. NUEVO: Unidades Limitadas */}
+                            
+              <div className="flex items-center gap-4 bg-white rounded-2xl shadow-md p-6 border">
+                <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#fac932]/10">
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-7 w-7 text-[#fac932]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-bold text-gray-800">Edición Limitada</h3>
+                  <p className="text-gray-500">Solo 4 unidades por pintura.</p>
+                </div>
+              </div>
 
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-            d="M9 17a2 2 0 11-4 0 2 2 0 014 0zM19 17a2 2 0 11-4 0 2 2 0 014 0z" />
-
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-            d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1" />
-        </svg>
-      </div>
-
-      <div>
-        <h3 className="font-bold text-gray-800">
-          Entrega
-        </h3>
-
-        <p className="text-gray-500">
-          De 3 a 5 días hábiles.
-        </p>
-
-      </div>
-
-    </div>
-
-    {/* Colección */}
-    <div className="flex items-center gap-4 bg-white rounded-2xl shadow-md p-6 border">
-
-      <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[#fac932]/10">
-
-        <svg xmlns="http://www.w3.org/2000/svg"
-             className="h-7 w-7 text-[#fac932]"
-             fill="none"
-             viewBox="0 0 24 24"
-             stroke="currentColor">
-
-          <path strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 16l4-4a2 2 0 012.828 0L16 17m-2-2l1.586-1.586a2 2 0 012.828 0L20 15" />
-
-          <path strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-
-        </svg>
-
-      </div>
-
-      <div>
-
-        <h3 className="font-bold text-gray-800">
-          Colección en expansión
-        </h3>
-
-        <p className="text-gray-500">
-          Incorporamos nuevas obras constantemente.
-        </p>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
+            </div>
+          </section>
       
       {/* Secciones de Productos por Estilo */}
       {estilos.map((estilo, index) => {
