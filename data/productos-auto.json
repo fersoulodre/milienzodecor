@@ -361,14 +361,6 @@
       "destacado": false
     },
     {
-      "id": "abstractos_minimalista-dfg.",
-      "titulo": "Dfg.",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/dfg..jpg",
-      "disponible": true,
-      "destacado": false
-    },
-    {
       "id": "abstractos_minimalista-ert",
       "titulo": "Ert",
       "estilo": "Abstractos Minimalistas",
@@ -382,7 +374,7 @@
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M50.webp",
       "disponible": true,
-      "destacado": true
+      "destacado": false
     },
     {
       "id": "abstractos_minimalista-M51",
@@ -508,7 +500,7 @@
       "id": "abstractos_minimalista-M66",
       "titulo": "M66",
       "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M66.jpg",
+      "imagen": "/images/abstractos_minimalista/M66.webp",
       "disponible": true,
       "destacado": false
     },
@@ -521,10 +513,42 @@
       "destacado": false
     },
     {
-      "id": "abstractos_minimalista-sala muestra",
-      "titulo": "Sala muestra",
+      "id": "abstractos_minimalista-M68",
+      "titulo": "M68",
       "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/sala muestra.jpg",
+      "imagen": "/images/abstractos_minimalista/M68.webp",
+      "disponible": true,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_minimalista-M69",
+      "titulo": "M69",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M69.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M70",
+      "titulo": "M70",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M70.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M71",
+      "titulo": "M71",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M71.webp",
+      "disponible": true,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M72",
+      "titulo": "M72",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M72.webp",
       "disponible": true,
       "destacado": false
     },
