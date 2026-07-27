@@ -186,7 +186,9 @@ export default function ProductDetail() {
             </div>
 
             <div className="mt-2">
-              <label className="block text-sm font-bold text-gray-700 mb-3">Tipo de Marco</label>
+              <label className="block text-sm font-bold text-gray-700 mb-3">
+  Tipo de Marco <span className="font-normal text-gray-500">(elige una opción)</span>
+</label>
               
               <button
                 onClick={() => setMarcoSeleccionado('sin-marco')}
