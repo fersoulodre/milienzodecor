@@ -27,7 +27,7 @@ export default function Home() {
             
             
             {/* Contenido encima de la capa oscura */}
-            <div className="relative z-10 px-4 translate-y-60">
+            <div className="relative z-10 px-4 translate-y-63">
               <h2 className="text-3xl md:text-5xl font-bold text-white mb-15 drop-shadow-lg">
                 Transforma tu mundo con estilo
               </h2>
