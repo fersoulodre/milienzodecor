@@ -20,8 +20,7 @@ export default function ProductDetail() {
   const [height, setHeight] = useState<number | ''>('');
   const [finalPrice, setFinalPrice] = useState(0);
   const [viewMode, setViewMode] = useState<'original' | 'mockup'>('original');
-  const [marcoSeleccionado, setMarcoSeleccionado] = useState('sin-marco');
-  
+  const [marcoSeleccionado, setMarcoSeleccionado] = useState('bastidor');  
   // Estado para el modal de advertencia
   const [showMinWarningModal, setShowMinWarningModal] = useState(false);
 
