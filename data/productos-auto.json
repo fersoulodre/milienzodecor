@@ -5,7 +5,7 @@
       "titulo": "F101",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F101.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -13,7 +13,7 @@
       "titulo": "F102",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F102.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -21,7 +21,7 @@
       "titulo": "F103",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F103.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -29,7 +29,7 @@
       "titulo": "F104",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F104.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -37,7 +37,7 @@
       "titulo": "F105",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F105.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -45,7 +45,7 @@
       "titulo": "F106",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F106.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -53,7 +53,7 @@
       "titulo": "F107",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F107.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -61,7 +61,7 @@
       "titulo": "F108",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F108.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -69,7 +69,7 @@
       "titulo": "F109",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F109.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -77,7 +77,7 @@
       "titulo": "F110",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F110.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -85,7 +85,7 @@
       "titulo": "F111",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F111.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -93,7 +93,7 @@
       "titulo": "F112",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F112.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -101,7 +101,7 @@
       "titulo": "F113",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F113.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -109,7 +109,7 @@
       "titulo": "F114",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F114.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -117,7 +117,7 @@
       "titulo": "F115",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F115.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -125,7 +125,7 @@
       "titulo": "F116",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F116.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -133,7 +133,7 @@
       "titulo": "F117",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F117.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -141,7 +141,7 @@
       "titulo": "F118",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F118.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -149,7 +149,7 @@
       "titulo": "F119",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F119.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -157,7 +157,7 @@
       "titulo": "F120",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F120.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -165,7 +165,7 @@
       "titulo": "F121",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F121.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -173,7 +173,7 @@
       "titulo": "F122",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F122.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -181,7 +181,7 @@
       "titulo": "F123",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F123.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -189,7 +189,7 @@
       "titulo": "F124",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F124.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -197,7 +197,7 @@
       "titulo": "F125",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F125.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -205,7 +205,7 @@
       "titulo": "F126",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F126.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -213,7 +213,7 @@
       "titulo": "F127",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F127.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -221,7 +221,7 @@
       "titulo": "F128",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F128.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -229,7 +229,7 @@
       "titulo": "F129",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F129.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -237,7 +237,7 @@
       "titulo": "F130",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F130.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -245,7 +245,7 @@
       "titulo": "F131",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F131.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -253,7 +253,7 @@
       "titulo": "F132",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F132.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -261,7 +261,7 @@
       "titulo": "F133",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F133.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -269,7 +269,7 @@
       "titulo": "F134",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F134.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -277,7 +277,7 @@
       "titulo": "F136",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F136.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -285,7 +285,7 @@
       "titulo": "F137",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F137.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -293,7 +293,7 @@
       "titulo": "F138",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F138.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -301,7 +301,7 @@
       "titulo": "F139",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F139.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -309,7 +309,7 @@
       "titulo": "F140",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F140.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -317,7 +317,7 @@
       "titulo": "F141",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F141.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -325,7 +325,7 @@
       "titulo": "F142",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F142.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -333,7 +333,7 @@
       "titulo": "F143",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F143.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -341,7 +341,7 @@
       "titulo": "F144",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F144.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -349,7 +349,7 @@
       "titulo": "F145",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F145.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -357,7 +357,7 @@
       "titulo": "F146",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F146.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -365,7 +365,7 @@
       "titulo": "M50",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M50.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -373,7 +373,7 @@
       "titulo": "M51",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M51.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -381,7 +381,7 @@
       "titulo": "M52",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M52.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -389,7 +389,7 @@
       "titulo": "M53",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M53.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -397,7 +397,7 @@
       "titulo": "M54",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M54.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -405,7 +405,7 @@
       "titulo": "M55",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M55.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -413,7 +413,7 @@
       "titulo": "M56",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M56.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -421,7 +421,7 @@
       "titulo": "M57",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M57.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -429,7 +429,7 @@
       "titulo": "M58",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M58.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -437,7 +437,7 @@
       "titulo": "M59",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M59.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -445,7 +445,7 @@
       "titulo": "M60",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M60.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -453,7 +453,7 @@
       "titulo": "M61",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M61.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -461,7 +461,7 @@
       "titulo": "M62",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M62.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -469,7 +469,7 @@
       "titulo": "M63",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M63.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -477,7 +477,7 @@
       "titulo": "M64",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M64.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -485,7 +485,7 @@
       "titulo": "M65",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M65.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -493,7 +493,7 @@
       "titulo": "M66",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M66.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -501,7 +501,7 @@
       "titulo": "M67",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M67.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -509,7 +509,7 @@
       "titulo": "M68",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M68.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -517,7 +517,7 @@
       "titulo": "M69",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M69.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -525,7 +525,7 @@
       "titulo": "M70",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M70.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -533,7 +533,7 @@
       "titulo": "M71",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M71.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -541,7 +541,7 @@
       "titulo": "M72",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M72.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -549,7 +549,7 @@
       "titulo": "M73",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M73.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -557,7 +557,7 @@
       "titulo": "J78",
       "estilo": "Juveniles",
       "imagen": "/images/juvenil/J78.jpg",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -565,7 +565,7 @@
       "titulo": "J79",
       "estilo": "Juveniles",
       "imagen": "/images/juvenil/J79.jpg",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -573,7 +573,7 @@
       "titulo": "J80",
       "estilo": "Juveniles",
       "imagen": "/images/juvenil/J80.jpg",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -581,7 +581,7 @@
       "titulo": "J81",
       "estilo": "Juveniles",
       "imagen": "/images/juvenil/J81.jpg",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -589,7 +589,7 @@
       "titulo": "J82",
       "estilo": "Juveniles",
       "imagen": "/images/juvenil/J82.jpg",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -597,7 +597,7 @@
       "titulo": "J83",
       "estilo": "Juveniles",
       "imagen": "/images/juvenil/J83.jpg",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -605,7 +605,7 @@
       "titulo": "J84",
       "estilo": "Juveniles",
       "imagen": "/images/juvenil/J84.jpg",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -613,7 +613,7 @@
       "titulo": "J85",
       "estilo": "Juveniles",
       "imagen": "/images/juvenil/J85.jpg",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -621,7 +621,7 @@
       "titulo": "J86",
       "estilo": "Juveniles",
       "imagen": "/images/juvenil/J86.jpg",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -629,7 +629,7 @@
       "titulo": "J87",
       "estilo": "Juveniles",
       "imagen": "/images/juvenil/J87.jpg",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -637,7 +637,7 @@
       "titulo": "H101",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H101.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -645,7 +645,7 @@
       "titulo": "H102",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H102.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -653,7 +653,7 @@
       "titulo": "H103",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H103.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -661,7 +661,7 @@
       "titulo": "H104",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H104.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -669,7 +669,7 @@
       "titulo": "H105",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H105.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -677,7 +677,7 @@
       "titulo": "H106",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H106.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -685,7 +685,7 @@
       "titulo": "H107",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H107.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -693,7 +693,7 @@
       "titulo": "H108",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H108.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -701,7 +701,7 @@
       "titulo": "H109",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H109.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -709,7 +709,7 @@
       "titulo": "H110",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H110.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -717,7 +717,7 @@
       "titulo": "H111",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H111.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -725,7 +725,7 @@
       "titulo": "H112",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H112.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -733,7 +733,7 @@
       "titulo": "H113",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H113.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -741,7 +741,7 @@
       "titulo": "H114",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H114.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -749,7 +749,7 @@
       "titulo": "P66",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P66.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -757,7 +757,7 @@
       "titulo": "P67",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P67.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -765,7 +765,7 @@
       "titulo": "P68",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P68.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -773,7 +773,7 @@
       "titulo": "P69",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P69.jpg",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -781,7 +781,7 @@
       "titulo": "P70",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P70.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -789,7 +789,7 @@
       "titulo": "P71",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P71.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -797,7 +797,7 @@
       "titulo": "P72",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P72.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -805,7 +805,7 @@
       "titulo": "P73",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P73.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -813,7 +813,7 @@
       "titulo": "P74",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P74.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -821,7 +821,7 @@
       "titulo": "P75",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P75.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -829,7 +829,7 @@
       "titulo": "P76",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P76.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -837,7 +837,7 @@
       "titulo": "P77",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P77.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -845,7 +845,7 @@
       "titulo": "P78",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P78.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -853,7 +853,7 @@
       "titulo": "P79",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P79.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -861,7 +861,7 @@
       "titulo": "P80",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P80.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -869,7 +869,7 @@
       "titulo": "P81",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P81.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -877,7 +877,7 @@
       "titulo": "P82",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P82.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -885,7 +885,7 @@
       "titulo": "P83",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P83.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -893,7 +893,7 @@
       "titulo": "P84",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P84.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -901,7 +901,7 @@
       "titulo": "P85",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P85.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -909,7 +909,7 @@
       "titulo": "P86",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P86.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -917,7 +917,7 @@
       "titulo": "P87",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P87.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -925,7 +925,7 @@
       "titulo": "P88",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P88.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -933,7 +933,7 @@
       "titulo": "P89",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P89.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -941,7 +941,7 @@
       "titulo": "P90",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P90.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -949,7 +949,7 @@
       "titulo": "P91",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P91.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -957,7 +957,7 @@
       "titulo": "P92",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P92.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -965,7 +965,7 @@
       "titulo": "P93",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P93.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -973,7 +973,7 @@
       "titulo": "P94",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P94.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -981,7 +981,7 @@
       "titulo": "P95",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P95.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     },
     {
@@ -989,7 +989,7 @@
       "titulo": "P96",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P96.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": true
     },
     {
@@ -997,7 +997,7 @@
       "titulo": "P97",
       "estilo": "Paisajes",
       "imagen": "/images/paisajes/P97.webp",
-      "disponible": true,
+      "stock": 4,
       "destacado": false
     }
   ]
