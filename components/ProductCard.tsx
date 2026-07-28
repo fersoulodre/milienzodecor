@@ -28,7 +28,7 @@ export default function ProductCard({ product }: { product: Product }) {
         </p>
       ) : stockRestante <= 4 && stockRestante !== 99 ? (
         <p className="text-gray-500 text-xs mb-1 text-center">
-          Solo {stockRestante} disponibles
+          {stockRestante} disponibles
         </p>
       ) : null}
 
