@@ -36,7 +36,7 @@ function leerCarpeta(rutaCarpeta, estiloNombre) {
         titulo: formatearTitulo(archivo),
         estilo: estiloNombre,
         imagen: `/images/${rutaCarpeta}/${archivo}`,
-        stock: 4
+        stock: 4 // Valor por defecto en el JSON
       };
     });
 }
@@ -80,7 +80,7 @@ fs.writeFileSync(
 console.log('✓ Productos generados en JSON:', productosFinales.length);
 
 // ==========================================
-// FUNCIÓN DE ALEATORIEDAD (80% con 4, 15% con 3, 4% con 2, 1% con 1)
+// FUNCIÓN DE ALEATORIEDAD (Solo para productos NUEVOS)
 // ==========================================
 function generarStockAleatorio() {
   const random = Math.random();
@@ -91,22 +91,42 @@ function generarStockAleatorio() {
 }
 
 // ==========================================
-// SINCRONIZAR CON SUPABASE (sobrescribe TODO el inventario)
+// SINCRONIZAR CON SUPABASE (Modo Inteligente)
 // ==========================================
 async function sincronizarInventario() {
-  const inventarioParaSubir = productosFinales.map(p => ({
-    id: p.id,
-    stock: generarStockAleatorio()
-  }));
-
-  const { error } = await supabase
+  // 1. Obtener los IDs que YA existen en Supabase
+  const { data: inventarioActual, error: errorFetch } = await supabase
     .from('inventario')
-    .upsert(inventarioParaSubir, { onConflict: 'id' });
+    .select('id');
 
-  if (error) {
-    console.error('❌ Error al sincronizar inventario:', error.message);
+  if (errorFetch) {
+    console.error('❌ Error al leer inventario actual:', errorFetch.message);
+    return;
+  }
+
+  const idsExistentes = inventarioActual ? inventarioActual.map(i => i.id) : [];
+
+  // 2. Filtrar SOLO los productos que NO están en Supabase (los nuevos)
+  const productosNuevos = productosFinales
+    .filter(p => !idsExistentes.includes(p.id))
+    .map(p => ({
+      id: p.id,
+      stock: generarStockAleatorio() // Aleatoriedad SOLO para los nuevos
+    }));
+
+  // 3. Insertar solo los nuevos en Supabase
+  if (productosNuevos.length > 0) {
+    const { error: errorInsert } = await supabase
+      .from('inventario')
+      .insert(productosNuevos);
+
+    if (errorInsert) {
+      console.error('❌ Error al agregar nuevos productos:', errorInsert.message);
+    } else {
+      console.log(`✓ ${productosNuevos.length} nuevos productos agregados al inventario con stock aleatorio.`);
+    }
   } else {
-    console.log('✓ Inventario actualizado con stock aleatorio (' + inventarioParaSubir.length + ' productos)');
+    console.log('✓ No hay productos nuevos. El inventario existente NO fue modificado.');
   }
 }
 
