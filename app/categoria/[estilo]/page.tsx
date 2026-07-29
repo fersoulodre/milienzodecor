@@ -23,8 +23,8 @@ export default async function CategoriaPage({
     .map(word => word.charAt(0).toUpperCase() + word.slice(1))
     .join(' ');
 
-  // Obtener TODOS los productos de esta categoría
-  const cuadrosCategoria = getProductosPorEstilo(estiloNombre);
+  // Obtener TODOS los productos de esta categoría (CON AWAIT PARA ESPERAR EL STOCK)
+  const cuadrosCategoria = await getProductosPorEstilo(estiloNombre);
   
   // Calcular paginación
   const totalPaginas = Math.ceil(cuadrosCategoria.length / productosPorPagina);
