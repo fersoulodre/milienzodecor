@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const { createClient } = require('@supabase/supabase-js');
 
-// 1. Cargar variables de entorno (NUEVO)
+// Cargar variables de entorno
 require('dotenv').config({ path: path.join(process.cwd(), '.env.local') });
 
 const supabase = createClient(
@@ -36,7 +36,7 @@ function leerCarpeta(rutaCarpeta, estiloNombre) {
         titulo: formatearTitulo(archivo),
         estilo: estiloNombre,
         imagen: `/images/${rutaCarpeta}/${archivo}`,
-        stock: 4 // CAMBIO: Antes era "disponible: true", ahora es "stock: 4"
+        stock: 4
       };
     });
 }
@@ -55,20 +55,20 @@ estilos.forEach(estilo => {
   todos = [...todos, ...productos];
 });
 
-// Leer el JSON anterior para preservar el campo "destacado" (TU LÓGICA ORIGINAL INTACTA)
+// Leer el JSON anterior para preservar el campo "destacado"
 let productosAnteriores = [];
 if (fs.existsSync(DATA_FILE)) {
   const dataAnterior = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
   productosAnteriores = dataAnterior.cuadros || [];
 }
 
-// Fusionar: si el producto ya existía, mantener su "destacado" (TU LÓGICA ORIGINAL INTACTA)
+// Fusionar: si el producto ya existía, mantener su "destacado"
 const productosFinales = todos.map(producto => {
   const anterior = productosAnteriores.find(p => p.id === producto.id);
   if (anterior && anterior.destacado !== undefined) {
     producto.destacado = anterior.destacado;
   } else {
-    producto.destacado = false; // Por defecto, nuevos productos no son destacados
+    producto.destacado = false;
   }
   return producto;
 });
@@ -80,12 +80,23 @@ fs.writeFileSync(
 console.log('✓ Productos generados en JSON:', productosFinales.length);
 
 // ==========================================
-// NUEVO: Sincronizar inventario con Supabase
+// FUNCIÓN DE ALEATORIEDAD (80% con 4, 15% con 3, 4% con 2, 1% con 1)
+// ==========================================
+function generarStockAleatorio() {
+  const random = Math.random();
+  if (random < 0.80) return 4;
+  if (random < 0.95) return 3;
+  if (random < 0.99) return 2;
+  return 1;
+}
+
+// ==========================================
+// SINCRONIZAR CON SUPABASE (sobrescribe TODO el inventario)
 // ==========================================
 async function sincronizarInventario() {
   const inventarioParaSubir = productosFinales.map(p => ({
     id: p.id,
-    stock: 4 // Stock inicial por defecto para nuevos productos
+    stock: generarStockAleatorio()
   }));
 
   const { error } = await supabase
@@ -95,9 +106,8 @@ async function sincronizarInventario() {
   if (error) {
     console.error('❌ Error al sincronizar inventario:', error.message);
   } else {
-    console.log('✓ Inventario sincronizado con Supabase (' + inventarioParaSubir.length + ' productos)');
+    console.log('✓ Inventario actualizado con stock aleatorio (' + inventarioParaSubir.length + ' productos)');
   }
 }
 
-// Ejecutar la sincronización
 sincronizarInventario();
