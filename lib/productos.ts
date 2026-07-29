@@ -1,6 +1,6 @@
 import productosData from '@/data/productos-auto.json';
 import configData from '@/data/config.json';
-import { supabase } from '@/lib/supabase'; // Usamos tu cliente ya configurado
+import { supabase } from '@/lib/supabase';
 
 export interface Producto {
   id: string;
@@ -11,10 +11,10 @@ export interface Producto {
   destacado?: boolean;
 }
 
+// 1. Obtener todos los productos con su stock real de Supabase
 export async function getAllProductos(): Promise<Producto[]> {
   const productosBase = productosData.cuadros as Producto[];
 
-  // 1. Obtener el inventario real desde Supabase
   const { data: inventario, error } = await supabase
     .from('inventario')
     .select('id, stock');
@@ -23,7 +23,6 @@ export async function getAllProductos(): Promise<Producto[]> {
     console.error('❌ Error al leer inventario de Supabase:', error);
   }
 
-  // 2. Fusionar: si existe en Supabase, usa ese stock. Si no, usa 4 por defecto.
   return productosBase.map(p => {
     const itemInventario = inventario?.find(i => i.id === p.id);
     return {
@@ -33,6 +32,13 @@ export async function getAllProductos(): Promise<Producto[]> {
   });
 }
 
+// 2. Obtener productos por estilo (también asíncrono para tener el stock actualizado)
+export async function getProductosPorEstilo(estilo: string): Promise<Producto[]> {
+  const todos = await getAllProductos();
+  return todos.filter(p => p.estilo === estilo);
+}
+
+// 3. Configuración general
 export function getConfig() {
   return configData;
 }
