@@ -53,7 +53,7 @@ export default function StockVerifierModal() {
 
             <h3 className="text-xl font-bold text-gray-800 mb-2">🔍 Verificar stock real</h3>
             <p className="text-sm text-gray-600 mb-4">
-              Ingresa el código corto de la obra para comprobar cuántas unidades quedan. <br/>
+              Ingresa el código de la obra para comprobar cuántas unidades quedan. <br/>
               <span className="text-xs text-gray-400">Ejemplo: <span className="font-mono bg-gray-100 px-1 rounded">M51</span></span>
             </p>
             
