@@ -26,9 +26,9 @@ export default function ProductCard({ product }: { product: Product }) {
         <p className="text-red-600 font-bold text-xs mb-1 uppercase tracking-wide text-center">
           Vendido
         </p>
-      ) : stockRestante <= 4 && stockRestante !== 99 ? (
-        <p className="text-gray-500 text-xs mb-1 text-center">
-          {stockRestante} disponibles
+      ) : stockRestante === 1 ? (
+        <p className="text-red-600 font-bold text-xs mb-1 uppercase tracking-wide text-center">
+          ¡Última unidad!
         </p>
       ) : null}
 

@@ -118,14 +118,14 @@ export default function ProductDetailClient({ producto }: { producto: Producto }
             <span className="text-sm text-gray-500 uppercase">{producto.estilo}</span>
             <h1 className="text-4xl font-bold mt-2">{producto.titulo}</h1>
             
-            {producto.stock > 0 && producto.stock <= 4 && (
-              <p className="text-red-600 font-semibold mt-2 flex items-center gap-2 text-sm md:text-base">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                Quedan {producto.stock} unidades de esta obra.
-              </p>
-            )}
+           {producto.stock === 1 && (
+  <p className="text-red-600 font-semibold mt-2 flex items-center gap-2 text-sm md:text-base">
+    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+    </svg>
+    ¡Apúrate! Solo queda 1 unidad de esta obra.
+  </p>
+)}
 
             {producto.stock === 0 && (
               <p className="text-gray-500 font-semibold mt-2">Esta obra ya ha sido vendida.</p>
