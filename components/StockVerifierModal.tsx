@@ -5,7 +5,7 @@ import { verificarStockPublico } from '@/app/actions';
 export default function StockVerifierModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [codigo, setCodigo] = useState('');
-  const [resultado, setResultado] = useState<{ success: boolean; message: string; stock?: number } | null>(null);
+  const [resultado, setResultado] = useState<{ success: boolean; message?: string; stock?: number; id?: string } | null>(null);
   const [cargando, setCargando] = useState(false);
 
   const handleVerificar = async (e: React.FormEvent) => {
