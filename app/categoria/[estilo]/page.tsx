@@ -53,7 +53,7 @@ export default async function CategoriaPage({
 
         {productosPagina.length === 0 && (
           <p className="text-center text-gray-500 py-12">
-            No hay productos disponibles en esta categoría.
+            No hay producto disponibles en esta categoría.
           </p>
         )}
 
