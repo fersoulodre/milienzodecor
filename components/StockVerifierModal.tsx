@@ -40,21 +40,27 @@ export default function StockVerifierModal() {
           <div 
             className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 relative"
             onClick={(e) => e.stopPropagation()}
+            style={{ backgroundColor: '#ffffff' }}
           >
             {/* Botón cerrar */}
             <button 
               onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-gray-800"
+              className="absolute top-4 right-4 text-gray-600 hover:text-black transition-colors"
+              style={{ color: '#4b5563' }}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
 
-            <h3 className="text-xl font-bold text-gray-800 mb-2">🔍 Verificar stock real</h3>
-            <p className="text-sm text-gray-600 mb-4">
-              Ingresa el código de la obra para comprobar cuántas unidades quedan. <br/>
-              <span className="text-xs text-gray-400">Ejemplo: <span className="font-mono bg-gray-100 px-1 rounded">M51</span></span>
+            <h3 className="text-xl font-bold mb-2" style={{ color: '#1f2937' }}>
+              🔍 Verificar stock real
+            </h3>
+            <p className="text-sm mb-4" style={{ color: '#4b5563' }}>
+              Ingresa el código corto de la obra para comprobar cuántas unidades quedan. <br/>
+              <span className="text-xs" style={{ color: '#9ca3af' }}>
+                Ejemplo: <span className="font-mono px-1 rounded" style={{ backgroundColor: '#f3f4f6' }}>M51</span>
+              </span>
             </p>
             
             <form onSubmit={handleVerificar} className="flex flex-col gap-3">
@@ -63,32 +69,43 @@ export default function StockVerifierModal() {
                 value={codigo}
                 onChange={(e) => setCodigo(e.target.value)}
                 placeholder="Escribe el código (ej: M51)..."
-                className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:outline-none uppercase"
+                className="w-full p-3 border-2 rounded-lg focus:ring-2 focus:ring-black focus:outline-none uppercase"
+                style={{ 
+                  backgroundColor: '#ffffff', 
+                  borderColor: '#d1d5db', 
+                  color: '#000000' 
+                }}
                 autoFocus
               />
               <button
                 type="submit"
                 disabled={cargando || !codigo.trim()}
-                className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                style={{ backgroundColor: '#000000', color: '#ffffff' }}
               >
                 {cargando ? 'Consultando...' : 'Verificar ahora'}
               </button>
             </form>
 
             {resultado && (
-              <div className={`mt-4 p-4 rounded-lg text-sm font-medium border ${
-                resultado.success 
-                  ? 'bg-green-50 text-green-800 border-green-200' 
-                  : 'bg-red-50 text-red-800 border-red-200'
-              }`}>
+              <div className="mt-4 p-4 rounded-lg text-sm font-medium border-2" style={{
+                backgroundColor: resultado.success ? '#f0fdf4' : '#fef2f2',
+                borderColor: resultado.success ? '#86efac' : '#fca5a5',
+                color: resultado.success ? '#166534' : '#991b1b'
+              }}>
                 {resultado.success ? (
                   <div>
                     <p className="mb-3 font-semibold">{resultado.message}</p>
                     <div className="space-y-2">
                       {resultado.resultados.map((item: any) => (
-                        <div key={item.id} className="flex justify-between items-center bg-white p-2 rounded border border-green-100">
-                          <span className="font-mono text-xs text-gray-600 truncate mr-2">{item.id}</span>
-                          <span className="font-bold text-green-700">
+                        <div key={item.id} className="flex justify-between items-center p-2 rounded border" style={{
+                          backgroundColor: '#ffffff',
+                          borderColor: '#86efac'
+                        }}>
+                          <span className="font-mono text-xs truncate mr-2" style={{ color: '#374151' }}>
+                            {item.id}
+                          </span>
+                          <span className="font-bold" style={{ color: '#15803d' }}>
                             {item.stock === 0 ? 'Agotado' : `${item.stock} disponibles`}
                           </span>
                         </div>
