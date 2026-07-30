@@ -2,6 +2,7 @@ import { CartProvider } from '@/components/CartContext';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import './globals.css';
+import StockVerifierModal from '@/components/StockVerifierModal';
 
 export const metadata = {
   title: 'Mi Lienzo Decor | Arte y Cuadros en Bolivia',
@@ -31,6 +32,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
           <Footer />
         </CartProvider>
+               </body>
+       <StockVerifierModal />
+     </html>
       </body>
     </html>
   );

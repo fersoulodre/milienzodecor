@@ -140,3 +140,21 @@ export async function manejarEstadoPedido(formData: FormData) {
 
   redirect('/admin/pedidos');
 }
+
+export async function verificarStockPublico(id: string) {
+  try {
+    const { data, error } = await supabase
+      .from('inventario')
+      .select('stock')
+      .eq('id', id.trim().toLowerCase())
+      .single();
+
+    if (error || !data) {
+      return { success: false, message: 'Código no encontrado. Verifica que esté bien escrito (ej: paisajes-p01).' };
+    }
+
+    return { success: true, stock: data.stock, id: id.trim() };
+  } catch (error) {
+    return { success: false, message: 'Error al consultar el stock. Intenta de nuevo.' };
+  }
+}
