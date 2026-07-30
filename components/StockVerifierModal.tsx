@@ -23,16 +23,17 @@ export default function StockVerifierModal() {
   return (
     <>
       {/* Botón Flotante */}
-      <button
-        onClick={() => { setIsOpen(true); setResultado(null); setCodigo(''); }}
-        className="fixed bottom-6 right-6 z-40 bg-black text-white p-4 rounded-full shadow-2xl hover:bg-gray-800 transition-all flex items-center gap-2 font-semibold group cursor-pointer"
-        title="Verificar stock en tiempo real"
-      >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <span className="hidden sm:inline">Verificar Stock</span>
-      </button>
+      {/* Botón Flotante */}
+<button
+  onClick={() => { setIsOpen(true); setResultado(null); setCodigo(''); }}
+  className="fixed bottom-6 right-6 z-40 bg-black text-white rounded-full shadow-2xl hover:bg-gray-800 transition-all flex items-center gap-2 font-semibold group cursor-pointer px-3 py-2 sm:px-4 sm:py-4 text-xs sm:text-base"
+  title="Verificar stock en tiempo real"
+>
+  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 sm:h-6 sm:w-6 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+  <span>Verificar Stock</span>
+</button>
 
       {/* Modal Overlay */}
       {isOpen && (
