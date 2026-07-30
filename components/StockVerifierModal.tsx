@@ -5,7 +5,7 @@ import { verificarStockPublico } from '@/app/actions';
 export default function StockVerifierModal() {
   const [isOpen, setIsOpen] = useState(false);
   const [codigo, setCodigo] = useState('');
-  const [resultado, setResultado] = useState<{ success: boolean; message?: string; stock?: number; id?: string } | null>(null);
+  const [resultado, setResultado] = useState<any>(null);
   const [cargando, setCargando] = useState(false);
 
   const handleVerificar = async (e: React.FormEvent) => {
@@ -38,7 +38,7 @@ export default function StockVerifierModal() {
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setIsOpen(false)}>
           <div 
-            className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 relative animate-in fade-in zoom-in duration-200"
+            className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 relative"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Botón cerrar */}
@@ -53,8 +53,8 @@ export default function StockVerifierModal() {
 
             <h3 className="text-xl font-bold text-gray-800 mb-2">🔍 Verificar stock real</h3>
             <p className="text-sm text-gray-600 mb-4">
-              Ingresa el código de la obra para comprobar cuántas unidades quedan. <br/>
-              <span className="text-xs text-gray-400">Ejemplo: <span className="font-mono bg-gray-100 px-1 rounded">abstractos_minimalista-m67</span></span>
+              Ingresa el código corto de la obra para comprobar cuántas unidades quedan. <br/>
+              <span className="text-xs text-gray-400">Ejemplo: <span className="font-mono bg-gray-100 px-1 rounded">M51</span></span>
             </p>
             
             <form onSubmit={handleVerificar} className="flex flex-col gap-3">
@@ -62,7 +62,7 @@ export default function StockVerifierModal() {
                 type="text"
                 value={codigo}
                 onChange={(e) => setCodigo(e.target.value)}
-                placeholder="Escribe el código aquí..."
+                placeholder="Escribe el código (ej: M51)..."
                 className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-black focus:outline-none uppercase"
                 autoFocus
               />
@@ -82,12 +82,19 @@ export default function StockVerifierModal() {
                   : 'bg-red-50 text-red-800 border-red-200'
               }`}>
                 {resultado.success ? (
-                  <p className="flex items-start gap-2">
-                    <span className="text-lg">✅</span>
-                    <span>
-                      La obra <strong>{resultado.id}</strong> tiene actualmente <strong>{resultado.stock} unidades</strong> disponibles en nuestra bodega.
-                    </span>
-                  </p>
+                  <div>
+                    <p className="mb-3 font-semibold">{resultado.message}</p>
+                    <div className="space-y-2">
+                      {resultado.resultados.map((item: any) => (
+                        <div key={item.id} className="flex justify-between items-center bg-white p-2 rounded border border-green-100">
+                          <span className="font-mono text-xs text-gray-600 truncate mr-2">{item.id}</span>
+                          <span className="font-bold text-green-700">
+                            {item.stock === 0 ? 'Agotado' : `${item.stock} disponibles`}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 ) : (
                   <p className="flex items-start gap-2">
                     <span className="text-lg">❌</span>

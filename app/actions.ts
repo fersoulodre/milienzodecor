@@ -141,20 +141,34 @@ export async function manejarEstadoPedido(formData: FormData) {
   redirect('/admin/pedidos');
 }
 
-export async function verificarStockPublico(id: string) {
+export async function verificarStockPublico(codigoCorto: string) {
   try {
-    const { data, error } = await supabase
-      .from('inventario')
-      .select('stock')
-      .eq('id', id.trim().toLowerCase())
-      .single();
-
-    if (error || !data) {
-      return { success: false, message: 'Código no encontrado. Verifica que esté bien escrito (ej: paisajes-p01).' };
+    const codigoLimpio = codigoCorto.trim().toUpperCase();
+    
+    if (!codigoLimpio) {
+      return { success: false, message: 'Por favor ingresa un código.', resultados: [] };
     }
 
-    return { success: true, stock: data.stock, id: id.trim() };
+    // Buscamos todos los IDs que terminen con "-CODIGO" (ej: abstractos_minimalista-M51)
+    const { data, error } = await supabase
+      .from('inventario')
+      .select('id, stock')
+      .filter('id', 'like', `%-${codigoLimpio}`);
+
+    if (error) {
+      return { success: false, message: 'Error al consultar la base de datos.', resultados: [] };
+    }
+
+    if (!data || data.length === 0) {
+      return { success: false, message: `No encontramos ningún cuadro con el código "${codigoLimpio}".`, resultados: [] };
+    }
+
+    return { 
+      success: true, 
+      message: `Encontramos ${data.length} obra(s) con el código "${codigoLimpio}":`, 
+      resultados: data 
+    };
   } catch (error) {
-    return { success: false, message: 'Error al consultar el stock. Intenta de nuevo.' };
+    return { success: false, message: 'Error inesperado. Intenta de nuevo.', resultados: [] };
   }
 }
