@@ -62,9 +62,7 @@ export default function StockVerifierModal() {
             </h3>
             <p className="text-sm mb-4" style={{ color: '#374151' }}>
               Ingresa el código de la obra para comprobar cuántas unidades quedan. <br/>
-              <span className="text-xs" style={{ color: '#6b7280' }}>
-                Ejemplo: <span className="font-mono px-1 rounded" style={{ backgroundColor: '#f3f4f6', color: '#1f2937' }}>M51</span>
-              </span>
+              
             </p>
             
             <form onSubmit={handleVerificar} className="flex flex-col gap-3">
