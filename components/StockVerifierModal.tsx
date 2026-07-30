@@ -25,7 +25,7 @@ export default function StockVerifierModal() {
       {/* Botón Flotante */}
       <button
         onClick={() => { setIsOpen(true); setResultado(null); setCodigo(''); }}
-        className="fixed bottom-6 right-6 z-40 bg-black text-white p-4 rounded-full shadow-2xl hover:bg-gray-800 transition-all flex items-center gap-2 font-semibold group"
+        className="fixed bottom-6 right-6 z-40 bg-black text-white p-4 rounded-full shadow-2xl hover:bg-gray-800 transition-all flex items-center gap-2 font-semibold group cursor-pointer"
         title="Verificar stock en tiempo real"
       >
         <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
