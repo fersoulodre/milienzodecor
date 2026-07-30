@@ -165,7 +165,7 @@ export async function verificarStockPublico(codigoCorto: string) {
 
     return { 
       success: true, 
-      message: `Encontramos ${data.length} obra(s) con el código "${codigoLimpio}":`, 
+      message: `Encontramos ${data.length} obra con el código "${codigoLimpio}":`, 
       resultados: data 
     };
   } catch (error) {
