@@ -38,28 +38,31 @@ export default function StockVerifierModal() {
       {isOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm" onClick={() => setIsOpen(false)}>
           <div 
-            className="bg-white rounded-2xl shadow-2xl w-full max-w-md p-6 relative"
+            className="rounded-2xl shadow-2xl w-full max-w-md p-6 relative"
             onClick={(e) => e.stopPropagation()}
-            style={{ backgroundColor: '#ffffff' }}
+            style={{ 
+              backgroundColor: '#ffffff',
+              color: '#000000'
+            }}
           >
             {/* Botón cerrar */}
             <button 
               onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 text-gray-600 hover:text-black transition-colors"
-              style={{ color: '#4b5563' }}
+              className="absolute top-4 right-4 hover:text-black transition-colors"
+              style={{ color: '#6b7280' }}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
 
-            <h3 className="text-xl font-bold mb-2" style={{ color: '#1f2937' }}>
+            <h3 className="text-xl font-bold mb-2" style={{ color: '#000000' }}>
               🔍 Verificar stock real
             </h3>
-            <p className="text-sm mb-4" style={{ color: '#4b5563' }}>
+            <p className="text-sm mb-4" style={{ color: '#374151' }}>
               Ingresa el código corto de la obra para comprobar cuántas unidades quedan. <br/>
-              <span className="text-xs" style={{ color: '#9ca3af' }}>
-                Ejemplo: <span className="font-mono px-1 rounded" style={{ backgroundColor: '#f3f4f6' }}>M51</span>
+              <span className="text-xs" style={{ color: '#6b7280' }}>
+                Ejemplo: <span className="font-mono px-1 rounded" style={{ backgroundColor: '#f3f4f6', color: '#1f2937' }}>M51</span>
               </span>
             </p>
             
@@ -80,7 +83,7 @@ export default function StockVerifierModal() {
               <button
                 type="submit"
                 disabled={cargando || !codigo.trim()}
-                className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                className="w-full py-3 rounded-lg font-semibold hover:bg-gray-800 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors cursor-pointer"
                 style={{ backgroundColor: '#000000', color: '#ffffff' }}
               >
                 {cargando ? 'Consultando...' : 'Verificar ahora'}
@@ -95,7 +98,7 @@ export default function StockVerifierModal() {
               }}>
                 {resultado.success ? (
                   <div>
-                    <p className="mb-3 font-semibold">{resultado.message}</p>
+                    <p className="mb-3 font-semibold" style={{ color: '#166534' }}>{resultado.message}</p>
                     <div className="space-y-2">
                       {resultado.resultados.map((item: any) => (
                         <div key={item.id} className="flex justify-between items-center p-2 rounded border" style={{
@@ -115,7 +118,7 @@ export default function StockVerifierModal() {
                 ) : (
                   <p className="flex items-start gap-2">
                     <span className="text-lg">❌</span>
-                    <span>{resultado.message}</span>
+                    <span style={{ color: '#991b1b' }}>{resultado.message}</span>
                   </p>
                 )}
               </div>
