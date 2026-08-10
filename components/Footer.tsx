@@ -73,7 +73,7 @@ export default function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
                 {/* ⚠️ CAMBIA ESTE TEXTO POR TU DIRECCIÓN REAL */}
-                <span>Edificio Torrente XII - dpto. 8D - Av. Victor Zapana #37, La Paz - Bolivia</span>
+                <span>Edificio Torrente XII - dpto. 8D - Av. Victor Zapana #37 - Bajo Següencoma, La Paz - Bolivia</span>
               </div>
             </li>
 
