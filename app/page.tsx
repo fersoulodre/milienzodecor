@@ -16,21 +16,39 @@ export default async function Home() {
   return (
     <main className="max-w-7xl mx-auto px-4 py-0">
       
-      {/* SECCIÓN HERO CON IMAGEN DE FONDO */}
-      <section 
-        className="relative text-center py-36 md:py-52 mb-8 rounded-2xl overflow-hidden"
-        style={{
-          backgroundImage: "url('/images/portada.webp')",
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      >
-        <div className="relative z-10 px-4 translate-y-60">
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-15 drop-shadow-lg">
-            Transforma tu mundo con estilo
-          </h2>
-        </div>
-      </section>
+      {/* SECCIÓN HERO CON IMAGEN DESLIZABLE EN MÓVIL */}
+<section 
+  className="relative text-center py-36 md:py-52 mb-8 rounded-2xl overflow-hidden"
+>
+  {/* Imagen deslizable en móvil */}
+  <div className="md:hidden absolute inset-0 overflow-x-auto scrollbar-hide">
+    <div 
+      className="h-full w-[200%]"
+      style={{
+        backgroundImage: "url('/images/portada.webp')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
+    />
+  </div>
+
+  {/* Imagen estática en desktop */}
+  <div 
+    className="hidden md:block absolute inset-0"
+    style={{
+      backgroundImage: "url('/images/portada.webp')",
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }}
+  />
+
+  {/* Texto del hero */}
+  <div className="relative z-10 px-4 translate-y-60">
+    <h2 className="text-3xl md:text-5xl font-bold text-white mb-15 drop-shadow-lg">
+      Transforma tu mundo con estilo
+    </h2>
+  </div>
+</section>
 
       {/* Barra de beneficios */}
       <section className="mb-12">
