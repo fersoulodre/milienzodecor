@@ -26,3 +26,12 @@ body {
   }
 }
 
+/* Ocultar scrollbar en el slider de portada */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
