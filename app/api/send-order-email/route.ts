@@ -30,8 +30,8 @@ export async function POST(request: Request) {
     `;
 
     const { data, error } = await resend.emails.send({
-      from: 'Mi Lienzo Decor <onboarding@resend.dev>', // Remitente permitido en el plan gratuito
-      to: ['soporte@milienzodecor.com'],
+      from: 'Mi Lienzo Decor <notificaciones@milienzodecor.com>', // Remitente permitido en el plan gratuito
+      to: ['fsoulodre@gmail.com'],
       subject: `🔔 Nuevo Pago Reportado - Pedido ${pedidoId || 'Sin ID'}`,
       html: htmlContent,
     });
