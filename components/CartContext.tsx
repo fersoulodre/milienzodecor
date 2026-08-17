@@ -10,6 +10,7 @@ type Producto = {
   dimensiones?: string;
   marco?: string;
   disponible?: boolean;
+  cartId?: string;
 };
 
 type GiftCard = {
@@ -54,12 +55,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
     localStorage.setItem('cart_giftcards', JSON.stringify(giftCards));
   }, [giftCards]);
 
-  const addToCart = (producto: Producto) => {
-    setItems([...items, producto]);
+    const addToCart = (producto: Producto) => {
+    const nuevoItem = { 
+      ...producto, 
+      cartId: crypto.randomUUID() // Genera un ID único para esta entrada específica
+    };
+    setItems([...items, nuevoItem]);
   };
 
-  const removeFromCart = (id: string) => {
-    setItems(items.filter(item => item.id !== id));
+    const removeFromCart = (cartId: string) => {
+    setItems(items.filter(item => item.cartId !== cartId));
   };
 
   const removeGiftCard = (id: string) => {

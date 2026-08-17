@@ -165,11 +165,11 @@ export default function CarritoPage() {
                 <p className="font-bold text-sm"> Bs. {(item.precio ?? 0).toLocaleString()}</p>
               </div>
               <button
-                onClick={() => removeFromCart(item.id)}
-                className="bg-red-100 text-red-600 px-2 py-1 rounded cursor-pointer hover:bg-red-200 font-bold text-xs"
-              >
-                Eliminar
-              </button>
+  onClick={() => removeFromCart(item.cartId!)}
+  className="bg-red-100 text-red-600 px-2 py-1 rounded cursor-pointer hover:bg-red-200 font-bold text-xs"
+>
+  Eliminar
+</button>
             </div>
           ))}
         </div>
