@@ -63,7 +63,7 @@ export default function CarritoPage() {
     setApplyingCode(false);
   };
 
-    const finalizarCompra = async () => {
+      const finalizarCompra = async () => {
     if (!email || !nombre) {
       alert('Por favor, ingresa tu nombre y correo electrónico para continuar.');
       return;
@@ -77,6 +77,47 @@ export default function CarritoPage() {
         const resultado = await generateGiftCardCode(gc.monto, gc.imagen);
         codigosGenerados.push(resultado.code);
       }
+    }
+
+    // 1. Crear el pedido en la base de datos
+    const respuesta = await crearPedido({
+      email,
+      nombre,
+      telefono,
+      total: totalConDescuento,
+      metodo_pago: metodoPago === 'banco' ? 'transferencia_banco' : 'binance_pay',
+      detalles: { items, giftCards: codigosGenerados, discount }
+    });
+
+    if (respuesta.success && respuesta.pedidoId) {
+      // 2. Enviar el correo de notificación a soporte (en segundo plano)
+      try {
+        await fetch('/api/send-order-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            nombre,
+            email,
+            telefono,
+            metodo_pago: metodoPago === 'banco' ? 'transferencia_banco' : 'binance_pay',
+            total: totalConDescuento,
+            items,
+            pedidoId: respuesta.pedidoId
+          })
+        });
+      } catch (error) {
+        console.error('No se pudo enviar el correo de notificación, pero el pedido se guardó:', error);
+      }
+
+      // 3. Limpiar y redirigir
+      sessionStorage.setItem('email_compra', email);
+      clearCart();
+      router.push(`/subir-comprobante?pedido=${respuesta.pedidoId}`);
+    } else {
+      alert('Hubo un error al procesar tu pedido. Intenta de nuevo.');
+      setProcesando(false);
+    }
+  };
     }
 
     // 1. Crear el pedido en la base de datos
