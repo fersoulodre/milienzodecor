@@ -23,10 +23,7 @@ export default function CarritoPage() {
   const [applyingCode, setApplyingCode] = useState(false);
   const [procesando, setProcesando] = useState(false);
 
-
-
-   // Estado explícitamente como número
-   // 1. Primero calculamos el total
+  // 1. Primero calculamos el total
   const totalConDescuento = Math.max(0, total - discount);
   const totalItems = items.length + giftCards.length;
 
@@ -44,9 +41,8 @@ export default function CarritoPage() {
       .catch(() => setTipoCambio(8.50));
   }, []);
 
-  // 3. Finalmente calculamos el monto en USDT (ahora totalConDescuento ya existe)
+  // 3. Finalmente calculamos el monto en USDT
   const montoUSDT = totalConDescuento / tipoCambio;
-  
 
   const aplicarGiftCard = async () => {
     if (!giftCodeInput) return;
@@ -63,7 +59,8 @@ export default function CarritoPage() {
     setApplyingCode(false);
   };
 
-      const finalizarCompra = async () => {
+  // --- FUNCIÓN FINALIZAR COMPRA CORREGIDA Y LIMPIA ---
+  const finalizarCompra = async () => {
     if (!email || !nombre) {
       alert('Por favor, ingresa tu nombre y correo electrónico para continuar.');
       return;
@@ -77,47 +74,6 @@ export default function CarritoPage() {
         const resultado = await generateGiftCardCode(gc.monto, gc.imagen);
         codigosGenerados.push(resultado.code);
       }
-    }
-
-    // 1. Crear el pedido en la base de datos
-    const respuesta = await crearPedido({
-      email,
-      nombre,
-      telefono,
-      total: totalConDescuento,
-      metodo_pago: metodoPago === 'banco' ? 'transferencia_banco' : 'binance_pay',
-      detalles: { items, giftCards: codigosGenerados, discount }
-    });
-
-    if (respuesta.success && respuesta.pedidoId) {
-      // 2. Enviar el correo de notificación a soporte (en segundo plano)//
-      try {
-        await fetch('/api/send-order-email', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            nombre,
-            email,
-            telefono,
-            metodo_pago: metodoPago === 'banco' ? 'transferencia_banco' : 'binance_pay',
-            total: totalConDescuento,
-            items,
-            pedidoId: respuesta.pedidoId
-          })
-        });
-      } catch (error) {
-        console.error('No se pudo enviar el correo de notificación, pero el pedido se guardó:', error);
-      }
-
-      // 3. Limpiar y redirigir
-      sessionStorage.setItem('email_compra', email);
-      clearCart();
-      router.push(`/subir-comprobante?pedido=${respuesta.pedidoId}`);
-    } else {
-      alert('Hubo un error al procesar tu pedido. Intenta de nuevo.');
-      setProcesando(false);
-    }
-  };
     }
 
     // 1. Crear el pedido en la base de datos
@@ -159,35 +115,7 @@ export default function CarritoPage() {
       setProcesando(false);
     }
   };
-
-    setProcesando(true);
-
-    let codigosGenerados: string[] = [];
-    if (giftCards.length > 0) {
-      for (const gc of giftCards) {
-        const resultado = await generateGiftCardCode(gc.monto, gc.imagen);
-        codigosGenerados.push(resultado.code);
-      }
-    }
-
-    const respuesta = await crearPedido({
-      email,
-      nombre,
-      telefono,
-      total: totalConDescuento,
-      metodo_pago: metodoPago === 'banco' ? 'transferencia_banco' : 'binance_pay',
-      detalles: { items, giftCards: codigosGenerados, discount }
-    });
-
-    if (respuesta.success && respuesta.pedidoId) {
-      sessionStorage.setItem('email_compra', email);
-      clearCart();
-      router.push(`/subir-comprobante?pedido=${respuesta.pedidoId}`);
-    } else {
-      alert('Hubo un error al procesar tu pedido. Intenta de nuevo.');
-      setProcesando(false);
-    }
-  };
+  // --- FIN DE LA FUNCIÓN FINALIZAR COMPRA ---
 
   if (items.length === 0 && giftCards.length === 0) {
     return (
@@ -256,11 +184,11 @@ export default function CarritoPage() {
                 <p className="font-bold text-sm"> Bs. {(item.precio ?? 0).toLocaleString()}</p>
               </div>
               <button
-  onClick={() => removeFromCart(item.cartId!)}
-  className="bg-red-100 text-red-600 px-2 py-1 rounded cursor-pointer hover:bg-red-200 font-bold text-xs"
->
-  Eliminar
-</button>
+                onClick={() => removeFromCart(item.cartId!)}
+                className="bg-red-100 text-red-600 px-2 py-1 rounded cursor-pointer hover:bg-red-200 font-bold text-xs"
+              >
+                Eliminar
+              </button>
             </div>
           ))}
         </div>
@@ -375,7 +303,6 @@ export default function CarritoPage() {
                     <div className="p-3 bg-white rounded border border-yellow-300 mb-3">
                       <p className="text-xs text-gray-600 mb-1">ID de Binance Pay:</p>
                       <div className="flex items-center justify-between gap-2">
-                        {/* REEMPLAZA '123456789' CON TU ID REAL DE 9 DÍGITOS */}
                         <code className="text-sm font-bold text-yellow-700">
                           437498764
                         </code>
@@ -392,7 +319,6 @@ export default function CarritoPage() {
                       </div>
                     </div>
 
-                    {/* REEMPLAZA 'MLD - Mi Lienzo Decor' CON TU ALIAS REAL */}
                     <p className="text-xs text-gray-600 mb-1">
                       <strong>Nombre:</strong> Mi Lienzo Decor
                     </p>
