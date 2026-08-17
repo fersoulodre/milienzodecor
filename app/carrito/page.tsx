@@ -90,7 +90,7 @@ export default function CarritoPage() {
     });
 
     if (respuesta.success && respuesta.pedidoId) {
-      // 2. Enviar el correo de notificación a soporte (en segundo plano)
+      // 2. Enviar el correo de notificación a soporte (en segundo plano)//
       try {
         await fetch('/api/send-order-email', {
           method: 'POST',
