@@ -18,7 +18,7 @@ export async function POST(request: Request) {
       <p><strong>Cliente:</strong> ${nombre}</p>
       <p><strong>Correo:</strong> ${email}</p>
       <p><strong>Teléfono:</strong> ${telefono || 'No proporcionado'}</p>
-      <p><strong>Método de Pago:</strong> ${metodo_pago === 'transferencia_banco' ? 'Transferencia Bancaria' : 'Binance Pay'}</p>
+      <p><strong>Método de Pago:</strong> ${metodo_pago === 'transferencia_banco' ? 'Transferencia por QR' : 'Binance Pay'}</p>
       <p><strong>Total Reportado:</strong> Bs. ${total.toLocaleString()}</p>
       
       <h3 style="color: #1f2937; margin-top: 20px;">🖼️ Productos en el pedido:</h3>
