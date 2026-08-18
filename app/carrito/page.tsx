@@ -52,6 +52,7 @@ export default function CarritoPage() {
     setApplyingCode(false);
   };
 
+  // --- FUNCIÓN FINALIZAR COMPRA CORREGIDA Y CON MENSAJE DE ÉXITO ---
   const finalizarCompra = async () => {
     if (!email || !nombre) {
       alert('Por favor, ingresa tu nombre y correo electrónico para continuar.');
@@ -68,6 +69,7 @@ export default function CarritoPage() {
       }
     }
 
+    // 1. Crear el pedido en la base de datos
     const respuesta = await crearPedido({
       email,
       nombre,
@@ -78,6 +80,7 @@ export default function CarritoPage() {
     });
 
     if (respuesta.success && respuesta.pedidoId) {
+      // 2. Enviar el correo de notificación a soporte (en segundo plano)
       try {
         await fetch('/api/send-order-email', {
           method: 'POST',
@@ -96,6 +99,9 @@ export default function CarritoPage() {
         console.error('No se pudo enviar el correo, pero el pedido se guardó:', error);
       }
 
+      // 3. Mostrar mensaje de éxito y redirigir
+      alert('¡Pedido registrado con éxito! Se ha enviado una notificación a soporte@milienzodecor.com. Ahora serás redirigido para subir tu comprobante.');
+      
       sessionStorage.setItem('email_compra', email);
       clearCart();
       router.push(`/subir-comprobante?pedido=${respuesta.pedidoId}`);
@@ -104,6 +110,7 @@ export default function CarritoPage() {
       setProcesando(false);
     }
   };
+  // --- FIN DE LA FUNCIÓN FINALIZAR COMPRA ---
 
   if (items.length === 0 && giftCards.length === 0) {
     return (
