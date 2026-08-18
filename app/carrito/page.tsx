@@ -37,6 +37,13 @@ export default function CarritoPage() {
 
   const montoUSDT = totalConDescuento / tipoCambio;
 
+  // Función auxiliar para formatear la fecha (ej: "31 Dic 2024")
+  const formatearFecha = (fechaString: string) => {
+    if (!fechaString) return '';
+    const fecha = new Date(fechaString);
+    return fecha.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
+  };
+
   const aplicarGiftCard = async () => {
     if (!giftCodeInput) return;
     setApplyingCode(true);
@@ -46,17 +53,15 @@ export default function CarritoPage() {
       setDiscount(resultado.monto);
       setGiftCardImage(resultado.imagen);
       alert(`¡Gift Card canjeada! Se descuentan Bs. ${resultado.monto.toLocaleString()}`);
-        } else {
+    } else {
       alert(resultado.mensaje || 'Código inválido o ya utilizado.');
     }
     setApplyingCode(false);
   };
 
-  // --- FUNCIÓN FINALIZAR COMPRA CORREGIDA Y CON MENSAJE DE ÉXITO ---
   const finalizarCompra = async () => {
     if (!email || !nombre) {
       alert('Por favor, ingresa tu nombre y correo electrónico para continuar.');
-
       return;
     }
 
@@ -70,7 +75,6 @@ export default function CarritoPage() {
       }
     }
 
-    // 1. Crear el pedido en la base de datos
     const respuesta = await crearPedido({
       email,
       nombre,
@@ -81,7 +85,6 @@ export default function CarritoPage() {
     });
 
     if (respuesta.success && respuesta.pedidoId) {
-      // 2. Enviar el correo de notificación a soporte (en segundo plano)
       try {
         await fetch('/api/send-order-email', {
           method: 'POST',
@@ -100,9 +103,7 @@ export default function CarritoPage() {
         console.error('No se pudo enviar el correo, pero el pedido se guardó:', error);
       }
 
-      // 3. Mostrar mensaje de éxito y redirigir
       alert('¡Pedido registrado con éxito! Se ha enviado una notificación a soporte@milienzodecor.com. Ahora serás redirigido para subir tu comprobante.');
-      
       sessionStorage.setItem('email_compra', email);
       clearCart();
       router.push(`/subir-comprobante?pedido=${respuesta.pedidoId}`);
@@ -111,16 +112,6 @@ export default function CarritoPage() {
       setProcesando(false);
     }
   };
-  // --- FIN DE LA FUNCIÓN FINALIZAR COMPRA ---
-
-    // Función auxiliar para formatear la fecha (ej: "31 Dic 2024")
-  const formatearFecha = (fechaString: string) => {
-    if (!fechaString) return '';
-    const fecha = new Date(fechaString);
-    return fecha.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
-  };
-
-  return (
 
   if (items.length === 0 && giftCards.length === 0) {
     return (
@@ -156,17 +147,11 @@ export default function CarritoPage() {
           {items.map(item => (
             <div key={item.id} className="flex justify-between items-center py-2 border-b last:border-0">
               <div className="flex gap-3 items-center">
-                                  <div className="flex flex-col items-center">
-                    <div className="relative w-40 h-25 bg-gray-100 rounded overflow-hidden flex-shrink-0">
-                      <Image src={gc.imagen} alt="Gift Card" fill className="object-cover" />
-                      {gc.fechaExpiracion && (
-                        <div className="absolute bottom-0 right-0 bg-black/80 text-white text-[10px] font-bold px-2 py-1 rounded-tl-lg backdrop-blur-sm">
-                          Vence: {formatearFecha(gc.fechaExpiracion)}
-                        </div>
-                      )}
-                    </div>
-                    <p className="text-[10px] text-gray-500 mt-1 text-center leading-tight w-40">Envíale esta imagen a tu beneficiario.</p>
+                <div className="flex flex-col items-center">
+                  <div className="relative w-32 h-20 bg-gray-100 rounded overflow-hidden flex-shrink-0">
+                    <Image src={item.imagen} alt={item.titulo} fill className="object-cover" />
                   </div>
+                  <p className="text-[10px] text-gray-500 mt-1 text-center leading-tight max-w-[128px]">{item.titulo}</p>
                 </div>
                 <p className="font-bold text-sm"> Bs. {(item.precio ?? 0).toLocaleString()}</p>
               </div>
@@ -192,6 +177,11 @@ export default function CarritoPage() {
                     <div className="flex flex-col items-center">
                       <div className="relative w-40 h-25 bg-gray-100 rounded overflow-hidden flex-shrink-0">
                         <Image src={gc.imagen} alt="Gift Card" fill className="object-cover" />
+                        {gc.fechaExpiracion && (
+                          <div className="absolute bottom-0 right-0 bg-black/80 text-white text-[10px] font-bold px-2 py-1 rounded-tl-lg backdrop-blur-sm">
+                            Vence: {formatearFecha(gc.fechaExpiracion)}
+                          </div>
+                        )}
                       </div>
                       <p className="text-[10px] text-gray-500 mt-1 text-center leading-tight w-40">Envíale esta imagen a tu beneficiario.</p>
                     </div>
@@ -248,7 +238,7 @@ export default function CarritoPage() {
                       <p className="text-lg font-bold text-yellow-700">{montoUSDT.toFixed(2)} USDT</p>
                       <p className="text-xs text-gray-500">(Equivalente a Bs. {totalConDescuento.toLocaleString()} al tipo de cambio actual: {tipoCambio.toFixed(2)} Bs/USDT)</p>
                     </div>
-                    <p className="text-xs text-gray-500 mt-3">💡 El pago es instantáneo. Una vez confirmado, te redirigiremos para subir tu comprobante.</p>
+                    <p className="text-xs text-gray-500 mt-3"> El pago es instantáneo. Una vez confirmado, te redirigiremos para subir tu comprobante.</p>
                   </div>
                 )}
               </div>
