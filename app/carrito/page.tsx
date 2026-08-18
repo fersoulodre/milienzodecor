@@ -46,8 +46,8 @@ export default function CarritoPage() {
       setDiscount(resultado.monto);
       setGiftCardImage(resultado.imagen);
       alert(`¡Gift Card canjeada! Se descuentan Bs. ${resultado.monto.toLocaleString()}`);
-    } else {
-      alert('Código inválido o ya utilizado.');
+        } else {
+      alert(resultado.mensaje || 'Código inválido o ya utilizado.');
     }
     setApplyingCode(false);
   };
@@ -56,6 +56,7 @@ export default function CarritoPage() {
   const finalizarCompra = async () => {
     if (!email || !nombre) {
       alert('Por favor, ingresa tu nombre y correo electrónico para continuar.');
+
       return;
     }
 
@@ -112,6 +113,15 @@ export default function CarritoPage() {
   };
   // --- FIN DE LA FUNCIÓN FINALIZAR COMPRA ---
 
+    // Función auxiliar para formatear la fecha (ej: "31 Dic 2024")
+  const formatearFecha = (fechaString: string) => {
+    if (!fechaString) return '';
+    const fecha = new Date(fechaString);
+    return fecha.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
+  };
+
+  return (
+
   if (items.length === 0 && giftCards.length === 0) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -146,11 +156,17 @@ export default function CarritoPage() {
           {items.map(item => (
             <div key={item.id} className="flex justify-between items-center py-2 border-b last:border-0">
               <div className="flex gap-3 items-center">
-                <div className="flex flex-col items-center">
-                  <div className="relative w-32 h-20 bg-gray-100 rounded overflow-hidden flex-shrink-0">
-                    <Image src={item.imagen} alt={item.titulo} fill className="object-cover" />
+                                  <div className="flex flex-col items-center">
+                    <div className="relative w-40 h-25 bg-gray-100 rounded overflow-hidden flex-shrink-0">
+                      <Image src={gc.imagen} alt="Gift Card" fill className="object-cover" />
+                      {gc.fechaExpiracion && (
+                        <div className="absolute bottom-0 right-0 bg-black/80 text-white text-[10px] font-bold px-2 py-1 rounded-tl-lg backdrop-blur-sm">
+                          Vence: {formatearFecha(gc.fechaExpiracion)}
+                        </div>
+                      )}
+                    </div>
+                    <p className="text-[10px] text-gray-500 mt-1 text-center leading-tight w-40">Envíale esta imagen a tu beneficiario.</p>
                   </div>
-                  <p className="text-[10px] text-gray-500 mt-1 text-center leading-tight max-w-[128px]">{item.titulo}</p>
                 </div>
                 <p className="font-bold text-sm"> Bs. {(item.precio ?? 0).toLocaleString()}</p>
               </div>

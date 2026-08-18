@@ -17,6 +17,7 @@ type GiftCard = {
   id: string;
   monto: number;
   imagen: string;
+  fechaExpiracion?: string;
 };
 
 type CartContextType = {

@@ -9,18 +9,23 @@ const DB_PATH = process.cwd() + '/data/gift-cards-db.json'; // Mantenemos tu rut
 export async function generateGiftCardCode(monto: number, imagen: string) {
   const code = 'ML-' + Math.random().toString(36).substring(2, 8).toUpperCase();
   
+  // Calcular fecha de expiración: hoy + 30 días
+  const hoy = new Date();
+  const fechaExpiracion = new Date(hoy);
+  fechaExpiracion.setDate(hoy.getDate() + 30);
+  const fechaStr = fechaExpiracion.toISOString().split('T')[0]; // Formato YYYY-MM-DD
+  
   const { data, error } = await supabase
     .from('gift_cards')
-    .insert([{ code, monto, imagen, used: false }])
+    .insert([{ code, monto, imagen, used: false, fecha_expiracion: fechaStr }])
     .select()
     .single();
-
+    
   if (error) {
     console.error('Error al generar Gift Card:', error);
     return { code: '', imagen: '' };
   }
-
-  return { code: data.code, imagen: data.imagen };
+  return { code: data.code, imagen: data.imagen, fechaExpiracion: data.fecha_expiracion };
 }
 
 export async function validateGiftCardCode(code: string) {
@@ -30,9 +35,18 @@ export async function validateGiftCardCode(code: string) {
     .eq('code', code)
     .eq('used', false)
     .single();
-
+    
   if (error || !card) {
-    return { valid: false };
+    return { valid: false, mensaje: 'Código inválido o ya utilizado.' };
+  }
+
+  // Verificar si la tarjeta está expirada
+  const hoy = new Date();
+  hoy.setHours(0, 0, 0, 0); // Normalizar a medianoche para comparar solo fechas
+  const fechaExpiracion = new Date(card.fecha_expiracion);
+  
+  if (fechaExpiracion < hoy) {
+    return { valid: false, mensaje: 'Tarjeta expirada.' };
   }
 
   // Marcar como usada
@@ -40,7 +54,7 @@ export async function validateGiftCardCode(code: string) {
     .from('gift_cards')
     .update({ used: true })
     .eq('id', card.id);
-
+    
   return { valid: true, monto: card.monto, imagen: card.imagen };
 }
 
