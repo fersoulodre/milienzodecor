@@ -113,7 +113,16 @@ export default function CarritoPage() {
     }
   };
 
-  if (items.length === 0 && giftCards.length === 0) {
+     // --- FIN DE LA FUNCIÓN FINALIZAR COMPRA ---
+
+   // Función para formatear la fecha (ej: "31 Dic 2024")
+   const formatearFecha = (fechaString: string) => {
+     if (!fechaString) return '';
+     const fecha = new Date(fechaString);
+     return fecha.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
+   };
+
+   if (items.length === 0 && giftCards.length === 0) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -177,9 +186,11 @@ export default function CarritoPage() {
                     <div className="flex flex-col items-center">
                       <div className="relative w-40 h-25 bg-gray-100 rounded overflow-hidden flex-shrink-0">
                         <Image src={gc.imagen} alt="Gift Card" fill className="object-cover" />
-                        {gc.fechaExpiracion && (
-                          <div className="absolute bottom-0 right-0 bg-black/80 text-white text-[10px] font-bold px-2 py-1 rounded-tl-lg backdrop-blur-sm">
-                            Vence: {formatearFecha(gc.fechaExpiracion)}
+                                    {gc.fechaExpiracion && (
+              <div className="absolute bottom-0 right-0 bg-black/80 text-white text-[10px] font-bold px-2 py-1 rounded-tl-lg backdrop-blur-sm">
+                Vence: {formatearFecha(gc.fechaExpiracion)}
+              </div>
+            )}
                           </div>
                         )}
                       </div>
