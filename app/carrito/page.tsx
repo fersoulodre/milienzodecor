@@ -37,7 +37,7 @@ export default function CarritoPage() {
 
   const montoUSDT = totalConDescuento / tipoCambio;
 
-  // Función auxiliar para formatear la fecha (ej: "31 Dic 2024")
+  // Función para formatear la fecha (ej: "31 Dic 2024")
   const formatearFecha = (fechaString: string) => {
     if (!fechaString) return '';
     const fecha = new Date(fechaString);
@@ -113,16 +113,7 @@ export default function CarritoPage() {
     }
   };
 
-     // --- FIN DE LA FUNCIÓN FINALIZAR COMPRA ---
-
-   // Función para formatear la fecha (ej: "31 Dic 2024")
-   const formatearFecha = (fechaString: string) => {
-     if (!fechaString) return '';
-     const fecha = new Date(fechaString);
-     return fecha.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
-   };
-
-   if (items.length === 0 && giftCards.length === 0) {
+  if (items.length === 0 && giftCards.length === 0) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -186,11 +177,9 @@ export default function CarritoPage() {
                     <div className="flex flex-col items-center">
                       <div className="relative w-40 h-25 bg-gray-100 rounded overflow-hidden flex-shrink-0">
                         <Image src={gc.imagen} alt="Gift Card" fill className="object-cover" />
-                                    {gc.fechaExpiracion && (
-              <div className="absolute bottom-0 right-0 bg-black/80 text-white text-[10px] font-bold px-2 py-1 rounded-tl-lg backdrop-blur-sm">
-                Vence: {formatearFecha(gc.fechaExpiracion)}
-              </div>
-            )}
+                        {gc.fechaExpiracion && (
+                          <div className="absolute bottom-0 right-0 bg-black/80 text-white text-[10px] font-bold px-2 py-1 rounded-tl-lg backdrop-blur-sm">
+                            Vence: {formatearFecha(gc.fechaExpiracion)}
                           </div>
                         )}
                       </div>
@@ -249,7 +238,7 @@ export default function CarritoPage() {
                       <p className="text-lg font-bold text-yellow-700">{montoUSDT.toFixed(2)} USDT</p>
                       <p className="text-xs text-gray-500">(Equivalente a Bs. {totalConDescuento.toLocaleString()} al tipo de cambio actual: {tipoCambio.toFixed(2)} Bs/USDT)</p>
                     </div>
-                    <p className="text-xs text-gray-500 mt-3"> El pago es instantáneo. Una vez confirmado, te redirigiremos para subir tu comprobante.</p>
+                    <p className="text-xs text-gray-500 mt-3">💡 El pago es instantáneo. Una vez confirmado, te redirigiremos para subir tu comprobante.</p>
                   </div>
                 )}
               </div>
