@@ -7,7 +7,7 @@ import { generateGiftCardCode, validateGiftCardCode, crearPedido } from '@/app/a
 import { useRouter } from 'next/navigation';
 
 export default function CarritoPage() {
-  const { items, giftCards, removeFromCart, removeGiftCard, clearCart, total, addGiftCard } = useCart();
+  const { items, giftCards, removeFromCart, removeGiftCard, clearCart, total } = useCart();
   const router = useRouter();
   const config = getConfig();
   
@@ -19,6 +19,7 @@ export default function CarritoPage() {
   const [giftCodeInput, setGiftCodeInput] = useState('');
   const [discount, setDiscount] = useState(0);
   const [giftCardImage, setGiftCardImage] = useState<string | null>(null);
+  const [giftCardFecha, setGiftCardFecha] = useState<string | null>(null);
   const [applyingCode, setApplyingCode] = useState(false);
   const [procesando, setProcesando] = useState(false);
 
@@ -37,7 +38,7 @@ export default function CarritoPage() {
 
   const montoUSDT = totalConDescuento / tipoCambio;
 
-  // Función para formatear la fecha (ej: "31 Dic 2024")
+  // Función para formatear la fecha
   const formatearFecha = (fechaString: string) => {
     if (!fechaString) return '';
     const fecha = new Date(fechaString);
@@ -49,14 +50,11 @@ export default function CarritoPage() {
     setApplyingCode(true);
     const resultado = await validateGiftCardCode(giftCodeInput);
     
-        if (resultado.valid) {
-      addGiftCard({
-        id: crypto.randomUUID(),
-        monto: resultado.monto,
-        imagen: resultado.imagen,
-        fechaExpiracion: resultado.fechaExpiracion
-      });
-      alert(`¡Gift Card canjeada! Se agregaron Bs. ${resultado.monto.toLocaleString()} a tu carrito.`);
+    if (resultado.valid) {
+      setDiscount(resultado.monto);
+      setGiftCardImage(resultado.imagen);
+      setGiftCardFecha(resultado.fechaExpiracion);
+      alert(`¡Gift Card canjeada! Se descuentan Bs. ${resultado.monto.toLocaleString()}`);
     } else {
       alert(resultado.mensaje || 'Código inválido o ya utilizado.');
     }
@@ -117,7 +115,7 @@ export default function CarritoPage() {
     }
   };
 
-  if (items.length === 0 && giftCards.length === 0) {
+  if (items.length === 0 && giftCards.length === 0 && discount === 0) {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
@@ -159,12 +157,26 @@ export default function CarritoPage() {
                 </div>
                 <p className="font-bold text-sm"> Bs. {(item.precio ?? 0).toLocaleString()}</p>
               </div>
-              <button onClick={() => removeFromCart(item.cartId!)} className="bg-red-100 text-red-600 px-2 py-1 rounded cursor-pointer hover:bg-red-200 font-bold text-xs">
-                Eliminar
-              </button>
+              <button onClick={() => removeFromCart(item.cartId!)} className="bg-red-100 text-red-600 px-2 py-1 rounded cursor-pointer hover:bg-red-200 font-bold text-xs">Eliminar</button>
             </div>
           ))}
         </div>
+
+        {/* Vista previa de Gift Card Canjeada con el rótulo de fecha */}
+        {giftCardImage && (
+          <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4 flex items-center gap-4">
+            <div className="relative w-32 h-20 bg-gray-100 rounded overflow-hidden flex-shrink-0">
+              <Image src={giftCardImage} alt="Gift Card Canjeada" fill className="object-cover" />
+              <div className="absolute bottom-0 right-0 bg-black/80 text-white text-[10px] font-bold px-2 py-1 rounded-tl-lg">
+                Vence: {formatearFecha(giftCardFecha || '')}
+              </div>
+            </div>
+            <div>
+              <p className="font-bold text-green-800">Gift Card Canjeada</p>
+              <p className="text-green-700 text-sm">Descuento aplicado: Bs. {discount.toLocaleString()}</p>
+            </div>
+          </div>
+        )}
 
         <div className="bg-white rounded-lg shadow-sm p-3">
           <div className="flex justify-between items-center mb-3">
@@ -174,7 +186,7 @@ export default function CarritoPage() {
 
           <div className="grid md:grid-cols-2 gap-4 border-t pt-3 mb-3">
             <div>
-              <h2 className="font-bold text-base mb-2">🎁 Tus Gift Cards</h2>
+              <h2 className="font-bold text-base mb-2"> Tus Gift Cards (Compradas)</h2>
               {giftCards.map((gc, idx) => (
                 <div key={idx} className="flex justify-between items-center py-3 border-b last:border-0">
                   <div className="flex gap-3 items-center">
@@ -182,7 +194,7 @@ export default function CarritoPage() {
                       <div className="relative w-40 h-25 bg-gray-100 rounded overflow-hidden flex-shrink-0">
                         <Image src={gc.imagen} alt="Gift Card" fill className="object-cover" />
                         {gc.fechaExpiracion && (
-                          <div className="absolute bottom-0 right-0 bg-black/80 text-white text-[10px] font-bold px-2 py-1 rounded-tl-lg backdrop-blur-sm">
+                          <div className="absolute bottom-0 right-0 bg-black/80 text-white text-[10px] font-bold px-2 py-1 rounded-tl-lg">
                             Vence: {formatearFecha(gc.fechaExpiracion)}
                           </div>
                         )}
@@ -191,24 +203,19 @@ export default function CarritoPage() {
                     </div>
                     <p className="font-bold text-sm">Bs. {gc.monto.toLocaleString()}</p>
                   </div>
-                  <button onClick={() => removeGiftCard(gc.id)} className="bg-red-100 text-red-600 px-2 py-1 rounded cursor-pointer hover:bg-red-200 text-xs font-bold">
-                    Eliminar
-                  </button>
+                  <button onClick={() => removeGiftCard(gc.id)} className="bg-red-100 text-red-600 px-2 py-1 rounded cursor-pointer hover:bg-red-200 text-xs font-bold">Eliminar</button>
                 </div>
               ))}
-              {giftCards.length === 0 && <p className="text-gray-400 text-xs">Sin Gift Cards</p>}
+              {giftCards.length === 0 && <p className="text-gray-400 text-xs">Sin Gift Cards compradas</p>}
             </div>
 
             <div className="flex flex-col">
               <div className="mb-4">
                 <h2 className="font-bold text-base mb-2">Método de Pago</h2>
                 <div className="grid grid-cols-2 gap-3">
-                  <button onClick={() => setMetodoPago('banco')} className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${metodoPago === 'banco' ? 'border-blue-600 bg-blue-50 text-blue-700' : 'border-gray-300 text-gray-600 hover:border-gray-400'}`}>
-                    🏦 Banco
-                  </button>
+                  <button onClick={() => setMetodoPago('banco')} className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${metodoPago === 'banco' ? 'border-blue-600 bg-blue-50 text-blue-700' : 'border-gray-300 text-gray-600 hover:border-gray-400'}`}>🏦 Banco</button>
                   <button onClick={() => setMetodoPago('binance')} className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${metodoPago === 'binance' ? 'border-yellow-500 bg-yellow-50 text-yellow-700' : 'border-gray-300 text-gray-600 hover:border-gray-400'}`}>
-                    <Image src="/images/logo-binance.png" alt="Binance" width={20} height={20} className="object-contain" />
-                    Binance
+                    <Image src="/images/logo-binance.png" alt="Binance" width={20} height={20} className="object-contain" /> Binance
                   </button>
                 </div>
                 <p className="mt-2 text-xs text-gray-600">Aceptamos pagos con <strong>USDT (Tether)</strong> y otras criptomonedas vía Binance.</p>

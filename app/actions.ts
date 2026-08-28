@@ -1,10 +1,7 @@
 'use server';
-
 import { supabase } from '@/lib/supabase';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
-
-const DB_PATH = process.cwd() + '/data/gift-cards-db.json'; // Mantenemos tu ruta original
 
 export async function generateGiftCardCode(monto: number, imagen: string) {
   const code = 'ML-' + Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -13,8 +10,8 @@ export async function generateGiftCardCode(monto: number, imagen: string) {
   const hoy = new Date();
   const fechaExpiracion = new Date(hoy);
   fechaExpiracion.setDate(hoy.getDate() + 30);
-  const fechaStr = fechaExpiracion.toISOString().split('T')[0]; // Formato YYYY-MM-DD
-  
+  const fechaStr = fechaExpiracion.toISOString().split('T')[0];
+
   const { data, error } = await supabase
     .from('gift_cards')
     .insert([{ code, monto, imagen, used: false, fecha_expiracion: fechaStr }])
@@ -23,7 +20,7 @@ export async function generateGiftCardCode(monto: number, imagen: string) {
     
   if (error) {
     console.error('Error al generar Gift Card:', error);
-    return { code: '', imagen: '' };
+    return { code: '', imagen: '', fechaExpiracion: '' };
   }
   return { code: data.code, imagen: data.imagen, fechaExpiracion: data.fecha_expiracion };
 }
@@ -42,14 +39,13 @@ export async function validateGiftCardCode(code: string) {
 
   // Verificar si la tarjeta está expirada
   const hoy = new Date();
-  hoy.setHours(0, 0, 0, 0); // Normalizar a medianoche para comparar solo fechas
+  hoy.setHours(0, 0, 0, 0);
   const fechaExpiracion = new Date(card.fecha_expiracion);
   
   if (fechaExpiracion < hoy) {
     return { valid: false, mensaje: 'Tarjeta expirada.' };
   }
 
-  // Marcar como usada
   await supabase
     .from('gift_cards')
     .update({ used: true })
@@ -82,38 +78,25 @@ export async function crearPedido(datos: {
 
     if (error) throw error;
 
-    // ==========================================
-    // NUEVO: Descontar stock automáticamente
-    // ==========================================
     const itemsComprados = datos.detalles?.items || [];
-    
     if (itemsComprados.length > 0) {
-      // 1. Obtener IDs únicos de los productos comprados
       const idsProductos = [...new Set(itemsComprados.map((item: any) => item.id))];
-      
-      // 2. Obtener stock actual de esos productos desde la tabla 'inventario'
       const { data: inventarioActual, error: errorInventario } = await supabase
         .from('inventario')
         .select('id, stock')
         .in('id', idsProductos);
 
       if (!errorInventario && inventarioActual) {
-        // 3. Calcular el nuevo stock restando la cantidad comprada
         const actualizaciones = inventarioActual.map(itemInv => {
           const cantidadComprada = itemsComprados.filter((i: any) => i.id === itemInv.id).length;
           return {
             id: itemInv.id,
-            stock: Math.max(0, itemInv.stock - cantidadComprada) // Nunca bajar de 0
+            stock: Math.max(0, itemInv.stock - cantidadComprada)
           };
         });
-
-        // 4. Actualizar el stock en Supabase
-        await supabase
-          .from('inventario')
-          .upsert(actualizaciones);
+        await supabase.from('inventario').upsert(actualizaciones);
       }
     }
-    // ==========================================
 
     return { success: true, pedidoId: data.id };
   } catch (error) {
@@ -128,12 +111,10 @@ export async function actualizarTipoCambio(nuevaTasa: number) {
       .from('tipo_cambio')
       .update({ tasa: nuevaTasa })
       .eq('id', 1);
-
     if (error) {
       console.error('Error al actualizar tipo de cambio:', error);
       return { success: false, error: error.message };
     }
-
     revalidatePath('/api/tipo-cambio');
     revalidatePath('/carrito');
     return { success: true };
@@ -146,24 +127,19 @@ export async function actualizarTipoCambio(nuevaTasa: number) {
 export async function manejarEstadoPedido(formData: FormData) {
   const id = formData.get('id') as string;
   const nuevoEstado = formData.get('estado') as string;
-
   await supabase
     .from('pedidos')
     .update({ estado: nuevoEstado })
     .eq('id', id);
-
   redirect('/admin/pedidos');
 }
 
 export async function verificarStockPublico(codigoCorto: string) {
   try {
     const codigoLimpio = codigoCorto.trim().toUpperCase();
-    
     if (!codigoLimpio) {
       return { success: false, message: 'Por favor ingresa un código.', resultados: [] };
     }
-
-    // Buscamos todos los IDs que terminen con "-CODIGO" (ej: abstractos_minimalista-M51)
     const { data, error } = await supabase
       .from('inventario')
       .select('id, stock')
@@ -172,15 +148,13 @@ export async function verificarStockPublico(codigoCorto: string) {
     if (error) {
       return { success: false, message: 'Error al consultar la base de datos.', resultados: [] };
     }
-
     if (!data || data.length === 0) {
       return { success: false, message: `No encontramos ningún cuadro con el código "${codigoLimpio}".`, resultados: [] };
     }
-
-    return { 
-      success: true, 
-      message: `Encontramos ${data.length} obra con el código "${codigoLimpio}":`, 
-      resultados: data 
+    return {
+      success: true,
+      message: `Encontramos ${data.length} obra con el código "${codigoLimpio}":`,
+      resultados: data
     };
   } catch (error) {
     return { success: false, message: 'Error inesperado. Intenta de nuevo.', resultados: [] };
