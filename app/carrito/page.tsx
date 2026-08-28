@@ -107,6 +107,7 @@ export default function CarritoPage() {
             metodo_pago: metodoPago === 'banco' ? 'transferencia_banco' : 'binance_pay',
             total: totalConDescuento,
             items,
+            giftCards,
             pedidoId: respuesta.pedidoId
           })
         });
