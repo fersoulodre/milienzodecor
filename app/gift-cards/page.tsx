@@ -9,11 +9,22 @@ export default function GiftCardsPage() {
   const [added, setAdded] = useState<string | null>(null);
   const config = getConfig();
 
-  const handleAddGiftCard = (monto: number, id: string, imagen: string) => {
-  addGiftCard({ id: `${id}-${Date.now()}`, monto, imagen });
-  setAdded(id);
-  setTimeout(() => setAdded(null), 2000);
-};
+    const handleAddGiftCard = (monto: number, id: string, imagen: string) => {
+    // Calcular fecha de expiración: hoy + 30 días
+    const hoy = new Date();
+    const fechaExp = new Date(hoy);
+    fechaExp.setDate(hoy.getDate() + 30);
+    const fechaExpiracion = fechaExp.toISOString().split('T')[0];
+
+    addGiftCard({ 
+      id: `${id}-${Date.now()}`, 
+      monto, 
+      imagen,
+      fechaExpiracion 
+    });
+    setAdded(id);
+    setTimeout(() => setAdded(null), 2000);
+  };
 
   return (
     <div className="min-h-screen bg-white">
