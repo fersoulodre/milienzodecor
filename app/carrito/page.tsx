@@ -7,7 +7,7 @@ import { generateGiftCardCode, validateGiftCardCode, crearPedido } from '@/app/a
 import { useRouter } from 'next/navigation';
 
 export default function CarritoPage() {
-  const { items, giftCards, removeFromCart, removeGiftCard, clearCart, total } = useCart();
+  const { items, giftCards, removeFromCart, removeGiftCard, clearCart, total, addGiftCard } = useCart();
   const router = useRouter();
   const config = getConfig();
   
@@ -49,10 +49,14 @@ export default function CarritoPage() {
     setApplyingCode(true);
     const resultado = await validateGiftCardCode(giftCodeInput);
     
-    if (resultado.valid) {
-      setDiscount(resultado.monto);
-      setGiftCardImage(resultado.imagen);
-      alert(`¡Gift Card canjeada! Se descuentan Bs. ${resultado.monto.toLocaleString()}`);
+        if (resultado.valid) {
+      addGiftCard({
+        id: crypto.randomUUID(),
+        monto: resultado.monto,
+        imagen: resultado.imagen,
+        fechaExpiracion: resultado.fechaExpiracion
+      });
+      alert(`¡Gift Card canjeada! Se agregaron Bs. ${resultado.monto.toLocaleString()} a tu carrito.`);
     } else {
       alert(resultado.mensaje || 'Código inválido o ya utilizado.');
     }

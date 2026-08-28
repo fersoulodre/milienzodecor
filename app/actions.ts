@@ -55,7 +55,7 @@ export async function validateGiftCardCode(code: string) {
     .update({ used: true })
     .eq('id', card.id);
     
-  return { valid: true, monto: card.monto, imagen: card.imagen };
+  return { valid: true, monto: card.monto, imagen: card.imagen, fechaExpiracion: card.fecha_expiracion };
 }
 
 export async function crearPedido(datos: {
