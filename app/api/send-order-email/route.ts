@@ -5,12 +5,22 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(request: Request) {
   try {
-    const { nombre, email, telefono, metodo_pago, total, items, pedidoId } = await request.json();
+    // Agregamos 'giftCards' a la desestructuración
+    const { nombre, email, telefono, metodo_pago, total, items, giftCards, pedidoId } = await request.json();
 
-    // Formatear la lista de productos para que se vea ordenada en el correo
-    const productosTexto = items.map((item: any) => 
-      `- ${item.titulo} (Código: ${item.id}) | Bs. ${(item.precio || 0).toLocaleString()}`
-    ).join('\n');
+    // Formatear productos
+    const productosTexto = items && items.length > 0 
+      ? items.map((item: any) => 
+          `- ${item.titulo} (Código: ${item.id}) | Bs. ${(item.precio || 0).toLocaleString()}`
+        ).join('\n')
+      : 'Ninguno';
+
+    // Formatear Gift Cards
+    const giftCardsTexto = giftCards && giftCards.length > 0
+      ? giftCards.map((gc: any) => 
+          `- 🎁 Gift Card de Bs. ${gc.monto.toLocaleString()} (El código se generará al aprobar el pedido)`
+        ).join('\n')
+      : 'Ninguna';
 
     const htmlContent = `
       <h2 style="color: #1f2937;">🎨 Nuevo Pago Reportado - Mi Lienzo Decor</h2>
@@ -23,6 +33,9 @@ export async function POST(request: Request) {
       
       <h3 style="color: #1f2937; margin-top: 20px;">🖼️ Productos en el pedido:</h3>
       <pre style="background: #f3f4f6; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 14px;">${productosTexto}</pre>
+
+      <h3 style="color: #1f2937; margin-top: 20px;">🎁 Gift Cards en el pedido:</h3>
+      <pre style="background: #fffbeb; color: #92400e; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 14px; border: 1px solid #fcd34d;">${giftCardsTexto}</pre>
       
       <p style="color: #6b7280; font-size: 13px; margin-top: 20px;">
         El cliente ha sido redirigido para subir su comprobante. Por favor, verifica el pago en tu cuenta bancaria o Binance.
@@ -30,7 +43,7 @@ export async function POST(request: Request) {
     `;
 
     const { data, error } = await resend.emails.send({
-      from: 'Mi Lienzo Decor <pedidos@milienzodecor.com>', // Remitente permitido en el plan gratuito
+      from: 'Mi Lienzo Decor <pedidos@milienzodecor.com>',
       to: ['soporte@milienzodecor.com'],
       subject: `🔔 Nuevo Pago Reportado - Pedido ${pedidoId || 'Sin ID'}`,
       html: htmlContent,
