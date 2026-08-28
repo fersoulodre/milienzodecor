@@ -38,11 +38,7 @@ export default function CarritoPage() {
 
   const montoUSDT = totalConDescuento / tipoCambio;
     // Función para formatear la fecha (ej: "31 Dic 2024")
-  const formatearFecha = (fechaString: string) => {
-    if (!fechaString) return '';
-    const fecha = new Date(fechaString);
-    return fecha.toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
-  };
+ 
 
   // Función para calcular la fecha de expiración (hoy + 30 días)
   const calcularFechaExpiracion = () => {
