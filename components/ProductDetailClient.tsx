@@ -194,7 +194,7 @@ export default function ProductDetailClient({ producto }: { producto: Producto }
 
             <div className="mt-6">
               <label className="block text-sm font-bold text-gray-700 mb-3">
-                Tipo de Marco <span className="font-normal text-gray-500">(elige una opción)</span>
+                Elige con o sin marco <span className="font-normal text-gray-500"></span>
               </label>
               
               <button
