@@ -305,10 +305,16 @@ export default function CarritoPage() {
                       <li>El saldo restante de <strong>Bs. {(totalConDescuento - 50).toLocaleString()}</strong> lo pagas en efectivo al recibir tu cuadro en la puerta de tu casa.</li>
                       <li>Sube la captura de la transferencia de los 50 Bs. en el siguiente paso.</li>
                     </ol>
-                    <div className="p-3 bg-white rounded border border-green-300 mb-3">
-                      <p className="text-xs text-gray-600 mb-1">Monto a transferir ahora:</p>
-                      <p className="text-2xl font-bold text-green-700">Bs. {MONTO_RESERVA}</p>
-                    </div>
+                    <div className="grid grid-cols-2 gap-3 mb-3">
+  <div className="p-3 bg-white rounded border border-green-300">
+    <p className="text-xs text-gray-600 mb-1">💳 Pago ahora (Reserva):</p>
+    <p className="text-2xl font-bold text-green-700">Bs. {MONTO_RESERVA}</p>
+  </div>
+  <div className="p-3 bg-white rounded border border-orange-300">
+    <p className="text-xs text-gray-600 mb-1">🚚 Saldo en entrega:</p>
+    <p className="text-2xl font-bold text-orange-700">Bs. {(totalConDescuento - MONTO_RESERVA).toLocaleString()}</p>
+  </div>
+</div>
                   </div>
                 )}
               </div>
