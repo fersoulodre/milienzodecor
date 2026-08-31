@@ -258,7 +258,9 @@ export default function CarritoPage() {
               <div className="flex flex-col items-center">
                 <h2 className="font-bold text-base mb-2 w-full text-left">1. Escanea el QR ({metodoPago === 'banco' ? 'Banco' : 'Binance'})</h2>
                 <div className="relative w-60 h-60 bg-gray-100 rounded-lg overflow-hidden mb-2 border border-gray-200">
-                  
+                  <Image src={metodoPago === 'banco' ? config.qrPago : '/images/binance-qr1.jpg'} alt={`QR de pago ${metodoPago === 'banco' ? 'bancario' : 'Binance'}`} fill className="object-contain p-2" />
+                </div>
+                <p className="text-xs text-gray-600 text-center">{metodoPago === 'banco' ? 'Escanea el QR con tu app bancaria' : 'Escanea el QR con tu app de Binance'}</p>
 
                 {metodoPago === 'binance' && (
                   <div className="mt-3 p-4 bg-yellow-50 border border-yellow-200 rounded-lg w-full">
