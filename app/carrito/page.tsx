@@ -302,7 +302,7 @@ export default function CarritoPage() {
                     <h3 className="font-bold text-sm text-green-800 mb-3">📦 Instrucciones para Reserva + Contra Entrega:</h3>
                     <ol className="text-xs text-gray-700 space-y-2 list-decimal list-inside mb-3">
                       <li>Transfiere solo <strong>Bs. {MONTO_RESERVA}</strong> al QR de arriba para cubrir la reserva del envío.</li>
-                      <li>El saldo restante de <strong>Bs. {(totalConDescuento - {MONTO_RESERVA}).toLocaleString()}</strong> lo pagas en efectivo al recibir tu cuadro en la puerta de tu casa.</li>
+                      <li>El saldo restante de <strong>Bs. {(totalConDescuento - MONTO_RESERVA).toLocaleString()}</strong> lo pagas en efectivo al recibir tu cuadro en la puerta de tu casa.</li>
                       <li>Sube la captura de la transferencia de los 50 Bs. en el siguiente paso.</li>
                     </ol>
                     <div className="p-3 bg-white rounded border border-green-300 mb-3">
