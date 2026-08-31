@@ -256,7 +256,65 @@ export default function CarritoPage() {
               </div>
 
               <div className="flex flex-col items-center">
+                              <div className="flex flex-col items-center">
+                <h2 className="font-bold text-base mb-2 w-full text-left">
+                  1. Escanea el QR ({metodoPago === 'binance' ? 'Binance' : 'Banco'})
+                </h2>
                 
+                <div className="relative w-60 h-60 bg-gray-100 rounded-lg overflow-hidden mb-2 border border-gray-200">
+                  <Image 
+                    src={(metodoPago === 'banco' || metodoPago === 'reserva') ? config.qrPago : '/images/binance-qr1.jpg'} 
+                    alt={`QR de pago ${metodoPago === 'binance' ? 'Binance' : 'bancario'}`} 
+                    fill 
+                    className="object-contain p-2" 
+                  />
+                </div>
+                <p className="text-xs text-gray-600 text-center">
+                  {metodoPago === 'binance' ? 'Escanea el QR con tu app de Binance' : 'Escanea el QR con tu app bancaria'}
+                </p>
+
+                {metodoPago === 'binance' && (
+                  <div className="mt-3 p-4 bg-yellow-50 border border-yellow-200 rounded-lg w-full">
+                    <h3 className="font-bold text-sm text-yellow-800 mb-3">💰 Instrucciones para pagar con Binance:</h3>
+                    <ol className="text-xs text-gray-700 space-y-2 list-decimal list-inside mb-3">
+                      <li><strong>Escanea el QR</strong> con tu app de Binance, o busca manualmente por ID.</li>
+                      <li>Confirma el monto en <strong>USDT</strong> antes de pagar.</li>
+                      <li>Guarda la captura de pantalla para subirla como comprobante.</li>
+                    </ol>
+                    <div className="p-3 bg-white rounded border border-yellow-300 mb-3">
+                      <p className="text-xs text-gray-600 mb-1">ID de Binance Pay:</p>
+                      <div className="flex items-center justify-between gap-2">
+                        <code className="text-sm font-bold text-yellow-700">437498764</code>
+                        <button type="button" onClick={() => { navigator.clipboard.writeText('437498764'); alert('ID copiado al portapapeles'); }} className="text-xs bg-yellow-500 text-white px-3 py-1 rounded hover:bg-yellow-600 cursor-pointer">Copiar</button>
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-600 mb-1"><strong>Nombre:</strong> Mi Lienzo Decor</p>
+                    <div className="mt-2 p-2 bg-yellow-100 rounded border border-yellow-300">
+                      <p className="text-xs text-gray-700 mb-1"><strong>Monto a pagar:</strong></p>
+                      <p className="text-lg font-bold text-yellow-700">{montoUSDT.toFixed(2)} USDT</p>
+                      <p className="text-xs text-gray-500">(Equivalente a Bs. {totalConDescuento.toLocaleString()} al tipo de cambio actual: {tipoCambio.toFixed(2)} Bs/USDT)</p>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-3">💡 El pago es instantáneo. Una vez confirmado, te redirigiremos para subir tu comprobante.</p>
+                  </div>
+                )}
+
+                {metodoPago === 'reserva' && (
+                  <div className="mt-3 p-4 bg-green-50 border border-green-200 rounded-lg w-full">
+                    <h3 className="font-bold text-sm text-green-800 mb-3">📦 Instrucciones para Reserva + Contra Entrega:</h3>
+                    <ol className="text-xs text-gray-700 space-y-2 list-decimal list-inside mb-3">
+                      <li>Transfiere solo <strong>Bs. 50</strong> al QR de arriba para cubrir la reserva del envío.</li>
+                      <li>El saldo restante de <strong>Bs. {(totalConDescuento - 50).toLocaleString()}</strong> lo pagas en efectivo al recibir tu cuadro en la puerta de tu casa.</li>
+                      <li>Sube la captura de la transferencia de los 50 Bs. en el siguiente paso.</li>
+                    </ol>
+                    <div className="p-3 bg-white rounded border border-green-300 mb-3">
+                      <p className="text-xs text-gray-600 mb-1">Monto a transferir ahora:</p>
+                      <p className="text-2xl font-bold text-green-700">Bs. 50</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
 
           <div className="mt-4 p-3 border border-gray-200 rounded-lg bg-gray-50">
             <h3 className="font-bold text-base mb-2">¿Tienes una Gift Card para canjear?</h3>
