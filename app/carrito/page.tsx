@@ -14,11 +14,8 @@ export default function CarritoPage() {
   const [email, setEmail] = useState('');
   const [nombre, setNombre] = useState('');
   const [telefono, setTelefono] = useState('');
-  const [metodoPago, setMetodoPago] = useState<'banco' | 'binance'>('banco');
-  
-  const MONTO_RESERVA = 50; // Cambia este valor a 100 si lo prefieres
-
-  // Actualiza el estado para incluir la nueva opción:
+   
+  const MONTO_RESERVA = 50;
   const [metodoPago, setMetodoPago] = useState<'banco' | 'binance' | 'reserva'>('banco');
 
   const [giftCodeInput, setGiftCodeInput] = useState('');
