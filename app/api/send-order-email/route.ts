@@ -2,7 +2,7 @@ import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-const MONTO_RESERVA = 50; // Monto de la reserva (cámbialo aquí si decides usar 100)
+const MONTO_RESERVA = 80; // Monto de la reserva (cámbialo aquí si decides usar 100)
 
 export async function POST(request: Request) {
   try {

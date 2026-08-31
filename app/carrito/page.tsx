@@ -15,7 +15,7 @@ export default function CarritoPage() {
   const [nombre, setNombre] = useState('');
   const [telefono, setTelefono] = useState('');
    
-  const MONTO_RESERVA = 50;
+  const MONTO_RESERVA = 80;
   const [metodoPago, setMetodoPago] = useState<'banco' | 'binance' | 'reserva'>('banco');
 
   const [giftCodeInput, setGiftCodeInput] = useState('');
@@ -235,7 +235,7 @@ export default function CarritoPage() {
     </li>
     <li className="flex items-start gap-2">
       <span className="font-bold text-green-600">2. Reserva + Contra Entrega:</span>
-      <span>Pagas solo <strong>Bs. {MONTO_RESERVA}</strong> ahora para agendar tu envío. El saldo restante lo pagas en efectivo al recibir el cuadro en tu puerta.</span>
+      <span>Pagas solo <strong>Bs. {MONTO_RESERVA}</strong> ahora para agendar tu pedido. El saldo restante lo pagas en efectivo al recibir tu cuadro.</span>
     </li>
   </ul>
 </div>
