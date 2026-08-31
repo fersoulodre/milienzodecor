@@ -2,25 +2,35 @@ import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
+const MONTO_RESERVA = 50; // Monto de la reserva (cámbialo aquí si decides usar 100)
 
 export async function POST(request: Request) {
   try {
-    // Agregamos 'giftCards' a la desestructuración
     const { nombre, email, telefono, metodo_pago, total, items, giftCards, pedidoId } = await request.json();
 
-    // Formatear productos
+    // 1. Definir texto del método de pago
+    const metodoPagoTexto = metodo_pago === 'transferencia_banco' 
+      ? 'Pago Total por QR' 
+      : metodo_pago === 'reserva_contra_entrega' 
+        ? '⚠️ RESERVA + CONTRA ENTREGA' 
+        : 'Binance Pay';
+
+    // 2. Formatear productos
     const productosTexto = items && items.length > 0 
       ? items.map((item: any) => 
           `- ${item.titulo} (Código: ${item.id}) | Bs. ${(item.precio || 0).toLocaleString()}`
         ).join('\n')
       : 'Ninguno';
 
-    // Formatear Gift Cards
+    // 3. Formatear Gift Cards
     const giftCardsTexto = giftCards && giftCards.length > 0
       ? giftCards.map((gc: any) => 
           `- 🎁 Gift Card de Bs. ${gc.monto.toLocaleString()} (El código se generará al aprobar el pedido)`
         ).join('\n')
       : 'Ninguna';
+
+    // 4. Calcular saldo pendiente si es reserva
+    const saldoPendiente = metodo_pago === 'reserva_contra_entrega' ? total - MONTO_RESERVA : 0;
 
     const htmlContent = `
       <h2 style="color: #1f2937;">🎨 Nuevo Pago Reportado - Mi Lienzo Decor</h2>
@@ -28,8 +38,15 @@ export async function POST(request: Request) {
       <p><strong>Cliente:</strong> ${nombre}</p>
       <p><strong>Correo:</strong> ${email}</p>
       <p><strong>Teléfono:</strong> ${telefono || 'No proporcionado'}</p>
-      <p><strong>Método de Pago:</strong> ${metodo_pago === 'transferencia_banco' ? 'Transferencia por QR' : 'Binance Pay'}</p>
-      <p><strong>Total Reportado:</strong> Bs. ${total.toLocaleString()}</p>
+      <p><strong>Método de Pago:</strong> ${metodoPagoTexto}</p>
+      <p><strong>Total del Pedido:</strong> Bs. ${total.toLocaleString()}</p>
+      
+      ${metodo_pago === 'reserva_contra_entrega' ? `
+        <div style="background-color: #fef3c7; border: 1px solid #f59e0b; color: #92400e; padding: 15px; border-radius: 8px; margin: 15px 0;">
+          <p style="margin: 0; font-weight: bold; font-size: 16px;">⚠️ IMPORTANTE: SALDO PENDIENTE</p>
+          <p style="margin: 5px 0 0 0; font-size: 14px;">El cliente solo pagó la reserva de <strong>Bs. ${MONTO_RESERVA}</strong>. Debes cobrar el saldo restante de <strong>Bs. ${saldoPendiente.toLocaleString()}</strong> en efectivo al momento de la entrega.</p>
+        </div>
+      ` : ''}
       
       <h3 style="color: #1f2937; margin-top: 20px;">🖼️ Productos en el pedido:</h3>
       <pre style="background: #f3f4f6; padding: 15px; border-radius: 8px; font-family: monospace; font-size: 14px;">${productosTexto}</pre>

@@ -16,6 +16,11 @@ export default function CarritoPage() {
   const [telefono, setTelefono] = useState('');
   const [metodoPago, setMetodoPago] = useState<'banco' | 'binance'>('banco');
   
+  const MONTO_RESERVA = 50; // Cambia este valor a 100 si lo prefieres
+
+  // Actualiza el estado para incluir la nueva opción:
+  const [metodoPago, setMetodoPago] = useState<'banco' | 'binance' | 'reserva'>('banco');
+
   const [giftCodeInput, setGiftCodeInput] = useState('');
   const [discount, setDiscount] = useState(0);
   const [giftCardImage, setGiftCardImage] = useState<string | null>(null);
@@ -101,15 +106,15 @@ export default function CarritoPage() {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
-            nombre,
-            email,
-            telefono,
-            metodo_pago: metodoPago === 'banco' ? 'transferencia_banco' : 'binance_pay',
-            total: totalConDescuento,
-            items,
-            giftCards,
-            pedidoId: respuesta.pedidoId
-          })
+  nombre,
+  email,
+  telefono,
+  metodo_pago: metodoPago === 'banco' ? 'transferencia_banco' : metodoPago === 'reserva' ? 'reserva_contra_entrega' : 'binance_pay',
+  total: totalConDescuento,
+  items,
+  giftCards,
+  pedidoId: respuesta.pedidoId
+})
         });
       } catch (error) {
         console.error('No se pudo enviar el correo, pero el pedido se guardó:', error);
@@ -222,12 +227,18 @@ export default function CarritoPage() {
             <div className="flex flex-col">
               <div className="mb-4">
                 <h2 className="font-bold text-base mb-2">Método de Pago</h2>
-                <div className="grid grid-cols-2 gap-3">
-                  <button onClick={() => setMetodoPago('banco')} className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${metodoPago === 'banco' ? 'border-blue-600 bg-blue-50 text-blue-700' : 'border-gray-300 text-gray-600 hover:border-gray-400'}`}>🏦 Banco</button>
-                  <button onClick={() => setMetodoPago('binance')} className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${metodoPago === 'binance' ? 'border-yellow-500 bg-yellow-50 text-yellow-700' : 'border-gray-300 text-gray-600 hover:border-gray-400'}`}>
-                    <Image src="/images/logo-binance.png" alt="Binance" width={20} height={20} className="object-contain" /> Binance
-                  </button>
-                </div>
+                <div className="grid grid-cols-3 gap-3">
+  <button onClick={() => setMetodoPago('banco')} className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${metodoPago === 'banco' ? 'border-blue-600 bg-blue-50 text-blue-700' : 'border-gray-300 text-gray-600 hover:border-gray-400'}`}>
+    🏦 Pago Total QR
+  </button>
+  <button onClick={() => setMetodoPago('reserva')} className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${metodoPago === 'reserva' ? 'border-green-600 bg-green-50 text-green-700' : 'border-gray-300 text-gray-600 hover:border-gray-400'}`}>
+    🏠 Reserva + Contra Entrega
+  </button>
+  <button onClick={() => setMetodoPago('binance')} className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${metodoPago === 'binance' ? 'border-yellow-500 bg-yellow-50 text-yellow-700' : 'border-gray-300 text-gray-600 hover:border-gray-400'}`}>
+    <Image src="/images/logo-binance.png" alt="Binance" width={20} height={20} className="object-contain" />
+    Binance
+  </button>
+</div>
                 <p className="mt-2 text-xs text-gray-600">Aceptamos pagos con <strong>USDT (Tether)</strong> y otras criptomonedas vía Binance.</p>
               </div>
 
@@ -262,6 +273,20 @@ export default function CarritoPage() {
                     <p className="text-xs text-gray-500 mt-3">💡 El pago es instantáneo. Una vez confirmado, te redirigiremos para subir tu comprobante.</p>
                   </div>
                 )}
+                {metodoPago === 'reserva' && (
+  <div className="mt-3 p-4 bg-green-50 border border-green-200 rounded-lg w-full">
+    <h3 className="font-bold text-sm text-green-800 mb-3">📦 Instrucciones para Reserva + Contra Entrega:</h3>
+    <ol className="text-xs text-gray-700 space-y-2 list-decimal list-inside mb-3">
+      <li>Transfiere solo <strong>Bs. {MONTO_RESERVA}</strong> al QR de abajo para cubrir la reserva del envío.</li>
+      <li>El saldo restante de <strong>Bs. {(totalConDescuento - MONTO_RESERVA).toLocaleString()}</strong> lo pagas en efectivo al recibir tu cuadro en la puerta de tu casa.</li>
+      <li>Sube la captura de la transferencia de los {MONTO_RESERVA} Bs. en el siguiente paso.</li>
+    </ol>
+    <div className="p-3 bg-white rounded border border-green-300 mb-3">
+      <p className="text-xs text-gray-600 mb-1">Monto a transferir ahora:</p>
+      <p className="text-2xl font-bold text-green-700">Bs. {MONTO_RESERVA}</p>
+    </div>
+  </div>
+)}
               </div>
             </div>
           </div>
