@@ -307,7 +307,7 @@ export default function CarritoPage() {
                     </ol>
                     <div className="p-3 bg-white rounded border border-green-300 mb-3">
                       <p className="text-xs text-gray-600 mb-1">Monto a transferir ahora:</p>
-                      <p className="text-2xl font-bold text-green-700">Bs. 50</p>
+                      <p className="text-2xl font-bold text-green-700">Bs. {MONTO_RESERVA}</p>
                     </div>
                   </div>
                 )}
