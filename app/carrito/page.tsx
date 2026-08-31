@@ -224,12 +224,28 @@ export default function CarritoPage() {
             <div className="flex flex-col">
               <div className="mb-4">
                 <h2 className="font-bold text-base mb-2">Método de Pago</h2>
-                <div className="grid grid-cols-3 gap-3">
+
+{/* Texto explicativo nuevo */}
+<div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+  <h3 className="font-bold text-sm text-blue-800 mb-2">💳 Opciones de Pago:</h3>
+  <ul className="text-xs text-gray-700 space-y-2">
+    <li className="flex items-start gap-2">
+      <span className="font-bold text-blue-600">1. Pago Total por QR:</span>
+      <span>Pagas el 100% del valor ahora. Ideal para asegurar tu compra inmediatamente.</span>
+    </li>
+    <li className="flex items-start gap-2">
+      <span className="font-bold text-green-600">2. Reserva + Contra Entrega:</span>
+      <span>Pagas solo <strong>Bs. {MONTO_RESERVA}</strong> ahora para agendar tu envío. El saldo restante lo pagas en efectivo al recibir el cuadro en tu puerta.</span>
+    </li>
+  </ul>
+</div>
+
+<div className="grid grid-cols-3 gap-3">
   <button onClick={() => setMetodoPago('banco')} className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${metodoPago === 'banco' ? 'border-blue-600 bg-blue-50 text-blue-700' : 'border-gray-300 text-gray-600 hover:border-gray-400'}`}>
     🏦 Pago Total QR
   </button>
   <button onClick={() => setMetodoPago('reserva')} className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${metodoPago === 'reserva' ? 'border-green-600 bg-green-50 text-green-700' : 'border-gray-300 text-gray-600 hover:border-gray-400'}`}>
-    🏠 Reserva + Contra Entrega
+    🏠 Reserva + Entrega
   </button>
   <button onClick={() => setMetodoPago('binance')} className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${metodoPago === 'binance' ? 'border-yellow-500 bg-yellow-50 text-yellow-700' : 'border-gray-300 text-gray-600 hover:border-gray-400'}`}>
     <Image src="/images/logo-binance.png" alt="Binance" width={20} height={20} className="object-contain" />
@@ -242,9 +258,15 @@ export default function CarritoPage() {
               <div className="flex flex-col items-center">
                 <h2 className="font-bold text-base mb-2 w-full text-left">1. Escanea el QR ({metodoPago === 'banco' ? 'Banco' : 'Binance'})</h2>
                 <div className="relative w-60 h-60 bg-gray-100 rounded-lg overflow-hidden mb-2 border border-gray-200">
-                  <Image src={metodoPago === 'banco' ? config.qrPago : '/images/binance-qr1.jpg'} alt={`QR de pago ${metodoPago === 'banco' ? 'bancario' : 'Binance'}`} fill className="object-contain p-2" />
-                </div>
-                <p className="text-xs text-gray-600 text-center">{metodoPago === 'banco' ? 'Escanea el QR con tu app bancaria' : 'Escanea el QR con tu app de Binance'}</p>
+                  <Image 
+  src={(metodoPago === 'banco' || metodoPago === 'reserva') ? config.qrPago : '/images/binance-qr1.jpg'} 
+  alt={`QR de pago ${metodoPago === 'binance' ? 'Binance' : 'bancario'}`} 
+  fill 
+  className="object-contain p-2" 
+/>
+<p className="text-xs text-gray-600 text-center">
+  {metodoPago === 'binance' ? 'Escanea el QR con tu app de Binance' : 'Escanea el QR con tu app bancaria'}
+</p>
 
                 {metodoPago === 'binance' && (
                   <div className="mt-3 p-4 bg-yellow-50 border border-yellow-200 rounded-lg w-full">
