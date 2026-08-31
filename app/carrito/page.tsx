@@ -301,20 +301,14 @@ export default function CarritoPage() {
                   <div className="mt-3 p-4 bg-green-50 border border-green-200 rounded-lg w-full">
                     <h3 className="font-bold text-sm text-green-800 mb-3">📦 Instrucciones para Reserva + Contra Entrega:</h3>
                     <ol className="text-xs text-gray-700 space-y-2 list-decimal list-inside mb-3">
-                      <li>Transfiere solo <strong>Bs. 50</strong> al QR de arriba para cubrir la reserva del envío.</li>
+                      <li>Transfiere solo <strong>Bs. {MONTO_RESERVA}</strong> al QR de arriba para cubrir la reserva del envío.</li>
                       <li>El saldo restante de <strong>Bs. {(totalConDescuento - 50).toLocaleString()}</strong> lo pagas en efectivo al recibir tu cuadro en la puerta de tu casa.</li>
                       <li>Sube la captura de la transferencia de los 50 Bs. en el siguiente paso.</li>
                     </ol>
-                    <div className="grid grid-cols-2 gap-3 mb-3">
-  <div className="p-3 bg-white rounded border border-green-300">
-    <p className="text-xs text-gray-600 mb-1">💳 Pago ahora (Reserva):</p>
-    <p className="text-2xl font-bold text-green-700">Bs. {MONTO_RESERVA}</p>
-  </div>
-  <div className="p-3 bg-white rounded border border-orange-300">
-    <p className="text-xs text-gray-600 mb-1">🚚 Saldo en entrega:</p>
-    <p className="text-2xl font-bold text-orange-700">Bs. {(totalConDescuento - MONTO_RESERVA).toLocaleString()}</p>
-  </div>
-</div>
+                    <div className="p-3 bg-white rounded border border-green-300 mb-3">
+                      <p className="text-xs text-gray-600 mb-1">Monto a transferir ahora:</p>
+                      <p className="text-2xl font-bold text-green-700">Bs. {MONTO_RESERVA}</p>
+                    </div>
                   </div>
                 )}
               </div>
