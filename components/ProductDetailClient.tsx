@@ -22,8 +22,8 @@ export default function ProductDetailClient({ producto }: { producto: Producto }
   const opcionesMarco = [
     { id: 'sin-marco', nombre: 'Sin marco', precioMetroLineal: 0, imagen: '' },
     { id: 'bastidor', nombre: 'Marco bastidor', precioMetroLineal: 100, imagen: '/images/marcos/marco-bastidor.jpg' },
-    { id: 'madera', nombre: 'Marco color madera', precioMetroLineal: 150, imagen: '/images/marcos/marco-color-madera1.jpg' },
-    { id: 'negro', nombre: 'Marco color negro', precioMetroLineal: 150, imagen: '/images/marcos/marco-color-negro1.jpg' }
+    //{ id: 'madera', nombre: 'Marco color madera', precioMetroLineal: 150, imagen: '/images/marcos/marco-color-madera1.jpg' },
+    //{ id: 'negro', nombre: 'Marco color negro', precioMetroLineal: 150, imagen: '/images/marcos/marco-color-negro1.jpg' }
   ];
 
   useEffect(() => {
