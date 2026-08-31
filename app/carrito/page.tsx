@@ -255,8 +255,7 @@ export default function CarritoPage() {
                 <p className="mt-2 text-xs text-gray-600">Aceptamos pagos con <strong>USDT (Tether)</strong> y otras criptomonedas vía Binance.</p>
               </div>
 
-              <div className="flex flex-col items-center">
-                              <div className="flex flex-col items-center">
+                            <div className="flex flex-col items-center">
                 <h2 className="font-bold text-base mb-2 w-full text-left">
                   1. Escanea el QR ({metodoPago === 'binance' ? 'Binance' : 'Banco'})
                 </h2>
@@ -313,6 +312,7 @@ export default function CarritoPage() {
                   </div>
                 )}
               </div>
+                
             </div>
           </div>
 
