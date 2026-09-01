@@ -745,6 +745,30 @@
       "destacado": false
     },
     {
+      "id": "figuras_humanas-H115",
+      "titulo": "H115",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H115.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "figuras_humanas-H116",
+      "titulo": "H116",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H116.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "figuras_humanas-H117",
+      "titulo": "H117",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H117.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
       "id": "paisajes-P66",
       "titulo": "P66",
       "estilo": "Paisajes",
