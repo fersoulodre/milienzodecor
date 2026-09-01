@@ -238,7 +238,7 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
             </div>
 
             <div className="mt-6 flex items-center gap-2 flex-wrap">
-              {width !== '' && height !== '' && Number(width) >= 30 && Number(height) >= 30 ? (
+              {width !== '' && height !== '' && !isNaN(Number(width)) && !isNaN(Number(height)) && ((Number(width) / 100) * (Number(height) / 100)) >= AREA_MINIMA_M2 ? (
                 <>
                   <p className="text-3xl font-bold">Bs. {finalPrice.toLocaleString()}</p>
                   <span className="text-xs text-gray-500">El precio incluye impuestos de ley.</span>
