@@ -6,7 +6,7 @@ import { useCart } from '@/components/CartContext';
 import { Producto } from '@/lib/productos';
 
 const PRECIO_POR_M2_IMPRESION = 355; 
-
+const AREA_MINIMA_M2 = 0.09; // Área mínima en metros cuadrados (ej: 30x30cm = 0.09m²)
 export default function ProductDetailClient({ producto }: { producto: Producto }) {
   const router = useRouter();
   const { addToCart } = useCart();
@@ -42,13 +42,14 @@ export default function ProductDetailClient({ producto }: { producto: Producto }
   const mockupUrl = producto.imagen.replace(/(\.[^.]+)$/, '-mockup$1');
 
   const handleAddToCart = () => {
-    const w = Number(width);
-    const h = Number(height);
-
-    if (width === '' || height === '' || w < 30 || h < 30) {
-      setShowMinWarningModal(true);
-      return; 
-    }
+  const w = Number(width);
+  const h = Number(height);
+  const areaM2 = (w / 100) * (h / 100);
+  
+  if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
+    setShowMinWarningModal(true);
+    return;
+  }
 
     const marco = opcionesMarco.find(m => m.id === marcoSeleccionado);
     addToCart({ 
@@ -164,7 +165,7 @@ export default function ProductDetailClient({ producto }: { producto: Producto }
 
             {(width !== '' && height !== '' && !isNaN(Number(width)) && !isNaN(Number(height)) && (Number(width) < 30 || Number(height) < 30)) && (
               <p className="text-xs text-red-500 mb-2 font-semibold text-center">
-                ⚠️ Mínimo: 30 x 30 cm
+                ⚠️ Área mínima: {AREA_MINIMA_M2} m²
               </p>
             )}
 
@@ -262,9 +263,9 @@ export default function ProductDetailClient({ producto }: { producto: Producto }
               Medida mínima no alcanzada
             </h3>
             <p className="text-center text-gray-700 font-medium mb-6 text-base">
-              La medida mínima permitida para los cuadros es de <strong>30 x 30 cm</strong>. 
-              Por favor, ajusta las dimensiones e inténtalo de nuevo.
-            </p>
+  El área mínima permitida para los cuadros es de <strong>{AREA_MINIMA_M2} m²</strong>.
+  Por favor, ajusta las dimensiones e inténtalo de nuevo.
+</p>
             <div className="bg-gray-50 rounded-lg p-4 mb-6">
               <p className="text-sm text-gray-600 mb-2">Dimensiones ingresadas:</p>
               <div className="flex justify-center gap-4 text-sm">
