@@ -166,7 +166,7 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
               Ingresa medidas para calcular el precio
             </p>
 
-            {(width !== '' && height !== '' && !isNaN(Number(width)) && !isNaN(Number(height)) && (
+            {(width !== '' && height !== '' && !isNaN(Number(width)) && !isNaN(Number(height))) && (
               <p className="text-xs text-red-500 mb-2 font-semibold text-center">
                 ⚠️ El área mínima requerida es de {AREA_MINIMA_M2} m²
               </p>
