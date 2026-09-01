@@ -166,11 +166,11 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
               Ingresa medidas para calcular el precio
             </p>
 
-            {(width !== '' && height !== '' && !isNaN(Number(width)) && !isNaN(Number(height))) && (
-              <p className="text-xs text-red-500 mb-2 font-semibold text-center">
-                ⚠️ El área mínima requerida es de {AREA_MINIMA_M2} m²
-              </p>
-            )}
+            {(width !== '' && height !== '' && !isNaN(Number(width)) && !isNaN(Number(height)) && ((Number(width) / 100) * (Number(height) / 100)) < AREA_MINIMA_M2) && (
+  <p className="text-xs text-red-500 mb-2 font-semibold text-center">
+    ⚠️ El área mínima requerida es de {AREA_MINIMA_M2} m²
+  </p>
+)}
 
             <div className="mt-1">
               <p className="text-sm text-gray-600 mb-3">Referencias de proporciones:</p>
