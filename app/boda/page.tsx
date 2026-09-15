@@ -123,17 +123,7 @@ export default function BodaPage() {
             </a>
           </div>
 
-          {/* Botón para abrir directamente en la App de Google Maps */}
-          <div className="mt-6">
-            <a
-              href="https://www.google.com/maps/place/Torre+Faith/@-16.5393431,-68.0788277,17z"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block px-8 py-3 border border-white text-white rounded-full text-sm tracking-wider uppercase hover:bg-white hover:text-[#1a3c2a] transition-colors duration-300"
-            >
-              Abrir en Google Maps
-            </a>
-          </div>
+         
         </div>
       </section>
 
