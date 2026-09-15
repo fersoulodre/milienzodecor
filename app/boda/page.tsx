@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function BodaPage() {
   return (
-    <div className="min-h-screen bg-[#1a3c2a] font-serif text-white flex flex-col">
+    <div className="min-h-screen bg-[#737766] font-serif text-white flex flex-col">
       
       {/* ==========================================
           SECCIÓN SUPERIOR: Diseñada para caber 
@@ -54,7 +54,7 @@ export default function BodaPage() {
       {/* ==========================================
           SECCIÓN INFERIOR: Detalles (aquí sí se hace scroll)
           ========================================== */}
-      <section className="bg-[#142e20] py-12 px-4">
+      <section className="bg-[#6c6f5e] py-12 px-4">
         <div className="max-w-3xl mx-auto text-center">
           
           {/* Foto tomados de la mano */}
