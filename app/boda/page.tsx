@@ -1,3 +1,12 @@
+export const metadata = {
+  title: 'Boda de Irene & Fernando',
+  description: 'Estás invitado a nuestra boda. 20 de Septiembre de 2026.',
+  openGraph: {
+    title: 'Boda de Irene & Fernando',
+    description: 'Estás invitado a nuestra boda. 20 de Septiembre de 2026.',
+    images: ['/images/boda/foto-blanco.jpg'],
+  },
+};
 export default function BodaPage() {
   return (
     <div className="min-h-screen bg-[#f5f1eb] font-serif">
