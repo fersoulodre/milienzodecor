@@ -112,15 +112,7 @@ export default function BodaPage() {
           {/* Botón para ver en Google Maps */}
                     {/* Mapa Interactivo Incrustado */}
           <div className="mt-10 w-full h-64 rounded-lg overflow-hidden shadow-lg border border-white/10">
-            <iframe
-              src="https://maps.google.com/maps?q=Torre+Faith+Calacoto+La+Paz&t=&z=16&ie=UTF8&iwloc=&output=embed"
-              width="100%"
-              height="100%"
-              style={{ border: 0, filter: 'grayscale(30%) contrast(1.1)' }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+            
           </div>
 
           {/* Botón para abrir directamente en la App de Google Maps */}
