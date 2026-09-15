@@ -2,17 +2,17 @@
 import { usePathname } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
+import StockVerifierModal from '@/components/StockVerifierModal';
 
 export default function LayoutContent({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const isBoda = pathname === '/boda';
+  // Detecta si es la página de la boda (con o sin slash al final)
+  const isBoda = pathname?.startsWith('/boda') || false;
 
   return (
     <>
-      {/* Ocultar Navbar si es la página de la boda */}
       {!isBoda && <Navbar />}
       
-      {/* Ocultar Slogan si es la página de la boda */}
       {!isBoda && (
         <div className="flex items-center justify-center py-3 md:py-3" style={{ backgroundColor: '#eadbc3' }}>
           <h3 className="text-lg md:text-4xl font-light text-gray-700 italic px-4 text-center">
@@ -25,8 +25,10 @@ export default function LayoutContent({ children }: { children: React.ReactNode 
         {children}
       </main>
 
-      {/* Ocultar Footer si es la página de la boda */}
       {!isBoda && <Footer />}
+      
+      {/* El botón de stock solo se oculta en la boda */}
+      {!isBoda && <StockVerifierModal />}
     </>
   );
 }
