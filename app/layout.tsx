@@ -1,7 +1,6 @@
 import { CartProvider } from '@/components/CartContext';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
 import StockVerifierModal from '@/components/StockVerifierModal';
+import LayoutContent from '@/components/LayoutContent';
 import './globals.css';
 
 export const metadata = {
@@ -17,23 +16,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="es">
       <body className="bg-gray-50 flex flex-col min-h-screen">
         <CartProvider>
-          <Navbar />
-          
-          {/* Slogan Global centrado vertical y horizontalmente */}
-          <div className="flex items-center justify-center py-3 md:py-3" style={{ backgroundColor: '#eadbc3' }}>
-            <h3 className="text-lg md:text-4xl font-light text-gray-700 italic px-4 text-center">
-              No son simples cuadros... llenamos tus espacios con arte
-            </h3>
-          </div>
-
-          <main className="flex-grow">
+          <LayoutContent>
             {children}
-          </main>
-
-          <Footer />
+          </LayoutContent>
         </CartProvider>
         
-        {/* Modal de verificación de stock (fuera del CartProvider, pero dentro del body) */}
         <StockVerifierModal />
       </body>
     </html>
