@@ -64,7 +64,7 @@ export default function BodaPage() {
       </section>
 
       {/* Sección 6: Fecha, hora y lugar */}
-      <section className="bg-[#142e20] py-16 px-4">
+      <section className="bg-[#6a6d5c] py-16 px-4">
         <div className="max-w-3xl mx-auto text-center">
           <p className="text-sm tracking-[0.3em] text-gray-300 uppercase mb-8">Nos casamos</p>
           
