@@ -9,8 +9,8 @@ export const metadata = {
 };
 export default function BodaPage() {
   return (
-    <div className="min-h-screen bg-[#f5f1eb] font-serif">
-      {/* Sección 1: Título */}
+    <div className="min-h-screen bg-[#737766] font-serif">
+      {/* Sección 1: Título */}f
       <section className="flex flex-col items-center justify-center py-16 px-4">
         <p className="text-sm tracking-[0.4em] text-gray-500 uppercase mb-3">Estás invitado a</p>
         <h1 className="text-5xl md:text-7xl font-light text-gray-900 italic">
