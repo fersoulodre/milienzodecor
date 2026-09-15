@@ -110,14 +110,28 @@ export default function BodaPage() {
           </div>
 
           {/* Botón para ver en Google Maps */}
-          <div className="mt-10">
+                    {/* Mapa Interactivo Incrustado */}
+          <div className="mt-10 w-full h-64 rounded-lg overflow-hidden shadow-lg border border-white/10">
+            <iframe
+              src="https://maps.google.com/maps?q=Torre+Faith+Calacoto+La+Paz&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0, filter: 'grayscale(30%) contrast(1.1)' }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
+          </div>
+
+          {/* Botón para abrir directamente en la App de Google Maps */}
+          <div className="mt-6">
             <a
-              href="https://www.google.com/maps/search/?api=1&query=Edificio+Faith+Calacoto+La+Paz+Bolivia"
+              href="https://www.google.com/maps/place/Torre+Faith/@-16.5393431,-68.0788277,17z"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block px-8 py-3 border border-white text-white rounded-full text-sm tracking-wider uppercase hover:bg-white hover:text-[#1a3c2a] transition-colors duration-300"
             >
-              Ver en el mapa
+              Abrir en Google Maps
             </a>
           </div>
         </div>
