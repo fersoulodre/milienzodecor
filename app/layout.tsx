@@ -1,5 +1,5 @@
 import { CartProvider } from '@/components/CartContext';
-import StockVerifierModal from '@/components/StockVerifierModal';
+
 import LayoutContent from '@/components/LayoutContent';
 import './globals.css';
 
@@ -21,7 +21,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </LayoutContent>
         </CartProvider>
         
-        <StockVerifierModal />
+        
       </body>
     </html>
   );
