@@ -59,16 +59,16 @@ export default function BodaPage() {
           
           {/* Foto tomados de la mano */}
           <div className="flex justify-center mb-10">
-            <div className="relative w-40 h-40 md:w-48 md:h-48">
-              <div className="aspect-square overflow-hidden rounded-full shadow-2xl border-4 border-white/20">
-                <img
-                  src="/images/boda/foto-mano.jpg"
-                  alt="Irene y Fernando tomados de la mano"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-            </div>
-          </div>
+  <div className="relative w-56 h-56 md:w-72 md:h-72">
+    <div className="aspect-square overflow-hidden rounded-full shadow-2xl border-4 border-white/20">
+      <img
+        src="/images/boda/foto-mano.jpg"
+        alt="Irene y Fernando tomados de la mano"
+        className="w-full h-full object-cover"
+      />
+    </div>
+  </div>
+</div>
 
           <p className="text-xs tracking-[0.3em] text-gray-300 uppercase mb-8">Nos casamos</p>
           
@@ -106,7 +106,7 @@ export default function BodaPage() {
           </div>
 
           <div className="border-t border-gray-500 pt-6 mb-8">
-            <p className="text-sm text-gray-300 mb-1">Dirección exacta</p>
+            
             <p className="text-base text-white">
               Calle 23 de Calacoto, esquina Ballivián
             </p>
