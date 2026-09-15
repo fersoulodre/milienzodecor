@@ -59,7 +59,7 @@ export default function BodaPage() {
           
           {/* Foto tomados de la mano */}
           <div className="flex justify-center mb-10">
-  <div className="relative w-56 h-56 md:w-72 md:h-72">
+  <div className="relative w-64 h-64 md:w-80 md:h-80">
     <div className="aspect-square overflow-hidden rounded-full shadow-2xl border-4 border-white/20">
       <img
         src="/images/boda/foto-mano.jpg"
@@ -70,8 +70,6 @@ export default function BodaPage() {
   </div>
 </div>
 
-          <p className="text-xs tracking-[0.3em] text-gray-300 uppercase mb-8">Nos casamos</p>
-          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
             {/* Fecha */}
             <div className="flex flex-col items-center">
