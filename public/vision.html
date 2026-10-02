@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Lienzo Decor - Presentación</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', Arial, sans-serif;
+            line-height: 1.75;
+            color: #2b2b2b;
+            background-color: #f3eee3;
+            background-image:
+                radial-gradient(circle at 8% 14%, rgba(154,120,36,0.22), transparent 30%),
+                radial-gradient(circle at 90% 16%, rgba(35,31,25,0.10), transparent 26%),
+                radial-gradient(circle at 86% 88%, rgba(154,120,36,0.18), transparent 32%),
+                radial-gradient(circle at 10% 90%, rgba(35,31,25,0.08), transparent 26%),
+                repeating-linear-gradient(115deg, rgba(255,255,255,0.24) 0 28px, transparent 28px 88px),
+                linear-gradient(180deg, rgba(255,255,255,0.55), rgba(255,255,255,0.16));
+            background-attachment: fixed;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .pagina {
+            width: min(920px, calc(100% - 40px));
+            margin: 30px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px;
+            background: rgba(255, 253, 248, 0.93);
+            border: 1px solid rgba(154,120,36,0.25);
+            box-shadow: 0 0 24px rgba(0,0,0,0.08);
+        }
+
+        .cinta {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 14px;
+            background: linear-gradient(90deg, #231f19 0%, #9a7824 32%, #d7b45c 50%, #9a7824 68%, #231f19 100%);
+            z-index: 3;
+        }
+
+        .pagina::before,
+        .pagina::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .pagina::before {
+            width: 280px;
+            height: 280px;
+            top: -90px;
+            right: -80px;
+            background: radial-gradient(circle, rgba(154,120,36,0.20), transparent 72%);
+        }
+
+        .pagina::after {
+            width: 340px;
+            height: 340px;
+            bottom: -120px;
+            left: -110px;
+            background: radial-gradient(circle, rgba(35,31,25,0.10), transparent 72%);
+        }
+
+        .contenido {
+            position: relative;
+            z-index: 2;
+            padding: 58px 62px 50px;
+        }
+
+        h1,
+        h2 {
+            font-family: 'Poppins', Arial, sans-serif;
+            color: #231f19;
+        }
+
+        h1 {
+            margin: 0 0 8px 0;
+            text-align: center;
+            font-size: 58px;
+            line-height: 1.08;
+            font-weight: 800;
+            letter-spacing: -1px;
+        }
+
+        .subtitulo {
+            text-align: center;
+            font-size: 24px;
+            font-style: italic;
+            color: #9a7824;
+            margin-bottom: 36px;
+            font-weight: 500;
+        }
+
+        h2 {
+            font-size: 30px;
+            line-height: 1.2;
+            margin: 34px 0 14px;
+            padding: 12px 18px;
+            border-radius: 16px;
+            background: linear-gradient(90deg, rgba(154,120,36,0.14), rgba(255,255,255,0));
+            border-left: 6px solid #9a7824;
+            break-after: avoid;
+        }
+
+        p {
+            font-size: 18px;
+            text-align: justify;
+            margin: 0 0 16px 0;
+        }
+
+        ol,
+        ul {
+            margin: 18px 0;
+            padding-left: 28px;
+        }
+
+        li {
+            font-size: 18px;
+            text-align: justify;
+            margin-bottom: 14px;
+        }
+
+        li::marker {
+            color: #9a7824;
+            font-weight: 700;
+        }
+
+        b {
+            color: #17140f;
+            font-weight: 700;
+        }
+
+        .mensaje-final {
+            background: rgba(248,242,229,0.95);
+            border-left: 7px solid #9a7824;
+            border-radius: 18px;
+            padding: 24px;
+            margin-top: 28px;
+            break-inside: avoid;
+        }
+
+        .mensaje-final p {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        @media print {
+            @page {
+                margin: 1.5cm;
+            }
+
+            body {
+                background-attachment: local;
+            }
+
+            .pagina {
+                width: 100%;
+                margin: 0;
+                border: none;
+                box-shadow: none;
+                border-radius: 0;
+                background: transparent;
+            }
+
+            .contenido {
+                padding: 0;
+            }
+
+            .cinta {
+                height: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="pagina">
+    <div class="cinta"></div>
+
+    <div class="contenido">
+
+        <h1>Mi Lienzo Decor</h1>
+        <div class="subtitulo">Arte, elegancia y presencia para cada espacio.</div>
+
+        <p><b>Mi Lienzo Decor</b> no será una vidriería o marquetería más. Será una tienda boutique de cuadros decorativos, orientada a clientes que buscan clase, buen gusto, presentación y una experiencia de compra superior.</p>
+
+        <p>La competencia ofrece cuadros baratos, genéricos y sin estilo. Nosotros ofreceremos <b>cuadros seleccionados con elegancia, buen gusto y valor emocional</b>, cuidando cada detalle: atención, empaque, presentación y servicio.</p>
+
+        <h2>Propuesta de valor</h2>
+        <p>Mi Lienzo Decor convierte una pared en un espacio con personalidad.<br>
+        No vendemos solo cuadros: vendemos <b>decoración, estatus, regalos memorables y experiencias visuales</b>.</p>
+
+        <h2>Oportunidades de negocio</h2>
+        <ol>
+            <li>
+                <b>Venta directa al cliente final</b><br>
+                Cuadros elegantes para hogares, oficinas y espacios comerciales.
+            </li>
+            <li>
+                <b>Gift Cards</b><br>
+                Excelente opción para regalar sin equivocarse. Ideal para personas fuera de Bolivia que quieren enviar un regalo especial a familiares o amigos.
+            </li>
+            <li>
+                <b>Regalos de matrimonio</b><br>
+                Las gift cards se presentan como una alternativa elegante, práctica y diferente frente a los regalos tradicionales.
+            </li>
+            <li>
+                <b>Sector corporativo y constructoras</b><br>
+                Edificios nuevos, hoteles, oficinas, restaurantes y proyectos inmobiliarios necesitan cuadros bonitos para dar calidez y categoría a sus espacios.
+            </li>
+            <li>
+                <b>Consignación en tiendas grandes</b><br>
+                Posibilidad de colocar cuadros en tiendas como Multicenter, Casa Ideas, Gladymar y otros negocios relacionados con decoración, hogar o construcción.
+            </li>
+        </ol>
+
+        <h2>Innovación</h2>
+        <p>En el futuro próximo, la tienda contará con inteligencia artificial para que el cliente pueda visualizar cómo se vería un cuadro en su propio espacio antes de comprarlo. Esto aumentará la confianza, reducirá dudas y mejorará la experiencia de compra.</p>
+
+        <h2>Diferenciación comercial</h2>
+        <ul>
+            <li>Marca elegante, con clase y prestigio.</li>
+            <li>Servicio cuidado y presentación premium.</li>
+            <li>Página web fácil de usar.</li>
+            <li>Diversos métodos de pago.</li>
+            <li>Reserva y elaboración desde Bs80.</li>
+            <li>Pagos con criptomonedas como USDT y otras.</li>
+            <li>Opción de renovar un cuadro comprado con un reintegro del 20%, incentivando la recompra.</li>
+        </ul>
+
+        <h2>Visión</h2>
+        <p>Convertir a Mi Lienzo Decor en una marca reconocida por su calidad, elegancia y prestigio, siendo la primera opción para quienes buscan cuadros decorativos, regalos finos y soluciones visuales para espacios personales o empresariales.</p>
+
+        <h2>Mensaje final</h2>
+        <div class="mensaje-final">
+            <p>Mi Lienzo Decor tiene el potencial de ocupar un espacio vacío en el mercado: entre la marquetería común y una verdadera tienda de decoración con identidad. La oportunidad está en crear una marca aspiracional, elegante y escalable, con múltiples fuentes de ingreso: venta directa, regalos, gift cards, empresas, constructoras y alianzas comerciales.</p>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>
