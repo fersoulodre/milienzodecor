@@ -686,7 +686,7 @@
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H107.webp",
       "stock": 4,
-      "destacado": true
+      "destacado": false
     },
     {
       "id": "figuras_humanas-H108",
@@ -758,7 +758,7 @@
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H116.webp",
       "stock": 4,
-      "destacado": false
+      "destacado": true
     },
     {
       "id": "figuras_humanas-H117",
