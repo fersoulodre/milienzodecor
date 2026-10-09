@@ -106,9 +106,8 @@ export default async function Home() {
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {/* Característica 1 */}
             <div className="flex flex-col items-center">
-              <div className="text-4xl mb-4">️</div>
+              <div className="text-4xl mb-4">🖼️</div>
               <h3 className="text-lg font-medium text-gray-900 mb-2">Impreso en lona mate</h3>
               <p className="text-sm text-gray-600">De alta resolución (sin reflejos).</p>
             </div>
