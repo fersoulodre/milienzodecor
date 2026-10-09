@@ -104,7 +104,7 @@ export default async function Home() {
           <div className="flex items-center gap-2">
             <span className="text-lg">🖼️</span>
             
-            <span className="font-bold">Impresos en lona mate (sin reflejos)</span>
+            <span className="font-bold">Impreso en lona mate (sin reflejos)</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-lg">☀️</span>
