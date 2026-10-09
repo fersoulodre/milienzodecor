@@ -40,6 +40,18 @@ export default function ProductDetailClient({ producto }: { producto: Producto }
     setFinalPrice(Math.round(calculated / 0.87));
   }, [width, height, marcoSeleccionado]);
 
+    // Cerrar modal con tecla Escape
+  useEffect(() => {
+    const handleEsc = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && modalImage) {
+        setModalImage(null);
+        setViewMode('original');
+      }
+    };
+    window.addEventListener('keydown', handleEsc);
+    return () => window.removeEventListener('keydown', handleEsc);
+  }, [modalImage]);
+
   const mockupUrl = producto.imagen.replace(/(\.[^.]+)$/, '-mockup$1');
 
   const handleAddToCart = () => {
@@ -296,33 +308,50 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
         </div>
 
       )}
-                 {/* MODAL DE IMAGEN AMPLIADA (LIGHTBOX) */}
+                            {/* MODAL DE IMAGEN AMPLIADA (LIGHTBOX) */}
       {modalImage && (
-        <div 
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
-          onClick={() => setModalImage(null)}
-        >
-          {/* Botón de cerrar (X) */}
-          <button 
-            className="absolute top-4 right-4 text-white text-5xl font-light hover:text-gray-300 transition-colors z-[70]"
-            onClick={() => setModalImage(null)}
-            aria-label="Cerrar imagen"
-          >
-            &times;
-          </button>
+        <>
+          <style>{`
+            @keyframes modalFadeIn {
+              from { opacity: 0; transform: scale(0.9); }
+              to { opacity: 1; transform: scale(1); }
+            }
+            .modal-animate {
+              animation: modalFadeIn 0.7s ease-out forwards;
+            }
+          `}</style>
           
-          {/* Imagen en grande con tamaño limitado y animación */}
-          <div className="relative flex items-center justify-center w-full h-full modal-animate">
-            <Image 
-              src={modalImage} 
-              alt="Vista ampliada del cuadro" 
-              width={950}
-              height={713}
-              className="w-full max-w-[950px] max-h-[85vh] object-contain rounded-lg shadow-2xl"
-              onClick={(e) => e.stopPropagation()}
-            />
+          <div 
+            className="fixed inset-0 z-[60] flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
+            onClick={() => {
+              setModalImage(null);
+              setViewMode('original');
+            }}
+          >
+            {/* Contenedor relativo para pegar el botón a la imagen */}
+            <div className="relative inline-block modal-animate">
+              
+              {/* Botón Cerrar pegado a la imagen */}
+              <button 
+                className="absolute top-3 right-3 bg-black/70 hover:bg-black text-white text-xs font-medium px-3 py-1.5 rounded-full transition-colors z-[70] backdrop-blur-sm border border-white/10"
+                onClick={() => {
+                  setModalImage(null);
+                  setViewMode('original');
+                }}
+              >
+                Cerrar
+              </button>
+              
+              {/* Imagen con marco */}
+              <img 
+                src={modalImage} 
+                alt="Vista ampliada del cuadro" 
+                className="w-auto h-auto max-w-[95vw] max-h-[85vh] object-contain rounded-lg shadow-2xl border-4 border-white"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
