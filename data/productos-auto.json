@@ -361,6 +361,14 @@
       "destacado": false
     },
     {
+      "id": "abstractos_forte-F147",
+      "titulo": "F147",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F147.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
       "id": "abstractos_minimalista-M50",
       "titulo": "M50",
       "estilo": "Abstractos Minimalistas",
@@ -549,6 +557,38 @@
       "titulo": "M73",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M73.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M74",
+      "titulo": "M74",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M74.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M75",
+      "titulo": "M75",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M75.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M76",
+      "titulo": "M76",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M76.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M77",
+      "titulo": "M77",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M77.webp",
       "stock": 4,
       "destacado": false
     },
@@ -765,6 +805,54 @@
       "titulo": "H117",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H117.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "figuras_humanas-H118",
+      "titulo": "H118",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H118.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "figuras_humanas-H119",
+      "titulo": "H119",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H119.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "figuras_humanas-H120",
+      "titulo": "H120",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H120.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "figuras_humanas-H121",
+      "titulo": "H121",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H121.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "figuras_humanas-H122",
+      "titulo": "H122",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H122.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "figuras_humanas-H123",
+      "titulo": "H123",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H123.webp",
       "stock": 4,
       "destacado": false
     },
