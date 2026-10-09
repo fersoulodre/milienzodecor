@@ -98,33 +98,20 @@ export default async function Home() {
         </div>
       </section>
 
-            {/* Sección de Calidad Premium */}
-      <section className="py-16 px-4 bg-white">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-2xl md:text-3xl font-light text-gray-900 mb-12">
-            ✨ Calidad Premium Garantizada
-          </h2>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div className="flex flex-col items-center">
-              <div className="text-4xl mb-4">🖼️</div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">Impreso en lona mate</h3>
-              <p className="text-sm text-gray-600">De alta resolución (sin reflejos).</p>
-            </div>
-
-            {/* Característica 2 */}
-            <div className="flex flex-col items-center">
-              <div className="text-4xl mb-4">☀️</div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">Barniz protector UV</h3>
-              <p className="text-sm text-gray-600">Para que los colores no se desgasten con el tiempo.</p>
-            </div>
-
-            {/* Característica 3 (Nueva) */}
-            <div className="flex flex-col items-center">
-              <div className="text-4xl mb-4">🪵</div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">Bastidor en MDF</h3>
-              <p className="text-sm text-gray-600">Construido para que no se deforme con el tiempo.</p>
-            </div>
+                  {/* Barra de Calidad Premium Compacta */}
+      <section className="py-4 bg-gray-50 border-y border-gray-200">
+        <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-center md:justify-between items-center gap-3 text-sm text-gray-700">
+          <div className="flex items-center gap-2">
+            <span className="text-lg">🖼️</span>
+            <span>Impreso en lona mate (sin reflejos)</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-lg">☀️</span>
+            <span>Barniz protector anti-rayos UV</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-lg">🪵</span>
+            <span>Bastidor en MDF indeformable</span>
           </div>
         </div>
       </section>
