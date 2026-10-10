@@ -593,6 +593,54 @@
       "destacado": false
     },
     {
+      "id": "abstractos_minimalista-M78",
+      "titulo": "M78",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M78.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M79",
+      "titulo": "M79",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M79.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M80",
+      "titulo": "M80",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M80.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M81",
+      "titulo": "M81",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M81.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M82",
+      "titulo": "M82",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M82.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M83",
+      "titulo": "M83",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M83.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
       "id": "juvenil-J78",
       "titulo": "J78",
       "estilo": "Juveniles",
@@ -669,6 +717,14 @@
       "titulo": "J87",
       "estilo": "Juveniles",
       "imagen": "/images/juvenil/J87.jpg",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "juvenil-Sin título-2",
+      "titulo": "Sin título 2",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/Sin título-2.jpg",
       "stock": 4,
       "destacado": false
     },
@@ -853,6 +909,46 @@
       "titulo": "H123",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H123.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "figuras_humanas-H124",
+      "titulo": "H124",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H124.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "figuras_humanas-H125",
+      "titulo": "H125",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H125.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "figuras_humanas-H126",
+      "titulo": "H126",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H126.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "figuras_humanas-H127",
+      "titulo": "H127",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H127.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "figuras_humanas-H128",
+      "titulo": "H128",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H128.webp",
       "stock": 4,
       "destacado": false
     },
