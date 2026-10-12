@@ -66,7 +66,7 @@ export default function WhatsAppButton() {
       {/* BOTÓN FLOTANTE PRINCIPAL */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group relative"
+        className="bg-[#25D366] hover:bg-[#128C7E] text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group relative cursor-pointer"
         style={{ width: '60px', height: '60px' }}
         aria-label="Abrir chat de WhatsApp"
       >
