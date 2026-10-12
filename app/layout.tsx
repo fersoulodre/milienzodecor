@@ -1,7 +1,7 @@
 import './globals.css';
 import { CartProvider } from '@/components/CartContext';
 import LayoutContent from '@/components/LayoutContent';
-
+import WhatsAppButton from '@/components/WhatsAppButton'; // <-- 1. Importamos el botón
 
 export const metadata = {
   title: 'Mi Lienzo Decor | Arte y Cuadros en Bolivia',
@@ -22,6 +22,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <LayoutContent>
             {children}
           </LayoutContent>
+          
+          {/* 2. Agregamos el botón aquí, justo antes de cerrar el CartProvider */}
+          <WhatsAppButton />
+          
         </CartProvider>
       </body>
     </html>
