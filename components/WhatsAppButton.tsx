@@ -18,8 +18,7 @@ export default function WhatsAppButton() {
       
       {/* VENTANITA DE CHAT (Se muestra solo si isOpen es true) */}
       {isOpen && (
-        <div className="mb-3 w-72 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden animate-in fade-in slide-in-from-bottom-4 duration-300">
-          {/* Encabezado del chat */}
+        <div className="mb-3 w-72 !bg-white !opacity-100 rounded-xl shadow-2xl border border-gray-100 overflow-hidden">          {/* Encabezado del chat */}
           <div className="bg-[#25D366] p-3 flex justify-between items-center">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-white/20 rounded-full flex items-center justify-center">
