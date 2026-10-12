@@ -17,14 +17,6 @@
       "destacado": false
     },
     {
-      "id": "abstractos_forte-F103",
-      "titulo": "F103",
-      "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F103.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
       "id": "abstractos_forte-F104",
       "titulo": "F104",
       "estilo": "Abstractos Forte",
@@ -33,26 +25,18 @@
       "destacado": false
     },
     {
-      "id": "abstractos_forte-F105",
-      "titulo": "F105",
+      "id": "abstractos_forte-F103",
+      "titulo": "F103",
       "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F105.webp",
+      "imagen": "/images/abstractos_forte/F103.webp",
       "stock": 4,
-      "destacado": false
+      "destacado": true
     },
     {
       "id": "abstractos_forte-F106",
       "titulo": "F106",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F106.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_forte-F107",
-      "titulo": "F107",
-      "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F107.webp",
       "stock": 4,
       "destacado": false
     },
@@ -89,10 +73,18 @@
       "destacado": false
     },
     {
-      "id": "abstractos_forte-F112",
-      "titulo": "F112",
-      "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F112.webp",
+      "id": "abstractos_minimalista-M50",
+      "titulo": "M50",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M50.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M68",
+      "titulo": "M68",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M68.webp",
       "stock": 4,
       "destacado": false
     },
@@ -137,10 +129,282 @@
       "destacado": false
     },
     {
-      "id": "abstractos_forte-F118",
-      "titulo": "F118",
+      "id": "abstractos_forte-F105",
+      "titulo": "F105",
       "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F118.webp",
+      "imagen": "/images/abstractos_forte/F105.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M58",
+      "titulo": "M58",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M58.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_minimalista-M60",
+      "titulo": "M60",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M60.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_minimalista-M61",
+      "titulo": "M61",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M61.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M69",
+      "titulo": "M69",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M69.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M70",
+      "titulo": "M70",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M70.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M62",
+      "titulo": "M62",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M62.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_minimalista-M57",
+      "titulo": "M57",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M57.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "paisajes-P67",
+      "titulo": "P67",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P67.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P69",
+      "titulo": "P69",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P69.jpg",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P71",
+      "titulo": "P71",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P71.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "paisajes-P73",
+      "titulo": "P73",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P73.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P74",
+      "titulo": "P74",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P74.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P75",
+      "titulo": "P75",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P75.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P76",
+      "titulo": "P76",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P76.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "paisajes-P77",
+      "titulo": "P77",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P77.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "paisajes-P79",
+      "titulo": "P79",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P79.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P81",
+      "titulo": "P81",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P81.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P82",
+      "titulo": "P82",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P82.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P83",
+      "titulo": "P83",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P83.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P84",
+      "titulo": "P84",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P84.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P85",
+      "titulo": "P85",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P85.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P86",
+      "titulo": "P86",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P86.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P87",
+      "titulo": "P87",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P87.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P89",
+      "titulo": "P89",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P89.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P92",
+      "titulo": "P92",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P92.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P93",
+      "titulo": "P93",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P93.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_forte-F127",
+      "titulo": "F127",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F127.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F129",
+      "titulo": "F129",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F129.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F132",
+      "titulo": "F132",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F132.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_forte-F133",
+      "titulo": "F133",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F133.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_forte-F134",
+      "titulo": "F134",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F134.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M67",
+      "titulo": "M67",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M67.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F136",
+      "titulo": "F136",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F136.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_forte-F137",
+      "titulo": "F137",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F137.webp",
       "stock": 4,
       "destacado": true
     },
@@ -153,18 +417,18 @@
       "destacado": false
     },
     {
-      "id": "abstractos_forte-F120",
-      "titulo": "F120",
-      "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F120.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
       "id": "abstractos_forte-F121",
       "titulo": "F121",
       "estilo": "Abstractos Forte",
       "imagen": "/images/abstractos_forte/F121.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F120",
+      "titulo": "F120",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F120.webp",
       "stock": 4,
       "destacado": false
     },
@@ -209,94 +473,6 @@
       "destacado": false
     },
     {
-      "id": "abstractos_forte-F127",
-      "titulo": "F127",
-      "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F127.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_forte-F128",
-      "titulo": "F128",
-      "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F128.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_forte-F129",
-      "titulo": "F129",
-      "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F129.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_forte-F130",
-      "titulo": "F130",
-      "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F130.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_forte-F131",
-      "titulo": "F131",
-      "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F131.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_forte-F132",
-      "titulo": "F132",
-      "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F132.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "abstractos_forte-F133",
-      "titulo": "F133",
-      "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F133.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "abstractos_forte-F134",
-      "titulo": "F134",
-      "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F134.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_forte-F136",
-      "titulo": "F136",
-      "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F136.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "abstractos_forte-F137",
-      "titulo": "F137",
-      "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F137.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "abstractos_forte-F138",
-      "titulo": "F138",
-      "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F138.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
       "id": "abstractos_forte-F139",
       "titulo": "F139",
       "estilo": "Abstractos Forte",
@@ -321,218 +497,58 @@
       "destacado": false
     },
     {
-      "id": "abstractos_forte-F142",
-      "titulo": "F142",
+      "id": "abstractos_forte-F118",
+      "titulo": "F118",
       "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F142.webp",
+      "imagen": "/images/abstractos_forte/F118.webp",
       "stock": 4,
-      "destacado": false
+      "destacado": true
     },
     {
-      "id": "abstractos_forte-F143",
-      "titulo": "F143",
+      "id": "abstractos_forte-F138",
+      "titulo": "F138",
       "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F143.webp",
+      "imagen": "/images/abstractos_forte/F138.webp",
       "stock": 4,
       "destacado": false
     },
     {
-      "id": "abstractos_forte-F144",
-      "titulo": "F144",
+      "id": "abstractos_forte-F107",
+      "titulo": "F107",
       "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F144.webp",
+      "imagen": "/images/abstractos_forte/F107.webp",
       "stock": 4,
       "destacado": false
     },
     {
-      "id": "abstractos_forte-F145",
-      "titulo": "F145",
+      "id": "abstractos_forte-F128",
+      "titulo": "F128",
       "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F145.webp",
+      "imagen": "/images/abstractos_forte/F128.webp",
       "stock": 4,
       "destacado": false
     },
     {
-      "id": "abstractos_forte-F146",
-      "titulo": "F146",
+      "id": "abstractos_forte-F112",
+      "titulo": "F112",
       "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F146.webp",
+      "imagen": "/images/abstractos_forte/F112.webp",
       "stock": 4,
       "destacado": false
     },
     {
-      "id": "abstractos_forte-F147",
-      "titulo": "F147",
+      "id": "abstractos_forte-F130",
+      "titulo": "F130",
       "estilo": "Abstractos Forte",
-      "imagen": "/images/abstractos_forte/F147.webp",
+      "imagen": "/images/abstractos_forte/F130.webp",
       "stock": 4,
       "destacado": false
     },
     {
-      "id": "abstractos_minimalista-M50",
-      "titulo": "M50",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M50.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M51",
-      "titulo": "M51",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M51.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "abstractos_minimalista-M52",
-      "titulo": "M52",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M52.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "abstractos_minimalista-M53",
-      "titulo": "M53",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M53.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "abstractos_minimalista-M54",
-      "titulo": "M54",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M54.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "abstractos_minimalista-M55",
-      "titulo": "M55",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M55.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M56",
-      "titulo": "M56",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M56.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M57",
-      "titulo": "M57",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M57.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "abstractos_minimalista-M58",
-      "titulo": "M58",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M58.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "abstractos_minimalista-M59",
-      "titulo": "M59",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M59.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M60",
-      "titulo": "M60",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M60.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "abstractos_minimalista-M61",
-      "titulo": "M61",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M61.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M62",
-      "titulo": "M62",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M62.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "abstractos_minimalista-M63",
-      "titulo": "M63",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M63.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M64",
-      "titulo": "M64",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M64.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M65",
-      "titulo": "M65",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M65.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M66",
-      "titulo": "M66",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M66.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M67",
-      "titulo": "M67",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M67.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M68",
-      "titulo": "M68",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M68.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M69",
-      "titulo": "M69",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M69.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M70",
-      "titulo": "M70",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M70.webp",
+      "id": "abstractos_forte-F131",
+      "titulo": "F131",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F131.webp",
       "stock": 4,
       "destacado": false
     },
@@ -541,190 +557,6 @@
       "titulo": "M71",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M71.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M72",
-      "titulo": "M72",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M72.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M73",
-      "titulo": "M73",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M73.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M74",
-      "titulo": "M74",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M74.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M75",
-      "titulo": "M75",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M75.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M76",
-      "titulo": "M76",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M76.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M77",
-      "titulo": "M77",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M77.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M78",
-      "titulo": "M78",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M78.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M79",
-      "titulo": "M79",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M79.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M80",
-      "titulo": "M80",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M80.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M81",
-      "titulo": "M81",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M81.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M82",
-      "titulo": "M82",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M82.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M83",
-      "titulo": "M83",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M83.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "juvenil-J78",
-      "titulo": "J78",
-      "estilo": "Juveniles",
-      "imagen": "/images/juvenil/J78.jpg",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "juvenil-J79",
-      "titulo": "J79",
-      "estilo": "Juveniles",
-      "imagen": "/images/juvenil/J79.jpg",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "juvenil-J80",
-      "titulo": "J80",
-      "estilo": "Juveniles",
-      "imagen": "/images/juvenil/J80.jpg",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "juvenil-J81",
-      "titulo": "J81",
-      "estilo": "Juveniles",
-      "imagen": "/images/juvenil/J81.jpg",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "juvenil-J82",
-      "titulo": "J82",
-      "estilo": "Juveniles",
-      "imagen": "/images/juvenil/J82.jpg",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "juvenil-J83",
-      "titulo": "J83",
-      "estilo": "Juveniles",
-      "imagen": "/images/juvenil/J83.jpg",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "juvenil-J84",
-      "titulo": "J84",
-      "estilo": "Juveniles",
-      "imagen": "/images/juvenil/J84.jpg",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "juvenil-J85",
-      "titulo": "J85",
-      "estilo": "Juveniles",
-      "imagen": "/images/juvenil/J85.jpg",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "juvenil-J86",
-      "titulo": "J86",
-      "estilo": "Juveniles",
-      "imagen": "/images/juvenil/J86.jpg",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "juvenil-J87",
-      "titulo": "J87",
-      "estilo": "Juveniles",
-      "imagen": "/images/juvenil/J87.jpg",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "juvenil-Sin título-2",
-      "titulo": "Sin título 2",
-      "estilo": "Juveniles",
-      "imagen": "/images/juvenil/Sin título-2.jpg",
       "stock": 4,
       "destacado": false
     },
@@ -841,10 +673,346 @@
       "destacado": false
     },
     {
+      "id": "abstractos_minimalista-M55",
+      "titulo": "M55",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M55.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M56",
+      "titulo": "M56",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M56.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M63",
+      "titulo": "M63",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M63.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M64",
+      "titulo": "M64",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M64.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M65",
+      "titulo": "M65",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M65.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M59",
+      "titulo": "M59",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M59.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P66",
+      "titulo": "P66",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P66.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "paisajes-P68",
+      "titulo": "P68",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P68.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P70",
+      "titulo": "P70",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P70.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "paisajes-P72",
+      "titulo": "P72",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P72.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P78",
+      "titulo": "P78",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P78.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P80",
+      "titulo": "P80",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P80.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P90",
+      "titulo": "P90",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P90.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P88",
+      "titulo": "P88",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P88.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P91",
+      "titulo": "P91",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P91.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "paisajes-P94",
+      "titulo": "P94",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P94.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P95",
+      "titulo": "P95",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P95.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "paisajes-P96",
+      "titulo": "P96",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P96.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "paisajes-P97",
+      "titulo": "P97",
+      "estilo": "Paisajes",
+      "imagen": "/images/paisajes/P97.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F142",
+      "titulo": "F142",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F142.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F143",
+      "titulo": "F143",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F143.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F144",
+      "titulo": "F144",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F144.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F145",
+      "titulo": "F145",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F145.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F146",
+      "titulo": "F146",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F146.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "juvenil-J83",
+      "titulo": "J83",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J83.jpg",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "juvenil-J78",
+      "titulo": "J78",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J78.jpg",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "juvenil-J85",
+      "titulo": "J85",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J85.jpg",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "juvenil-J80",
+      "titulo": "J80",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J80.jpg",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "juvenil-J87",
+      "titulo": "J87",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J87.jpg",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "juvenil-J86",
+      "titulo": "J86",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J86.jpg",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "juvenil-J84",
+      "titulo": "J84",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J84.jpg",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "juvenil-J79",
+      "titulo": "J79",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J79.jpg",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "juvenil-J82",
+      "titulo": "J82",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J82.jpg",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "juvenil-J81",
+      "titulo": "J81",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/J81.jpg",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_minimalista-M66",
+      "titulo": "M66",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M66.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M51",
+      "titulo": "M51",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M51.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_minimalista-M52",
+      "titulo": "M52",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M52.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_minimalista-M54",
+      "titulo": "M54",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M54.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_minimalista-M72",
+      "titulo": "M72",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M72.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M53",
+      "titulo": "M53",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M53.webp",
+      "stock": 4,
+      "destacado": true
+    },
+    {
+      "id": "abstractos_minimalista-M73",
+      "titulo": "M73",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M73.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
       "id": "figuras_humanas-H115",
       "titulo": "H115",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H115.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "figuras_humanas-H117",
+      "titulo": "H117",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H117.webp",
       "stock": 4,
       "destacado": false
     },
@@ -855,14 +1023,6 @@
       "imagen": "/images/figuras_humanas/H116.webp",
       "stock": 4,
       "destacado": true
-    },
-    {
-      "id": "figuras_humanas-H117",
-      "titulo": "H117",
-      "estilo": "Figuras Humanas",
-      "imagen": "/images/figuras_humanas/H117.webp",
-      "stock": 4,
-      "destacado": false
     },
     {
       "id": "figuras_humanas-H118",
@@ -913,6 +1073,102 @@
       "destacado": false
     },
     {
+      "id": "abstractos_minimalista-M74",
+      "titulo": "M74",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M74.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M75",
+      "titulo": "M75",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M75.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M76",
+      "titulo": "M76",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M76.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M77",
+      "titulo": "M77",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M77.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_forte-F147",
+      "titulo": "F147",
+      "estilo": "Abstractos Forte",
+      "imagen": "/images/abstractos_forte/F147.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "juvenil-Sin título-2",
+      "titulo": "Sin título 2",
+      "estilo": "Juveniles",
+      "imagen": "/images/juvenil/Sin título-2.jpg",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M78",
+      "titulo": "M78",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M78.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M79",
+      "titulo": "M79",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M79.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M80",
+      "titulo": "M80",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M80.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M81",
+      "titulo": "M81",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M81.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M82",
+      "titulo": "M82",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M82.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M83",
+      "titulo": "M83",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M83.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
       "id": "figuras_humanas-H124",
       "titulo": "H124",
       "estilo": "Figuras Humanas",
@@ -949,262 +1205,6 @@
       "titulo": "H128",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H128.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P66",
-      "titulo": "P66",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P66.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "paisajes-P67",
-      "titulo": "P67",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P67.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P68",
-      "titulo": "P68",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P68.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P69",
-      "titulo": "P69",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P69.jpg",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P70",
-      "titulo": "P70",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P70.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "paisajes-P71",
-      "titulo": "P71",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P71.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "paisajes-P72",
-      "titulo": "P72",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P72.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P73",
-      "titulo": "P73",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P73.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P74",
-      "titulo": "P74",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P74.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P75",
-      "titulo": "P75",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P75.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P76",
-      "titulo": "P76",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P76.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "paisajes-P77",
-      "titulo": "P77",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P77.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "paisajes-P78",
-      "titulo": "P78",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P78.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P79",
-      "titulo": "P79",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P79.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P80",
-      "titulo": "P80",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P80.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P81",
-      "titulo": "P81",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P81.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P82",
-      "titulo": "P82",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P82.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P83",
-      "titulo": "P83",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P83.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P84",
-      "titulo": "P84",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P84.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P85",
-      "titulo": "P85",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P85.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P86",
-      "titulo": "P86",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P86.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P87",
-      "titulo": "P87",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P87.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P88",
-      "titulo": "P88",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P88.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P89",
-      "titulo": "P89",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P89.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P90",
-      "titulo": "P90",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P90.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P91",
-      "titulo": "P91",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P91.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "paisajes-P92",
-      "titulo": "P92",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P92.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P93",
-      "titulo": "P93",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P93.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "paisajes-P94",
-      "titulo": "P94",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P94.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P95",
-      "titulo": "P95",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P95.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "paisajes-P96",
-      "titulo": "P96",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P96.webp",
-      "stock": 4,
-      "destacado": true
-    },
-    {
-      "id": "paisajes-P97",
-      "titulo": "P97",
-      "estilo": "Paisajes",
-      "imagen": "/images/paisajes/P97.webp",
       "stock": 4,
       "destacado": false
     }

@@ -4,56 +4,59 @@ import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 
-// 1. Agrega 'async' aquí
 export default async function Home() {
-  // 2. Agrega 'await' y paréntesis para esperar los datos antes de filtrar
-  const todosProductos = (await getAllProductos()).filter(p => p.destacado === true);
+  // 1. Obtenemos TODOS los productos (no solo los destacados)
+  const todosLosProductos = await getAllProductos();
   
-  // Agrupar por estilo
+  // 2. Filtramos los destacados para las secciones por estilo (como ya lo tenías)
+  const productosDestacados = todosLosProductos.filter(p => p.destacado === true);
+  
+  // 3. OBTENEMOS LOS ÚLTIMOS 8: Tomamos los últimos 8 del total y los invertimos 
+  // para que el recién agregado aparezca primero a la izquierda.
+  const ultimosCuadros = todosLosProductos.slice(-8).reverse();
+
+  // Agrupar por estilo (usando los destacados para mantener tu lógica original)
   const estilosOrdenados = ['Abstractos Minimalistas', 'Abstractos Forte', 'Juveniles', 'Figuras Humanas', 'Paisajes'];
-  const estilos = estilosOrdenados.filter(e => todosProductos.some(p => p.estilo === e));
+  const estilos = estilosOrdenados.filter(e => productosDestacados.some(p => p.estilo === e));
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-0">
       
       {/* SECCIÓN HERO CON IMAGEN DESLIZABLE EN MÓVIL */}
-<section 
-  className="relative text-center py-36 md:py-52 mb-8 rounded-2xl overflow-hidden"
->
-  {/* Imagen deslizable en móvil */}
-  <div className="md:hidden absolute inset-0 overflow-x-auto scrollbar-hide">
-    <div 
-      className="h-full w-[200%]"
-      style={{
-        backgroundImage: "url('/images/portada.webp')",
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-      }}
-    />
-  </div>
+      <section className="relative text-center py-36 md:py-52 mb-8 rounded-2xl overflow-hidden">
+        {/* Imagen deslizable en móvil */}
+        <div className="md:hidden absolute inset-0 overflow-x-auto scrollbar-hide">
+          <div 
+            className="h-full w-[200%]"
+            style={{
+              backgroundImage: "url('/images/portada.webp')",
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+            }}
+          />
+        </div>
 
-  {/* Imagen estática en desktop */}
-  <div 
-    className="hidden md:block absolute inset-0"
-    style={{
-      backgroundImage: "url('/images/portada.webp')",
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-    }}
-  />
+        {/* Imagen estática en desktop */}
+        <div 
+          className="hidden md:block absolute inset-0"
+          style={{
+            backgroundImage: "url('/images/portada.webp')",
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
 
-  {/* Texto del hero */}
-  <div className="relative z-10 px-4 translate-y-60">
-    <h2 className="text-3xl md:text-5xl font-bold text-white mb-15 drop-shadow-lg">
-      Transforma tu mundo con estilo
-    </h2>
-  </div>
-</section>
+        {/* Texto del hero */}
+        <div className="relative z-10 px-4 translate-y-60">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-15 drop-shadow-lg">
+            Transforma tu mundo con estilo
+          </h2>
+        </div>
+      </section>
 
-            {/* Barra de beneficios compacta */}
+      {/* Barra de beneficios compacta */}
       <section className="mb-6">
         <div className="grid md:grid-cols-3 gap-4">
-
           {/* 1. Entrega */}
           <div className="flex items-center gap-3 bg-white rounded-xl shadow-sm p-4 border border-gray-100">
             <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-[#fac932]/10">
@@ -94,36 +97,57 @@ export default async function Home() {
               <p className="text-gray-500 text-sm">Solo 4 unidades por pintura.</p>
             </div>
           </div>
-
         </div>
       </section>
 
-                  {/* Barra de Calidad Premium Compacta */}
-      <section className="py-4 bg-gray-50 border-y border-gray-200">
+      {/* Barra de Calidad Premium Compacta */}
+      <section className="py-4 bg-gray-50 border-y border-gray-200 mb-1">
         <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-center md:justify-between items-center gap-3 text-sm text-gray-700">
           <div className="flex items-center gap-2">
             <span className="text-lg">🖼️</span>
-            
             <span className="font-bold">Impreso en lona mate (sin reflejos)</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-lg">☀️</span>
-            
             <span className="font-bold">Barniz protector anti-rayos UV</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-lg">🪵</span>
-            
             <span className="font-bold">Bastidor en MDF indeformable</span>
           </div>
         </div>
       </section>
+
+      {/* ========================================== */}
       
-      {/* Secciones de Productos por Estilo */}
+            {/* 2. ÚLTIMOS CUADROS INGRESADOS */}
+      <section className="mb-10 px-0 md:px-8 pt-4 pb-1 rounded-2xl bg-gray-50 border border-gray-100">
+        <h2 className="text-3xl md:text-4xl font-bold mb-2 text-gray-800">Últimos cuadros ingresados</h2>
+        <p className="text-gray-500 mb-6">Las obras más recientes que han llegado a nuestra colección.</p>
+        
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {ultimosCuadros.map(producto => (
+            <ProductCard key={producto.id} product={producto} />
+          ))}
+        </div>
+
+        {/* Botón Ver todos (igual que los de abajo) */}
+        <Link 
+          href="/tienda" 
+          className="inline-block mt-8 border-2 border-gray-800 text-gray-800 px-8 py-3 font-semibold rounded-lg hover:bg-gray-800 hover:text-white transition-all duration-300"
+        >
+          Ver todos los cuadros → (Todas las categorías)
+        </Link>
+      </section>
+      
+      {/* Secciones de Productos por Estilo (Tu código original) */}
       {estilos.map((estilo, index) => {
-        const cuadrosEstilo = todosProductos.filter(p => p.estilo === estilo);
+        const cuadrosEstilo = productosDestacados.filter(p => p.estilo === estilo);
         const bgColor = index % 2 === 0 ? '#ffffff' : '#f6f7f7';
         
+        // Si no hay cuadros destacados en este estilo, no renderizamos la sección
+        if (cuadrosEstilo.length === 0) return null;
+
         return (
           <section 
             key={estilo} 

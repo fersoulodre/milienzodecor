@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const { createClient } = require('@supabase/supabase-js');
 
-// Cargar variables de entorno
 require('dotenv').config({ path: path.join(process.cwd(), '.env.local') });
 
 const supabase = createClient(
@@ -27,16 +26,20 @@ function leerCarpeta(rutaCarpeta, estiloNombre) {
     console.log('⚠ Carpeta no encontrada:', rutaCarpeta);
     return [];
   }
+  
+  // 1. Leer archivos y obtener su fecha de modificación real
   return fs.readdirSync(rutaCompleta)
-    .filter(file => !file.includes('mockup'))
-    .map(archivo => {
-      const id = archivo.replace(/\.(webp|jpg|png|jpeg)$/i, '');
+    .filter(file => !file.includes('mockup') && /\.(webp|jpg|png|jpeg)$/i.test(file))
+    .map(file => {
+      const stats = fs.statSync(path.join(rutaCompleta, file));
+      const id = file.replace(/\.(webp|jpg|png|jpeg)$/i, '');
       return {
         id: `${rutaCarpeta}-${id}`,
-        titulo: formatearTitulo(archivo),
+        titulo: formatearTitulo(file),
         estilo: estiloNombre,
-        imagen: `/images/${rutaCarpeta}/${archivo}`,
-        stock: 4 // Valor por defecto en el JSON
+        imagen: `/images/${rutaCarpeta}/${file}`,
+        stock: 4,
+        fechaCreacion: stats.mtimeMs // Guardamos la fecha real del archivo
       };
     });
 }
@@ -55,29 +58,35 @@ estilos.forEach(estilo => {
   todos = [...todos, ...productos];
 });
 
-// Leer el JSON anterior para preservar el campo "destacado"
 let productosAnteriores = [];
 if (fs.existsSync(DATA_FILE)) {
   const dataAnterior = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
   productosAnteriores = dataAnterior.cuadros || [];
 }
 
-// Fusionar: si el producto ya existía, mantener su "destacado"
 const productosFinales = todos.map(producto => {
   const anterior = productosAnteriores.find(p => p.id === producto.id);
-  if (anterior && anterior.destacado !== undefined) {
-    producto.destacado = anterior.destacado;
+  if (anterior) {
+    producto.destacado = anterior.destacado !== undefined ? anterior.destacado : false;
+    // Mantener la fecha original si ya existía, para no alterarla al regenerar
+    producto.fechaCreacion = anterior.fechaCreacion || producto.fechaCreacion;
   } else {
     producto.destacado = false;
   }
   return producto;
 });
 
+// 2. ORDENAR TODO EL ARRAY POR FECHA (del más antiguo al más nuevo)
+productosFinales.sort((a, b) => a.fechaCreacion - b.fechaCreacion);
+
+// Eliminamos la propiedad fechaCreacion del JSON final para no ensuciar los datos (es solo para ordenar)
+const productosLimpios = productosFinales.map(({ fechaCreacion, ...rest }) => rest);
+
 fs.writeFileSync(
   DATA_FILE,
-  JSON.stringify({ cuadros: productosFinales }, null, 2)
+  JSON.stringify({ cuadros: productosLimpios }, null, 2)
 );
-console.log('✓ Productos generados en JSON:', productosFinales.length);
+console.log('✓ Productos generados y ORDENADOS POR FECHA:', productosLimpios.length);
 
 // ==========================================
 // FUNCIÓN DE ALEATORIEDAD (Solo para productos NUEVOS)
@@ -91,10 +100,9 @@ function generarStockAleatorio() {
 }
 
 // ==========================================
-// SINCRONIZAR CON SUPABASE (Modo Inteligente)
+// SINCRONIZAR CON SUPABASE
 // ==========================================
 async function sincronizarInventario() {
-  // 1. Obtener los IDs que YA existen en Supabase
   const { data: inventarioActual, error: errorFetch } = await supabase
     .from('inventario')
     .select('id');
@@ -105,25 +113,16 @@ async function sincronizarInventario() {
   }
 
   const idsExistentes = inventarioActual ? inventarioActual.map(i => i.id) : [];
-
-  // 2. Filtrar SOLO los productos que NO están en Supabase (los nuevos)
-  const productosNuevos = productosFinales
+  const productosNuevos = productosLimpios
     .filter(p => !idsExistentes.includes(p.id))
-    .map(p => ({
-      id: p.id,
-      stock: generarStockAleatorio() // Aleatoriedad SOLO para los nuevos
-    }));
+    .map(p => ({ id: p.id, stock: generarStockAleatorio() }));
 
-  // 3. Insertar solo los nuevos en Supabase
   if (productosNuevos.length > 0) {
-    const { error: errorInsert } = await supabase
-      .from('inventario')
-      .insert(productosNuevos);
-
+    const { error: errorInsert } = await supabase.from('inventario').insert(productosNuevos);
     if (errorInsert) {
       console.error('❌ Error al agregar nuevos productos:', errorInsert.message);
     } else {
-      console.log(`✓ ${productosNuevos.length} nuevos productos agregados al inventario con stock aleatorio.`);
+      console.log(`✓ ${productosNuevos.length} nuevos productos agregados al inventario.`);
     }
   } else {
     console.log('✓ No hay productos nuevos. El inventario existente NO fue modificado.');
