@@ -2,15 +2,19 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useCart } from '@/components/CartContext';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  
+  // CORRECCIÓN: Usamos 'items' en lugar de 'cart', que es como se llama en tu Contexto
+  const { items } = useCart(); 
+  
+  // La cantidad es simplemente la longitud del array de items
+  const totalItems = items ? items.length : 0;
 
   return (
     <>
-      {/* Barra superior de tiempo de entrega */}
-      
-
       {/* Header principal */}
       <header className="sticky top-0 z-50 text-white py-3 md:py-4" style={{ backgroundColor: '#734d12' }}>
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center">
@@ -29,7 +33,16 @@ export default function Navbar() {
           <nav className="hidden md:flex gap-6">
             <Link href="/" className="hover:text-gray-300 transition-colors">Inicio</Link>
             <Link href="/gift-cards" className="hover:text-gray-300 transition-colors">Gift Cards</Link>
-            <Link href="/carrito" className="hover:text-gray-300 transition-colors">Carrito</Link>
+            
+            {/* Carrito Escritorio con contador */}
+            <Link href="/carrito" className="hover:text-gray-300 transition-colors relative">
+              Carrito
+              {totalItems > 0 && (
+                <span className="absolute -top-2 -right-3 bg-red-500 text-white text-[10px] font-bold h-4 w-4 flex items-center justify-center rounded-full">
+                  {totalItems}
+                </span>
+              )}
+            </Link>
           </nav>
 
           {/* Botón Hamburguesa para Móvil */}
@@ -50,7 +63,16 @@ export default function Navbar() {
             <nav className="flex flex-col p-4 space-y-4 text-center text-lg">
               <Link href="/" className="hover:text-gray-300 transition-colors py-2" onClick={() => setIsOpen(false)}>Inicio</Link>
               <Link href="/gift-cards" className="hover:text-gray-300 transition-colors py-2" onClick={() => setIsOpen(false)}>Gift Cards</Link>
-              <Link href="/carrito" className="hover:text-gray-300 transition-colors py-2" onClick={() => setIsOpen(false)}>Carrito</Link>
+              
+              {/* Carrito Móvil con contador */}
+              <Link href="/carrito" className="hover:text-gray-300 transition-colors py-2 relative flex items-center justify-center gap-2" onClick={() => setIsOpen(false)}>
+                Carrito
+                {totalItems > 0 && (
+                  <span className="bg-red-500 text-white text-[10px] font-bold h-4 w-4 flex items-center justify-center rounded-full">
+                    {totalItems}
+                  </span>
+                )}
+              </Link>
             </nav>
           </div>
         )}
