@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 
 export default async function TiendaPage() {
   // Obtenemos TODOS los productos (sin filtrar solo los destacados)
-  const todosLosProductos = (await getAllProductos()).reverse();
+  const todosLosProductoss = (await getAllProductos()).reverse();
 
   return (
     <main className="max-w-7xl mx-auto px-4 py-12">
