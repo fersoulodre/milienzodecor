@@ -1193,18 +1193,18 @@
       "destacado": false
     },
     {
-      "id": "figuras_humanas-H127",
-      "titulo": "H127",
-      "estilo": "Figuras Humanas",
-      "imagen": "/images/figuras_humanas/H127.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
       "id": "figuras_humanas-H128",
       "titulo": "H128",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H128.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "figuras_humanas-H127",
+      "titulo": "H127",
+      "estilo": "Figuras Humanas",
+      "imagen": "/images/figuras_humanas/H127.webp",
       "stock": 4,
       "destacado": false
     }
