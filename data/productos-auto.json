@@ -993,14 +993,6 @@
       "destacado": true
     },
     {
-      "id": "abstractos_minimalista-M73",
-      "titulo": "M73",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M73.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
       "id": "figuras_humanas-H115",
       "titulo": "H115",
       "estilo": "Figuras Humanas",
@@ -1085,14 +1077,6 @@
       "titulo": "M75",
       "estilo": "Abstractos Minimalistas",
       "imagen": "/images/abstractos_minimalista/M75.webp",
-      "stock": 4,
-      "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M76",
-      "titulo": "M76",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M76.webp",
       "stock": 4,
       "destacado": false
     },
@@ -1205,6 +1189,38 @@
       "titulo": "H127",
       "estilo": "Figuras Humanas",
       "imagen": "/images/figuras_humanas/H127.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M73",
+      "titulo": "M73",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M73.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M76",
+      "titulo": "M76",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M76.webp",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M78",
+      "titulo": "M78",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M78.jpg",
+      "stock": 4,
+      "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M79",
+      "titulo": "M79",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M79.jpg",
       "stock": 4,
       "destacado": false
     }
