@@ -1207,6 +1207,14 @@
       "imagen": "/images/abstractos_minimalista/M76.webp",
       "stock": 4,
       "destacado": false
+    },
+    {
+      "id": "abstractos_minimalista-M80",
+      "titulo": "M80",
+      "estilo": "Abstractos Minimalistas",
+      "imagen": "/images/abstractos_minimalista/M80.jpg",
+      "stock": 4,
+      "destacado": false
     }
   ]
 }
