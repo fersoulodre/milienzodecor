@@ -333,7 +333,7 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
               
               {/* Botón Cerrar pegado a la imagen */}
               <button 
-                className="absolute top-3 right-3 bg-black/70 hover:bg-black text-white text-xs font-medium px-3 py-1.5 rounded-full transition-colors z-[70] backdrop-blur-sm border border-white/10"
+                className="absolute top-3 right-3 bg-black/70 hover:bg-black text-white text-xs font-medium px-3 py-1.5 rounded-full transition-colors z-[70] backdrop-blur-sm border border-white/10 cursor-pointer"
                 onClick={() => {
                   setModalImage(null);
                   setViewMode('original');
