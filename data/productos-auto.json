@@ -1215,14 +1215,6 @@
       "imagen": "/images/abstractos_minimalista/M78.jpg",
       "stock": 4,
       "destacado": false
-    },
-    {
-      "id": "abstractos_minimalista-M79",
-      "titulo": "M79",
-      "estilo": "Abstractos Minimalistas",
-      "imagen": "/images/abstractos_minimalista/M79.jpg",
-      "stock": 4,
-      "destacado": false
     }
   ]
 }
