@@ -214,7 +214,7 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
 
             <div className="mt-6">
               <label className="block text-sm font-bold text-gray-700 mb-3">
-                Elige con o sin marco <span className="font-normal text-gray-500"></span>
+                Elige con o sin bastidor <span className="font-normal text-gray-500"></span>
               </label>
               
               <button
@@ -229,7 +229,8 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 )}
-                Sin marco
+                Sin bastidor
+                r
               </button>
 
               <div className="grid grid-cols-3 gap-4">
