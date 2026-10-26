@@ -230,7 +230,7 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
                   </svg>
                 )}
                 Sin bastidor
-                r
+                
               </button>
 
               <div className="grid grid-cols-3 gap-4">
