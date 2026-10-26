@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useCart } from '@/components/CartContext';
 import { Producto } from '@/lib/productos';
 
-const PRECIO_POR_M2_IMPRESION = 355; 
+const PRECIO_POR_M2_IMPRESION = 550; 
 const AREA_MINIMA_M2 = 0.09; // Área mínima en metros cuadrados (ej: 30x30cm = 0.09m²)
 export default function ProductDetailClient({ producto }: { producto: Producto }) {
   const router = useRouter();
@@ -22,7 +22,7 @@ export default function ProductDetailClient({ producto }: { producto: Producto }
 
   const opcionesMarco = [
     { id: 'sin-marco', nombre: 'Sin marco', precioMetroLineal: 0, imagen: '' },
-    { id: 'bastidor', nombre: 'Marco bastidor', precioMetroLineal: 100, imagen: '/images/marcos/marco-bastidor.jpg' },
+    { id: 'bastidor', nombre: 'Marco bastidor', precioMetroLineal: 50, imagen: '/images/marcos/marco-bastidor.jpg' },
     //{ id: 'madera', nombre: 'Marco color madera', precioMetroLineal: 150, imagen: '/images/marcos/marco-color-madera1.jpg' },
     //{ id: 'negro', nombre: 'Marco color negro', precioMetroLineal: 150, imagen: '/images/marcos/marco-color-negro1.jpg' }
   ];
