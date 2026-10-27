@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useCart } from '@/components/CartContext';
 import { Producto } from '@/lib/productos';
 
-const PRECIO_POR_M2_IMPRESION = 632; 
+const PRECIO_POR_M2_IMPRESION = 670; 
 const AREA_MINIMA_M2 = 0.09; // Área mínima en metros cuadrados (ej: 30x30cm = 0.09m²)
 export default function ProductDetailClient({ producto }: { producto: Producto }) {
   const router = useRouter();
