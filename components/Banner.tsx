@@ -29,7 +29,7 @@ export default function Banner() {
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  return (
+    return (
     <section className="relative w-full overflow-hidden aspect-[1920/831]">
       {slides.map((slide, index) => (
         <div 
@@ -61,6 +61,18 @@ export default function Banner() {
           <span className="text-[9px] md:text-[10px] font-bold uppercase leading-tight text-center tracking-wide">Años de<br/>Garantía</span>
         </div>
       </div>
+
+      {/* Botón para bajar (Flecha animada con fondo para que siempre se vea) */}
+      <a 
+        href="#contenido" 
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-1 group cursor-pointer"
+      >
+        <div className="bg-black/30 backdrop-blur-sm border border-white/30 rounded-full p-2 group-hover:bg-black/50 transition-all shadow-lg">
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
+      </a>
     </section>
   );
 }

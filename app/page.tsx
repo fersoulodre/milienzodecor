@@ -27,7 +27,8 @@ export default async function Home() {
       {/* ========================================== */}
       {/* 2. CONTENIDO PRINCIPAL (CENTRADO)          */}
       {/* ========================================== */}
-      <main className="max-w-7xl mx-auto px-4 py-0 w-full">
+      
+        <main id="contenido" className="max-w-7xl mx-auto px-4 py-0 w-full">
         
         {/* Barra de beneficios compacta */}
         <section className="mb-6 mt-6">
