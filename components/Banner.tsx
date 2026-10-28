@@ -54,19 +54,20 @@ export default function Banner() {
         </div>
       ))}
 
-      {/* Sello de Garantía de 5 Años */}
-      <div className="absolute bottom-4 left-4 md:bottom-10 md:left-10 z-20">
-        <div className="bg-[#fac932] text-[#734d12] rounded-full w-20 h-20 md:w-24 md:h-24 flex flex-col items-center justify-center shadow-2xl border-4 border-white transform -rotate-6 hover:rotate-0 transition-transform duration-300">
-          <span className="text-2xl md:text-3xl font-black leading-none">5</span>
-          <span className="text-[9px] md:text-[10px] font-bold uppercase leading-tight text-center tracking-wide">Años de<br/>Garantía</span>
+     
+           {/* Sello de Garantía de 5 Años */}
+      <div className="absolute bottom-4 left-4 md:bottom-30 md:left-10 z-20">
+        <div className="bg-[#fac932] text-[#734d12] rounded-full w-16 h-16 md:w-24 md:h-24 flex flex-col items-center justify-center shadow-2xl border-4 border-white transform -rotate-6 hover:rotate-0 transition-transform duration-300">
+          <span className="text-xl md:text-3xl font-black leading-none">5</span>
+          <span className="text-[7px] md:text-[10px] font-bold uppercase leading-tight text-center tracking-wide">Años de<br/>Garantía</span>
         </div>
       </div>
 
       {/* Botón para bajar (Flecha animada con fondo para que siempre se vea) */}
       <a 
-        href="#contenido" 
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-1 group cursor-pointer"
-      >
+  href="#contenido" 
+  className="absolute bottom-12 left-1/2 -translate-x-1/2 z-30 hidden md:flex flex-col items-center gap-1 group cursor-pointer"
+>
         <div className="bg-black/30 backdrop-blur-sm border border-white/30 rounded-full p-2 group-hover:bg-black/50 transition-all shadow-lg">
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6 text-white animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
