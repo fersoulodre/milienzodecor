@@ -113,7 +113,7 @@ export default async function Home() {
         <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-center md:justify-between items-center gap-3 text-sm text-gray-700">
           <div className="flex items-center gap-2">
             <span className="text-lg">🖼️</span>
-            <span className="font-bold">Impreso en lona mate (sin reflejos)</span>
+            <span className="font-bold">Impreso en lienzo texturizado de alta gama</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-lg">☀️</span>

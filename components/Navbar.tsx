@@ -55,7 +55,7 @@ export default function Navbar() {
                 {/* Panel del Mega Menú */}
                 <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 w-[600px] !bg-white !opacity-100 text-gray-800 rounded-lg shadow-2xl hidden group-hover:block z-[60]">
                   <div className="p-6">
-                    <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Nuestras Colecciones</h3>
+                    <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">Nuestra Colección</h3>
                     <div className="grid grid-cols-2 gap-x-8 gap-y-3">
                       {categorias.map((cat) => (
                         <Link 
