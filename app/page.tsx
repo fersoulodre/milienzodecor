@@ -52,16 +52,14 @@ export default async function Home() {
             Transforma tu mundo con estilo
           </h2>
         </div>
-
-                  {/* Sello de Garantía de 8 Años */}
-          <div className="absolute bottom-4 right-4 md:bottom-10 md:right-10 z-20">
+       <div className="absolute bottom-4 right-4 md:bottom-10 md:right-10 z-20">
             <div className="bg-[#fac932] text-[#734d12] rounded-full w-20 h-20 md:w-24 md:h-24 flex flex-col items-center justify-center shadow-2xl border-4 border-white transform rotate-6 hover:rotate-0 transition-transform duration-300">
               <span className="text-2xl md:text-3xl font-black leading-none">8</span>
               <span className="text-[9px] md:text-[10px] font-bold uppercase leading-tight text-center tracking-wide">Años de<br/>Garantía</span>
             </div>
           </div>
         </div>
-      </section>
+
       </section>
 
       {/* Barra de beneficios compacta */}
