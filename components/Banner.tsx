@@ -1,14 +1,21 @@
 'use client';
 import { useState, useEffect } from 'react';
 
+// 1. Definimos la interfaz para que TypeScript sepa que 'title' y 'text' son opcionales
+interface Slide {
+  img: string;
+  title?: string;
+  text?: string;
+}
+
 export default function Banner() {
   const [currentSlide, setCurrentSlide] = useState(0);
   
   // ⏱️ CONTROL DE TIEMPO: Cambia este valor (en milisegundos)
-  // 4000 = 4 segundos, 6000 = 6 segundos, etc.
   const TIEMPO_POR_IMAGEN = 4000; 
 
-  const slides = [
+  // 2. Le asignamos el tipo Slide[] al array
+  const slides: Slide[] = [
     { img: '/images/portada.webp' },
     { img: '/images/portada2.webp' },
     { img: '/images/portada3.webp' },
