@@ -7,6 +7,7 @@ import { Producto } from '@/lib/productos';
 
 const PRECIO_POR_M2_IMPRESION = 670; 
 const AREA_MINIMA_M2 = 0.09; // Área mínima en metros cuadrados (ej: 30x30cm = 0.09m²)
+
 export default function ProductDetailClient({ producto }: { producto: Producto }) {
   const router = useRouter();
   const { addToCart } = useCart();
@@ -23,8 +24,6 @@ export default function ProductDetailClient({ producto }: { producto: Producto }
   const opcionesMarco = [
     { id: 'sin-marco', nombre: 'Sin marco', precioMetroLineal: 0, imagen: '' },
     { id: 'bastidor', nombre: 'Marco bastidor', precioMetroLineal: 50, imagen: '/images/marcos/marco-bastidor.jpg' },
-    //{ id: 'madera', nombre: 'Marco color madera', precioMetroLineal: 150, imagen: '/images/marcos/marco-color-madera1.jpg' },
-    //{ id: 'negro', nombre: 'Marco color negro', precioMetroLineal: 150, imagen: '/images/marcos/marco-color-negro1.jpg' }
   ];
 
   useEffect(() => {
@@ -40,7 +39,7 @@ export default function ProductDetailClient({ producto }: { producto: Producto }
     setFinalPrice(Math.round(calculated / 0.87));
   }, [width, height, marcoSeleccionado]);
 
-    // Cerrar modal con tecla Escape
+  // Cerrar modal con tecla Escape
   useEffect(() => {
     const handleEsc = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && modalImage) {
@@ -59,13 +58,13 @@ export default function ProductDetailClient({ producto }: { producto: Producto }
     const h = Number(height);
 
     const wMeters = w / 100;
-const hMeters = h / 100;
-const areaM2 = wMeters * hMeters;
+    const hMeters = h / 100;
+    const areaM2 = wMeters * hMeters;
 
-if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
-  setShowMinWarningModal(true);
-  return;
-}
+    if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
+      setShowMinWarningModal(true);
+      return;
+    }
 
     const marco = opcionesMarco.find(m => m.id === marcoSeleccionado);
     addToCart({ 
@@ -86,15 +85,16 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
         </button>
 
         <div className="grid md:grid-cols-2 gap-6">
+          {/* COLUMNA IZQUIERDA: IMÁGENES Y BOTÓN AGREGAR */}
           <div>
-                                        <div className="relative aspect-[3/2] bg-white rounded-lg overflow-hidden mb-2 border border-gray-200">
-                <Image 
-                  src={viewMode === 'mockup' ? mockupUrl : producto.imagen} 
-                  alt={producto.titulo} 
-                  fill 
-                  className="object-contain" 
-                />
-              </div>
+            <div className="relative aspect-[3/2] bg-white rounded-lg overflow-hidden mb-2 border border-gray-200">
+              <Image 
+                src={viewMode === 'mockup' ? mockupUrl : producto.imagen} 
+                alt={producto.titulo} 
+                fill 
+                className="object-contain" 
+              />
+            </div>
 
             <div className="flex gap-4">
               <button 
@@ -104,7 +104,7 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
                 <Image src={producto.imagen} alt="Original" fill className="object-contain" />
               </button>
               
-                           {mockupUrl !== producto.imagen && (
+              {mockupUrl !== producto.imagen && (
                 <button 
                   onClick={() => {
                     setViewMode('mockup');
@@ -134,18 +134,19 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
             </button>
           </div>
 
+          {/* COLUMNA DERECHA: DETALLES Y CALCULADORA */}
           <div className="flex flex-col justify-center">
             <span className="text-sm text-gray-500 uppercase">{producto.estilo}</span>
             <h1 className="text-4xl font-bold mt-2">{producto.titulo}</h1>
             
-           {producto.stock === 1 && (
-  <p className="text-red-600 font-semibold mt-2 flex items-center gap-2 text-sm md:text-base">
-    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-    </svg>
-    ¡Apúrate! Solo queda 1 unidad de esta obra.
-  </p>
-)}
+            {producto.stock === 1 && (
+              <p className="text-red-600 font-semibold mt-2 flex items-center gap-2 text-sm md:text-base">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                ¡Apúrate! Solo queda 1 unidad de esta obra.
+              </p>
+            )}
 
             {producto.stock === 0 && (
               <p className="text-gray-500 font-semibold mt-2">Esta obra ya ha sido vendida.</p>
@@ -183,10 +184,22 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
             </p>
 
             {(width !== '' && height !== '' && !isNaN(Number(width)) && !isNaN(Number(height)) && ((Number(width) / 100) * (Number(height) / 100)) < AREA_MINIMA_M2) && (
-  <p className="text-xs text-red-500 mb-2 font-semibold text-center">
-    ⚠️ El área mínima requerida es de {AREA_MINIMA_M2} m²
-  </p>
-)}
+              <p className="text-xs text-red-500 mb-2 font-semibold text-center">
+                ⚠️ El área mínima requerida es de {AREA_MINIMA_M2} m²
+              </p>
+            )}
+
+            {/* PRECIO MOVIDO AQUÍ: Justo debajo del texto de cálculo */}
+            <div className="mt-2 mb-6 flex items-center justify-center gap-2 flex-wrap min-h-[40px]">
+              {width !== '' && height !== '' && !isNaN(Number(width)) && !isNaN(Number(height)) && ((Number(width) / 100) * (Number(height) / 100)) >= AREA_MINIMA_M2 ? (
+                <>
+                  <p className="text-3xl font-bold">Bs. {finalPrice.toLocaleString()}</p>
+                  <span className="text-xs text-gray-500">El precio incluye impuestos de ley.</span>
+                </>
+              ) : (
+                <p className="text-lg text-gray-400 font-medium"></p>
+              )}
+            </div>
 
             <div className="mt-1">
               <p className="text-sm text-gray-600 mb-3">Referencias de proporciones:</p>
@@ -214,7 +227,7 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
 
             <div className="mt-6">
               <label className="block text-sm font-bold text-gray-700 mb-3">
-                Elige con o sin bastidor <span className="font-normal text-gray-500"></span>
+                Elige con o sin bastidor
               </label>
               
               <button
@@ -230,7 +243,6 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
                   </svg>
                 )}
                 Sin bastidor
-                
               </button>
 
               <div className="grid grid-cols-3 gap-4">
@@ -253,17 +265,6 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
                 ))}
               </div>
             </div>
-
-            <div className="mt-6 flex items-center gap-2 flex-wrap">
-              {width !== '' && height !== '' && !isNaN(Number(width)) && !isNaN(Number(height)) && ((Number(width) / 100) * (Number(height) / 100)) >= AREA_MINIMA_M2 ? (
-                <>
-                  <p className="text-3xl font-bold">Bs. {finalPrice.toLocaleString()}</p>
-                  <span className="text-xs text-gray-500">El precio incluye impuestos de ley.</span>
-                </>
-              ) : (
-                <p className="text-lg text-gray-400 font-medium"></p>
-              )}
-            </div>
           </div>
         </div>
       </div>
@@ -283,9 +284,9 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
               Medida mínima no alcanzada
             </h3>
             <p className="text-center text-gray-700 font-medium mb-6 text-base">
-  El área mínima permitida para los cuadros es de <strong>{AREA_MINIMA_M2} m²</strong>.
-  Por favor, aumenta las dimensiones e inténtalo de nuevo.
-</p>
+              El área mínima permitida para los cuadros es de <strong>{AREA_MINIMA_M2} m²</strong>.
+              Por favor, aumenta las dimensiones e inténtalo de nuevo.
+            </p>
             <div className="bg-gray-50 rounded-lg p-4 mb-6">
               <p className="text-sm text-gray-600 mb-2">Dimensiones ingresadas:</p>
               <div className="flex justify-center gap-4 text-sm">
@@ -307,9 +308,9 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
             </button>
           </div>
         </div>
-
       )}
-                            {/* MODAL DE IMAGEN AMPLIADA (LIGHTBOX) */}
+
+      {/* MODAL DE IMAGEN AMPLIADA (LIGHTBOX) */}
       {modalImage && (
         <>
           <style>{`
@@ -329,10 +330,7 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
               setViewMode('original');
             }}
           >
-            {/* Contenedor relativo para pegar el botón a la imagen */}
             <div className="relative inline-block modal-animate">
-              
-              {/* Botón Cerrar pegado a la imagen */}
               <button 
                 className="absolute top-3 right-3 bg-black/70 hover:bg-black text-white text-xs font-medium px-3 py-1.5 rounded-full transition-colors z-[70] backdrop-blur-sm border border-white/10 cursor-pointer"
                 onClick={() => {
@@ -343,7 +341,6 @@ if (width === '' || height === '' || areaM2 < AREA_MINIMA_M2) {
                 Cerrar
               </button>
               
-              {/* Imagen con marco */}
               <img 
                 src={modalImage} 
                 alt="Vista ampliada del cuadro" 
