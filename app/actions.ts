@@ -3,18 +3,19 @@ import { supabase } from '@/lib/supabase';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
-export async function generateGiftCardCode(monto: number, imagen: string) {
+export async function generateGiftCardCode(monto: number, imagen: string, diasValidez: number = 180) {
   const code = 'ML-' + Math.random().toString(36).substring(2, 8).toUpperCase();
   
-  // Calcular fecha de expiración: hoy + 30 días
   const hoy = new Date();
   const fechaExpiracion = new Date(hoy);
-  fechaExpiracion.setDate(hoy.getDate() + 30);
+  fechaExpiracion.setDate(hoy.getDate() + diasValidez);
   const fechaStr = fechaExpiracion.toISOString().split('T')[0];
 
+   const tipo = diasValidez <= 60 ? 'promocional' : 'comprada';
+  
   const { data, error } = await supabase
     .from('gift_cards')
-    .insert([{ code, monto, imagen, used: false, fecha_expiracion: fechaStr }])
+    .insert([{ code, monto, imagen, used: false, fecha_expiracion: fechaStr, tipo }])
     .select()
     .single();
     
@@ -160,7 +161,7 @@ export async function manejarEstadoPedido(formData: FormData) {
       const imagen = gcItem.imagen || '/images/giftcard-default.jpg';
       
       // Llamamos a la función que ya tienes para generar el código
-      const { code } = await generateGiftCardCode(monto, imagen);
+      const { code } = await generateGiftCardCode(monto, imagen, 180);
       
       if (code) {
         detallesActualizados.giftCardCode = code;
