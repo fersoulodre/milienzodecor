@@ -102,23 +102,30 @@ export default async function AdminPedidos({ searchParams }: Props) {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 px-6 py-4 flex gap-4 border-t border-gray-200">
-                  <form action={manejarEstadoPedido}>
-                    <input type="hidden" name="id" value={pedido.id} />
-                    <input type="hidden" name="estado" value="pagado" />
-                    <button type="submit" className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded transition duration-200">
-                      ✅ Aprobar Pago
-                    </button>
-                  </form>
-
-                  <form action={manejarEstadoPedido}>
-                    <input type="hidden" name="id" value={pedido.id} />
-                    <input type="hidden" name="estado" value="rechazado" />
-                    <button type="submit" className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-6 rounded transition duration-200">
-                      ❌ Rechazar
-                    </button>
-                  </form>
-                </div>
+                {(pedido.estado === 'pendiente_pago' || pedido.estado === 'pendiente_verificacion') ? (
+  <div className="flex gap-3 mt-4">
+    <form action={manejarEstadoPedido}>
+      <input type="hidden" name="id" value={pedido.id} />
+      <input type="hidden" name="estado" value="pagado" />
+      <button type="submit" className="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700">
+        ✅ Aprobar Pago
+      </button>
+    </form>
+    <form action={manejarEstadoPedido}>
+      <input type="hidden" name="id" value={pedido.id} />
+      <input type="hidden" name="estado" value="rechazado" />
+      <button type="submit" className="bg-red-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-red-700">
+        ❌ Rechazar
+      </button>
+    </form>
+  </div>
+) : (
+  <div className="mt-4 flex items-center gap-2">
+    <span className="bg-green-100 text-green-800 px-4 py-2 rounded-lg font-semibold text-sm">
+      ✅ Pago verificado - Estado: {pedido.estado}
+    </span>
+  </div>
+)}
               </div>
             ))}
           </div>
