@@ -83,23 +83,50 @@ export default async function AdminPedidos({ searchParams }: Props) {
                   </div>
 
                   <div className="border-l pl-0 md:pl-6 border-gray-200">
-                    <p className="font-semibold mb-2">Comprobante de pago:</p>
-                    {pedido.comprobante_url ? (
-                      pedido.comprobante_url.endsWith('.pdf') ? (
-                        <a href={pedido.comprobante_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline block mb-2">
-                          📄 Ver PDF del comprobante
-                        </a>
-                      ) : (
-                        <img 
-                          src={pedido.comprobante_url} 
-                          alt="Comprobante de pago" 
-                          className="max-h-64 rounded border border-gray-300 shadow-sm"
-                        />
-                      )
-                    ) : (
-                      <p className="text-red-500 text-sm">Sin comprobante adjunto</p>
-                    )}
-                  </div>
+  {/* Mostrar detalle de lo comprado */}
+  {pedido.detalles?.items && pedido.detalles.items.length > 0 && (
+    <>
+      <p className="font-semibold mb-2">Productos:</p>
+      <ul className="text-sm text-gray-700 space-y-1 mb-4">
+        {pedido.detalles.items.map((item: any, idx: number) => (
+          <li key={idx} className="flex justify-between">
+            <span>{item.titulo || item.nombre} {item.dimensiones && `(${item.dimensiones})`}</span>
+            <span className="font-bold">Bs. {(item.precio || 0).toLocaleString()}</span>
+          </li>
+        ))}
+      </ul>
+    </>
+  )}
+
+  {/* Mostrar códigos de Gift Card si existen */}
+  {pedido.detalles?.giftCards && pedido.detalles.giftCards.length > 0 && (
+    <div className="bg-yellow-50 border-2 border-yellow-300 p-4 rounded-lg mb-4 text-center">
+      <p className="text-xs text-yellow-800 font-bold uppercase tracking-wider mb-2">🎁 Código(s) de Gift Card</p>
+      {pedido.detalles.giftCards.map((codigo: string, idx: number) => (
+        <p key={idx} className="text-2xl font-mono font-black text-yellow-900 tracking-widest">{codigo}</p>
+      ))}
+      <p className="text-xs text-yellow-700 mt-2">Copia y envía este código al cliente.</p>
+    </div>
+  )}
+
+  {/* Comprobante de pago */}
+  <p className="font-semibold mb-2">Comprobante de pago:</p>
+  {pedido.comprobante_url ? (
+    pedido.comprobante_url.endsWith('.pdf') ? (
+      <a href={pedido.comprobante_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline block mb-2 text-sm">
+        📄 Ver PDF del comprobante
+      </a>
+    ) : (
+      <img 
+        src={pedido.comprobante_url} 
+        alt="Comprobante de pago" 
+        className="max-h-64 rounded border border-gray-300 shadow-sm"
+      />
+    )
+  ) : (
+    <p className="text-red-500 text-sm">Sin comprobante adjunto</p>
+  )}
+</div>
                 </div>
 
                 {(pedido.estado === 'pendiente_pago' || pedido.estado === 'pendiente_verificacion') ? (
