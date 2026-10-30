@@ -7,9 +7,8 @@ import { useCart } from '@/components/CartContext';
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [mobileCategoriasOpen, setMobileCategoriasOpen] = useState(false);
-  const { items } = useCart(); 
-  
-  const totalItems = items ? items.length : 0;
+  const { items, giftCards } = useCart(); 
+  const totalItems = (items ? items.length : 0) + (giftCards ? giftCards.length : 0);
 
   const categorias = [
     { nombre: 'Abstractos Minimalistas', slug: 'abstractos-minimalistas' },
