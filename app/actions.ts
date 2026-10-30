@@ -72,6 +72,7 @@ export async function crearPedido(datos: {
         total: datos.total,
         metodo_pago: datos.metodo_pago,
         estado: 'pendiente_pago',
+        detalles: datos.detalles // Aseguramos que se guarden los detalles del carrito
       })
       .select()
       .single();
@@ -124,13 +125,47 @@ export async function actualizarTipoCambio(nuevaTasa: number) {
   }
 }
 
+// ✅ FUNCIÓN ACTUALIZADA: Ahora genera y guarda el código de la Gift Card al aprobar
 export async function manejarEstadoPedido(formData: FormData) {
   const id = formData.get('id') as string;
   const nuevoEstado = formData.get('estado') as string;
+  
+  // 1. Obtener el pedido actual para ver sus detalles
+  const { data: pedido } = await supabase
+    .from('pedidos')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  let detallesActualizados = pedido?.detalles || {};
+
+  // 2. Si se aprueba el pago y el pedido contiene una Gift Card, generamos el código
+  if ((nuevoEstado === 'pagado' || nuevoEstado === 'aprobado' || nuevoEstado === 'verificado') && pedido?.detalles?.items) {
+    const gcItem = pedido.detalles.items.find((item: any) => item.tipo === 'giftcard' || (item.nombre && item.nombre.toLowerCase().includes('gift card')));
+    
+    // Si es una gift card y aún no tiene código generado
+    if (gcItem && !detallesActualizados.giftCardCode) {
+      const monto = gcItem.monto || gcItem.precio || 100;
+      const imagen = gcItem.imagen || '/images/giftcard-default.jpg';
+      
+      // Llamamos a la función que ya tienes para generar el código
+      const { code } = await generateGiftCardCode(monto, imagen);
+      
+      if (code) {
+        detallesActualizados.giftCardCode = code;
+      }
+    }
+  }
+
+  // 3. Actualizar el estado y guardar los detalles (con el nuevo código si aplica)
   await supabase
     .from('pedidos')
-    .update({ estado: nuevoEstado })
+    .update({ 
+      estado: nuevoEstado,
+      detalles: detallesActualizados
+    })
     .eq('id', id);
+    
   redirect('/admin/pedidos');
 }
 

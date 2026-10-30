@@ -72,7 +72,7 @@ export default function CarritoPage() {
     setApplyingCode(false);
   };
 
-  const finalizarCompra = async () => {
+    const finalizarCompra = async () => {
     if (!email || !nombre) {
       alert('Por favor, ingresa tu nombre y correo electrónico para continuar.');
       return;
@@ -80,49 +80,69 @@ export default function CarritoPage() {
 
     setProcesando(true);
 
-    let codigosGenerados: string[] = [];
-    if (giftCards.length > 0) {
-      for (const gc of giftCards) {
-        const resultado = await generateGiftCardCode(gc.monto, gc.imagen);
-        codigosGenerados.push(resultado.code);
-      }
-    }
-
-    const respuesta = await crearPedido({
-      email,
-      nombre,
-      telefono,
-      total: totalConDescuento,
-      metodo_pago: metodoPago === 'banco' ? 'transferencia_banco' : 'binance_pay',
-      detalles: { items, giftCards: codigosGenerados, discount }
-    });
-
-    if (respuesta.success && respuesta.pedidoId) {
-      try {
-        await fetch('/api/send-order-email', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-  nombre,
-  email,
-  telefono,
-  metodo_pago: metodoPago === 'banco' ? 'transferencia_banco' : metodoPago === 'reserva' ? 'reserva_contra_entrega' : 'binance_pay',
-  total: totalConDescuento,
-  items,
-  giftCards,
-  pedidoId: respuesta.pedidoId
-})
-        });
-      } catch (error) {
-        console.error('No se pudo enviar el correo, pero el pedido se guardó:', error);
+    try {
+      // 1. Generar códigos de Gift Card si las hay en el carrito
+      let codigosGenerados: string[] = [];
+      if (giftCards.length > 0) {
+        for (const gc of giftCards) {
+          const resultado = await generateGiftCardCode(gc.monto, gc.imagen);
+          if (resultado.code) {
+            codigosGenerados.push(resultado.code);
+          }
+        }
       }
 
-      alert('¡Pedido registrado con éxito! Se ha enviado una notificación a soporte@milienzodecor.com. Ahora serás redirigido para subir tu comprobante.');
-      sessionStorage.setItem('email_compra', email);
-      clearCart();
-      router.push(`/subir-comprobante?pedido=${respuesta.pedidoId}`);
-    } else {
-      alert('Hubo un error al procesar tu pedido. Intenta de nuevo.');
+      // 2. Determinar el método de pago correcto (Corregido para incluir 'reserva')
+      const metodoPagoFinal = 
+        metodoPago === 'banco' ? 'transferencia_banco' : 
+        metodoPago === 'reserva' ? 'reserva_contra_entrega' : 
+        'binance_pay';
+
+      // 3. Crear el pedido en la base de datos
+      const respuesta = await crearPedido({
+        email,
+        nombre,
+        telefono,
+        total: totalConDescuento,
+        metodo_pago: metodoPagoFinal,
+        detalles: { items, giftCards: codigosGenerados, discount }
+      });
+
+      // 4. Si se creó exitosamente
+      if (respuesta.success && respuesta.pedidoId) {
+        try {
+          await fetch('/api/send-order-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              nombre,
+              email,
+              telefono,
+              metodo_pago: metodoPagoFinal,
+              total: totalConDescuento,
+              items,
+              giftCards,
+              pedidoId: respuesta.pedidoId
+            })
+          });
+        } catch (error) {
+          console.error('No se pudo enviar el correo, pero el pedido se guardó:', error);
+        }
+
+        // ✅ Limpiar carrito y redirigir
+        sessionStorage.setItem('email_compra', email);
+        clearCart();
+        router.push(`/subir-comprobante?pedido=${respuesta.pedidoId}`);
+      } else {
+        // ❌ Mostrar el error exacto que devuelve la base de datos
+        console.error('Error al crear pedido:', respuesta);
+        alert(`Hubo un error al procesar tu pedido: ${respuesta.error || 'Intenta de nuevo.'}`);
+        setProcesando(false);
+      }
+    } catch (error) {
+      // ❌ Capturar cualquier error inesperado del sistema
+      console.error('Error inesperado en finalizarCompra:', error);
+      alert('Ocurrió un error inesperado. Revisa la consola del navegador (F12) para más detalles.');
       setProcesando(false);
     }
   };
