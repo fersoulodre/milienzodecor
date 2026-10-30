@@ -18,11 +18,16 @@ export default async function AdminPedidos({ searchParams }: Props) {
   const resolvedSearchParams = await searchParams;
 
   // 2. Obtener pedidos pendientes de verificación
-      const { data: pedidos, error } = await supabaseAdmin
-    .from('pedidos')
-    .select('*')
-    .in('estado', ['pendiente_pago', 'pendiente_verificacion'])
-    .order('id', { ascending: false })
+         const tab = resolvedSearchParams.tab || 'pendientes';
+   let query = supabaseAdmin.from('pedidos').select('*').order('id', { ascending: false });
+
+   if (tab === 'pendientes') {
+     query = query.in('estado', ['pendiente_pago', 'pendiente_verificacion']);
+   } else if (tab === 'aprobados') {
+     query = query.in('estado', ['pagado', 'aprobado', 'enviado', 'completado']);
+   }
+
+   const { data: pedidos, error } = await query;
 
   // 3. Obtener el tipo de cambio actual
   const { data: tipoCambioData } = await supabaseAdmin
@@ -39,6 +44,19 @@ export default async function AdminPedidos({ searchParams }: Props) {
     <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold mb-8 text-gray-800">Panel de Administración - Comprobantes</h1>
+
+                  {/* Pestañas de navegación */}
+          <div className="flex gap-6 mb-8 border-b border-gray-200">
+            <Link href="/admin/pedidos?tab=pendientes" className={`pb-3 px-1 text-sm font-semibold transition-colors ${tab === 'pendientes' ? 'border-b-2 border-black text-black' : 'text-gray-400 hover:text-gray-600'}`}>
+              Pendientes de pago
+            </Link>
+            <Link href="/admin/pedidos?tab=aprobados" className={`pb-3 px-1 text-sm font-semibold transition-colors ${tab === 'aprobados' ? 'border-b-2 border-black text-black' : 'text-gray-400 hover:text-gray-600'}`}>
+              Aprobados
+            </Link>
+            <Link href="/admin/pedidos?tab=todos" className={`pb-3 px-1 text-sm font-semibold transition-colors ${tab === 'todos' ? 'border-b-2 border-black text-black' : 'text-gray-400 hover:text-gray-600'}`}>
+              Ver todos
+            </Link>
+          </div>
         
         {pedidos.length === 0 ? (
           <div className="bg-white p-8 rounded-lg shadow text-center text-gray-500">
