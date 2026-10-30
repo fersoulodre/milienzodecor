@@ -48,6 +48,15 @@ export default async function AdminPedidos({ searchParams }: Props) {
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold mb-8 text-gray-800">Panel de Administración - Comprobantes</h1>
 
+        <div className="flex gap-4 mb-8">
+  <Link 
+    href="/admin/gift-cards" 
+    className="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
+  >
+    🎁 Gestionar Gift Cards
+  </Link>
+</div>
+
                   {/* Pestañas de navegación */}
           <div className="flex gap-6 mb-8 border-b border-gray-200">
             <Link href="/admin/pedidos?tab=pendientes" className={`pb-3 px-1 text-sm font-semibold transition-colors ${tab === 'pendientes' ? 'border-b-2 border-black text-black' : 'text-gray-400 hover:text-gray-600'}`}>

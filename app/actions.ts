@@ -181,6 +181,31 @@ export async function manejarEstadoPedido(formData: FormData) {
   redirect('/admin/pedidos');
 }
 
+export async function generarGiftCardPromocional(formData: FormData) {
+  const monto = parseInt(formData.get('monto') as string);
+  
+  if (!monto || monto <= 0) {
+    return { success: false, error: 'Monto inválido' };
+  }
+
+  // Usar imagen por defecto según el monto
+  const imagen = `/images/gift-cards/gc-${monto}.jpg`;
+  
+  // Generar con 30 días de validez
+  const { code, fechaExpiracion } = await generateGiftCardCode(monto, imagen, 30);
+  
+  if (!code) {
+    return { success: false, error: 'No se pudo generar el código' };
+  }
+
+  return { 
+    success: true, 
+    code, 
+    fechaExpiracion,
+    mensaje: `Gift Card promocional de Bs. ${monto} generada exitosamente`
+  };
+}
+
 export async function verificarStockPublico(codigoCorto: string) {
   try {
     const codigoLimpio = codigoCorto.trim().toUpperCase();
