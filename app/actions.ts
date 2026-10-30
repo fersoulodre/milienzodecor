@@ -38,9 +38,10 @@ export async function validateGiftCardCode(code: string) {
   }
 
   // Verificar si la tarjeta está expirada
-  const hoy = new Date();
-  hoy.setHours(0, 0, 0, 0);
+    const hoy = new Date();
+  hoy.setHours(23, 59, 59, 999); // Fin del día actual
   const fechaExpiracion = new Date(card.fecha_expiracion);
+  fechaExpiracion.setHours(23, 59, 59, 999); // Fin del día de expiración
   
   if (fechaExpiracion < hoy) {
     return { valid: false, mensaje: 'Tarjeta expirada.' };
