@@ -18,11 +18,11 @@ export default async function AdminPedidos({ searchParams }: Props) {
   const resolvedSearchParams = await searchParams;
 
   // 2. Obtener pedidos pendientes de verificación
-  const { data: pedidos, error } = await supabaseAdmin
+    const { data: pedidos, error } = await supabaseAdmin
     .from('pedidos')
     .select('*')
-    .eq('estado', 'pendiente_verificacion')
-    .order('fecha_creacion', { ascending: false });
+    .in('estado', ['pendiente_pago', 'pendiente_verificacion'])
+    .order('created_at', { ascending: false }) // Esto asegura que los más nuevos salgan primero
 
   // 3. Obtener el tipo de cambio actual
   const { data: tipoCambioData } = await supabaseAdmin
