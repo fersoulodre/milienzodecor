@@ -1,7 +1,7 @@
 import { createClient } from '@supabase/supabase-js';
 import { redirect } from 'next/navigation';
 import { actualizarTipoCambio, manejarEstadoPedido } from '@/app/actions';
-
+import Link from 'next/link';
 // Inicializa Supabase con variables de entorno del servidor
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
