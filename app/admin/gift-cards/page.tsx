@@ -89,10 +89,15 @@ export default function AdminGiftCards() {
                 <div className="absolute bottom-0 left-0 w-48 h-48 bg-black/20 rounded-full -ml-10 -mb-10 blur-xl"></div>
                 
                 {/* Header */}
+                                {/* Header con Logo */}
                 <div className="flex justify-between items-start z-10">
-                  <div>
-                    <h3 className="text-2xl font-bold tracking-wider text-yellow-100">MI LIENZO</h3>
-                    <p className="text-xs tracking-[0.3em] text-yellow-200/80">D E C O R</p>
+                  <div className="w-36 h-auto flex items-center">
+                    <img 
+                      src="/logo.png" 
+                      alt="Logo Mi Lienzo Decor" 
+                      className="w-full h-auto object-contain" 
+                      crossOrigin="anonymous" 
+                    />
                   </div>
                   <span className="bg-yellow-500/20 border border-yellow-400/50 px-4 py-1 rounded-full text-sm font-semibold text-yellow-100 backdrop-blur-sm">GIFT CARD</span>
                 </div>
