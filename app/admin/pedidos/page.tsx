@@ -10,7 +10,10 @@ const supabaseAdmin = createClient(
 
 // En Next.js 15, searchParams es una Promesa, la definimos así para evitar errores
 type Props = {
-  searchParams: Promise<{ saved?: string }>;
+  searchParams: Promise<{
+    saved?: string;
+    tab?: string; // <-- Agregamos esta línea
+  }>;
 };
 
 export default async function AdminPedidos({ searchParams }: Props) {
