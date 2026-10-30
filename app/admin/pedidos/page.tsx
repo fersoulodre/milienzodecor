@@ -134,7 +134,7 @@ export default async function AdminPedidos({ searchParams }: Props) {
     <form action={manejarEstadoPedido}>
       <input type="hidden" name="id" value={pedido.id} />
       <input type="hidden" name="estado" value="pagado" />
-      <button type="submit" className="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700 cursor pointer">
+      <button type="submit" className="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700 cursor-pointer">
         ✅ Aprobar Pago
       </button>
     </form>
