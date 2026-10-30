@@ -63,6 +63,8 @@ export async function crearPedido(datos: {
   detalles: any;
 }) {
   try {
+    console.log('📦 Intentando crear pedido con datos:', datos);
+    
     const { data, error } = await supabase
       .from('pedidos')
       .insert({
@@ -72,12 +74,17 @@ export async function crearPedido(datos: {
         total: datos.total,
         metodo_pago: datos.metodo_pago,
         estado: 'pendiente_pago',
-        detalles: datos.detalles // Aseguramos que se guarden los detalles del carrito
+        detalles: datos.detalles // Esto requiere que la columna exista en Supabase
       })
       .select()
       .single();
 
-    if (error) throw error;
+    if (error) {
+      console.error('❌ Error de Supabase al crear pedido:', error);
+      throw error;
+    }
+
+    console.log('✅ Pedido creado exitosamente:', data);
 
     const itemsComprados = datos.detalles?.items || [];
     if (itemsComprados.length > 0) {
@@ -101,8 +108,11 @@ export async function crearPedido(datos: {
 
     return { success: true, pedidoId: data.id };
   } catch (error) {
-    console.error('Error al crear pedido:', error);
-    return { success: false, error: 'No se pudo crear el pedido' };
+    console.error(' Error completo al crear pedido:', error);
+    return { 
+      success: false, 
+      error: error instanceof Error ? error.message : 'No se pudo crear el pedido' 
+    };
   }
 }
 
