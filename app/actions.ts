@@ -138,6 +138,7 @@ export async function actualizarTipoCambio(nuevaTasa: number) {
 }
 
 export async function manejarEstadoPedido(formData: FormData) {
+  'use server';
   const id = formData.get('id') as string;
   const nuevoEstado = formData.get('estado') as string;
   
@@ -161,44 +162,63 @@ export async function manejarEstadoPedido(formData: FormData) {
     console.log('🔍 [DEBUG] Estado anterior:', estadoAnterior);
 
     if (codigosGiftCards.length > 0 && (estadoAnterior === 'pendiente_pago' || estadoAnterior === 'pendiente_verificacion')) {
-      console.log('🔍 [DEBUG] ¡Condición cumplida! Intentando enviar correo...');
+      console.log('🔍 [DEBUG] ¡Condición cumplida! Enviando correo directamente con Resend...');
       
-      const { data: gcData } = await supabase
-        .from('gift_cards')
-        .select('fecha_expiracion, monto')
-        .in('code', codigosGiftCards)
-        .limit(1)
-        .single();
-
-      const fechaExp = gcData?.fecha_expiracion || new Date(Date.now() + 180*24*60*60*1000).toISOString().split('T')[0];
-      const montoGC = gcData?.monto || pedido.total;
-
       try {
-        const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'; // Cambiado a localhost para pruebas locales
-        console.log('🔍 [DEBUG] URL de la API:', `${appUrl}/api/send-gift-card-email`);
+        const { Resend } = await import('resend');
+        const resend = new Resend(process.env.RESEND_API_KEY);
         
-        const response = await fetch(`${appUrl}/api/send-gift-card-email`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            email: pedido.email,
-            nombre: pedido.nombre,
-            codigo: codigosGiftCards.join(', '),
-            monto: montoGC,
-            fechaExpiracion: fechaExp
-          })
-        });
-        
-        const responseData = await response.json();
-        console.log('🔍 [DEBUG] Respuesta de la API:', responseData);
+        const { data: gcData } = await supabase
+          .from('gift_cards')
+          .select('fecha_expiracion, monto')
+          .in('code', codigosGiftCards)
+          .limit(1)
+          .single();
 
-        if (response.ok) {
-          console.log('✅ [DEBUG] Correo enviado exitosamente.');
+        const fechaExp = gcData?.fecha_expiracion || new Date(Date.now() + 180*24*60*60*1000).toISOString().split('T')[0];
+        const montoGC = gcData?.monto || pedido.total;
+        const fechaFormateada = new Date(fechaExp).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' });
+
+        const { error: emailError } = await resend.emails.send({
+          from: 'Mi Lienzo Decor <soporte@milienzodecor.com>',
+          to: [pedido.email],
+          subject: `🎁 ¡Tu Gift Card de Bs. ${montoGC} está lista!`,
+          html: `
+            <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f9fafb;">
+              <div style="text-align: center; margin-bottom: 30px;">
+                <h1 style="color: #4a3010; font-size: 24px; margin: 0;">¡Hola ${pedido.nombre}!</h1>
+                <p style="color: #6b7280; font-size: 16px; margin-top: 10px;">Tu pago ha sido verificado. Aquí tienes tu regalo:</p>
+              </div>
+              <div style="background: linear-gradient(135deg, #4a3010 0%, #8b5a2b 100%); border-radius: 16px; padding: 32px; color: #ffffff; text-align: center; border: 1px solid rgba(255, 215, 0, 0.3);">
+                <div style="margin-bottom: 20px;">
+                  <img src="https://milienzodecor.com/logo.png" alt="Mi Lienzo Decor" style="max-width: 150px;" />
+                  <div style="display: inline-block; background-color: rgba(255, 215, 0, 0.2); border: 1px solid rgba(255, 215, 0, 0.5); padding: 4px 16px; border-radius: 999px; font-size: 12px; font-weight: bold; color: #fef3c7; margin-top: 10px;">GIFT CARD</div>
+                </div>
+                <div style="margin: 30px 0;">
+                  <p style="margin: 0; color: #fef3c7; font-size: 12px; text-transform: uppercase; letter-spacing: 2px;">Valor de regalo</p>
+                  <h2 style="margin: 10px 0; color: #ffffff; font-size: 48px; font-weight: 800;">Bs. ${montoGC}</h2>
+                </div>
+                <div style="background-color: rgba(0, 0, 0, 0.3); border-radius: 12px; padding: 20px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                  <p style="margin: 0 0 8px 0; color: #fef3c7; font-size: 10px; text-transform: uppercase;">Código de canje</p>
+                  <p style="margin: 0 0 16px 0; color: #ffffff; font-size: 28px; font-family: monospace; font-weight: 900; letter-spacing: 3px;">${codigosGiftCards.join(', ')}</p>
+                  <p style="margin: 0 0 4px 0; color: #fef3c7; font-size: 10px; text-transform: uppercase;">Válido hasta</p>
+                  <p style="margin: 0; color: #ffffff; font-size: 14px; font-weight: 600;">${fechaFormateada}</p>
+                </div>
+              </div>
+              <div style="margin-top: 30px; text-align: center; color: #4b5563; font-size: 14px;">
+                <p>Para usarla, ingresa este código al finalizar la compra en <a href="https://milienzodecor.com" style="color: #8b5a2b; font-weight: bold;">milienzodecor.com</a></p>
+              </div>
+            </div>
+          `,
+        });
+
+        if (emailError) {
+          console.error('❌ [DEBUG] Error al enviar correo con Resend:', emailError);
         } else {
-          console.error('❌ [DEBUG] La API respondió con error.');
+          console.log('✅ [DEBUG] Correo enviado exitosamente con Resend.');
         }
       } catch (err) {
-        console.error('❌ [DEBUG] Error de red al llamar a la API:', err);
+        console.error('❌ [DEBUG] Error inesperado al enviar correo:', err);
       }
     } else {
       console.log('⚠️ [DEBUG] No se envió correo. ¿Faltan códigos o el estado anterior no era pendiente?');
