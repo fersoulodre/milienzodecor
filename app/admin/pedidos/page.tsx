@@ -192,7 +192,7 @@ export default async function AdminPedidos({ searchParams }: Props) {
     ))}
   </div>
 )}
-                    )}
+                   
 
                     {/* Comprobante de pago */}
                     <p className="font-semibold mb-2">Comprobante de pago:</p>
