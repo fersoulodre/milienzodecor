@@ -14,8 +14,11 @@ export default function CarritoPage() {
   const [email, setEmail] = useState('');
   const [nombre, setNombre] = useState('');
   const [telefono, setTelefono] = useState('');
-  const [codigoPais, setCodigoPais] = useState('+591');
   
+  // Estados para el dropdown de países
+  const [codigoPais, setCodigoPais] = useState('+591');
+  const [showCountryDropdown, setShowCountryDropdown] = useState(false);
+
   const MONTO_RESERVA = 80;
   const [metodoPago, setMetodoPago] = useState<'banco' | 'binance' | 'reserva'>('banco');
 
@@ -30,21 +33,18 @@ export default function CarritoPage() {
   const totalItems = items.length + giftCards.length;
   const [tipoCambio, setTipoCambio] = useState<number>(11.50);
 
-  const [codigoPais, setCodigoPais] = useState('+591');
-const [showCountryDropdown, setShowCountryDropdown] = useState(false);
-
-// Lista de países con códigos de banderas (usando CDN de flagcdn)
-const paises = [
-  { codigo: '+591', nombre: 'Bolivia', flag: 'bo' },
-  { codigo: '+54', nombre: 'Argentina', flag: 'ar' },
-  { codigo: '+56', nombre: 'Chile', flag: 'cl' },
-  { codigo: '+57', nombre: 'Colombia', flag: 'co' },
-  { codigo: '+593', nombre: 'Ecuador', flag: 'ec' },
-  { codigo: '+51', nombre: 'Perú', flag: 'pe' },
-  { codigo: '+52', nombre: 'México', flag: 'mx' },
-  { codigo: '+1', nombre: 'USA', flag: 'us' },
-  { codigo: '+34', nombre: 'España', flag: 'es' },
-];
+  // Lista de países con códigos de banderas (usando CDN de flagcdn)
+  const paises = [
+    { codigo: '+591', nombre: 'Bolivia', flag: 'bo' },
+    { codigo: '+54', nombre: 'Argentina', flag: 'ar' },
+    { codigo: '+56', nombre: 'Chile', flag: 'cl' },
+    { codigo: '+57', nombre: 'Colombia', flag: 'co' },
+    { codigo: '+593', nombre: 'Ecuador', flag: 'ec' },
+    { codigo: '+51', nombre: 'Perú', flag: 'pe' },
+    { codigo: '+52', nombre: 'México', flag: 'mx' },
+    { codigo: '+1', nombre: 'USA', flag: 'us' },
+    { codigo: '+34', nombre: 'España', flag: 'es' },
+  ];
 
   useEffect(() => {
     fetch('/api/tipo-cambio')
@@ -56,12 +56,12 @@ const paises = [
   }, []);
 
   useEffect(() => {
-  const handleClickOutside = () => setShowCountryDropdown(false);
-  if (showCountryDropdown) {
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
-  }
-}, [showCountryDropdown]);
+    const handleClickOutside = () => setShowCountryDropdown(false);
+    if (showCountryDropdown) {
+      document.addEventListener('click', handleClickOutside);
+      return () => document.removeEventListener('click', handleClickOutside);
+    }
+  }, [showCountryDropdown]);
 
   const montoUSDT = totalConDescuento / tipoCambio;
 
