@@ -12,29 +12,46 @@ export async function POST(request: Request) {
     // 1. CORREO PARA EL CLIENTE
     // ==========================================
     
-    // Construir lista de productos
+        // Construir lista de productos CON IMÁGENES
     let productosLista = '';
     
     if (items && items.length > 0) {
-      productosLista = items.map((item: any) => 
-        `<li style="margin-bottom: 8px;">🖼️ ${item.titulo} <span style="color: #6b7280;">- Bs. ${(item.precio || 0).toLocaleString()}</span></li>`
-      ).join('');
+      productosLista = items.map((item: any) => {
+        // Asegurar URL completa de la imagen
+        let imgUrl = item.imagen || '';
+        if (imgUrl.startsWith('/')) {
+          imgUrl = `https://milienzodecor.com${imgUrl}`;
+        }
+        
+        return `
+          <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #f3f4f6;">
+            <img src="${imgUrl}" alt="${item.titulo}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; border: 1px solid #e5e7eb;" />
+            <div style="flex: 1;">
+              <p style="margin: 0; font-weight: 600; color: #1f2937; font-size: 14px;">${item.titulo}</p>
+              <p style="margin: 5px 0 0 0; color: #4a3010; font-weight: 800; font-size: 16px;">Bs. ${(item.precio || 0).toLocaleString()}</p>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
     // Construir lista de Gift Cards
     let giftCardsLista = '';
     if (giftCards && giftCards.length > 0) {
       giftCardsLista = giftCards.map((gc: any) => 
-        `<li style="margin-bottom: 8px; color: #92400e; font-weight: 600;">🎁 Gift Card de Bs. ${gc.monto.toLocaleString()} <span style="font-size: 12px; color: #6b7280; font-weight: normal;">(Código se enviará al aprobar el pago)</span></li>`
+        `<div style="margin-bottom: 8px; padding: 10px; background-color: #fffbeb; border-left: 4px solid #f59e0b; border-radius: 4px;">
+          <p style="margin: 0; color: #92400e; font-weight: 600;">🎁 Gift Card de Bs. ${gc.monto.toLocaleString()}</p>
+          <p style="margin: 3px 0 0 0; font-size: 12px; color: #6b7280;">Código se enviará al aprobar el pago</p>
+        </div>`
       ).join('');
     }
 
-    // Combinar: si hay gift cards pero no productos, mostrar solo gift cards
+    // Combinar listas
     let listaFinal = '';
     if (productosLista && giftCardsLista) {
-      listaFinal = `${productosLista}<li style="margin-top: 15px; border-top: 1px dashed #e5e7eb; padding-top: 15px; font-weight: bold;">🎁 Gift Cards incluidas:</li>${giftCardsLista}`;
+      listaFinal = `${productosLista}<div style="margin-top: 20px; padding-top: 15px; border-top: 2px dashed #e5e7eb;"><p style="font-weight: bold; margin-bottom: 10px; color: #4a3010;">🎁 Gift Cards incluidas:</p>${giftCardsLista}</div>`;
     } else if (giftCardsLista) {
-      listaFinal = `<li style="font-weight: bold; margin-bottom: 10px;">🎁 Gift Cards compradas:</li>${giftCardsLista}`;
+      listaFinal = `<p style="font-weight: bold; margin-bottom: 10px; color: #4a3010;"> Gift Cards compradas:</p>${giftCardsLista}`;
     } else if (productosLista) {
       listaFinal = productosLista;
     } else {
