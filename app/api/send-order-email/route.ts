@@ -51,7 +51,7 @@ export async function POST(request: Request) {
           <h3 style="color: #4a3010; border-bottom: 2px solid #f59e0b; padding-bottom: 8px; margin-top: 0;">📦 Resumen de tu pedido:</h3>
           <ul style="list-style: none; padding: 0; margin: 0;">${listaFinal}</ul>
           <div style="margin-top: 25px; text-align: right; border-top: 2px solid #4a3010; padding-top: 15px;">
-            <p style="margin: 0; font-size: 14px; color: #6b7280;">Total a pagar:</p>
+            <p style="margin: 0; font-size: 14px; color: #6b7280;">Total del pedido:</p>
             <p style="margin: 5px 0 0 0; font-size: 28px; font-weight: 800; color: #4a3010;">Bs. ${total.toLocaleString()}</p>
           </div>
         </div>
