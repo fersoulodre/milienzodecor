@@ -48,12 +48,19 @@ export default async function AdminPedidos({ searchParams }: Props) {
       <div className="max-w-6xl mx-auto">
         <h1 className="text-3xl font-bold mb-8 text-gray-800">Panel de Administración - Comprobantes</h1>
 
-        <div className="flex gap-4 mb-8">
+        <div className="flex flex-wrap gap-4 mb-8">
   <Link 
     href="/admin/gift-cards" 
-    className="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
+    className="bg-purple-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-purple-700 transition-colors flex items-center gap-2"
   >
     🎁 Gestionar Gift Cards
+  </Link>
+  
+  <Link 
+    href="/admin/estadisticas" 
+    className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center gap-2"
+  >
+    📦 Ver Stock / Inventario
   </Link>
 </div>
 
