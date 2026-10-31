@@ -11,13 +11,35 @@ export async function POST(request: Request) {
     // ==========================================
     // 1. CORREO PARA EL CLIENTE
     // ==========================================
-    const productosLista = items && items.length > 0 
-      ? items.map((item: any) => `<li style="margin-bottom: 8px;">🖼️ ${item.titulo} <span style="color: #6b7280;">- Bs. ${(item.precio || 0).toLocaleString()}</span></li>`).join('')
-      : '<li>No hay productos</li>';
+    
+    // Construir lista de productos
+    let productosLista = '';
+    
+    if (items && items.length > 0) {
+      productosLista = items.map((item: any) => 
+        `<li style="margin-bottom: 8px;">🖼️ ${item.titulo} <span style="color: #6b7280;">- Bs. ${(item.precio || 0).toLocaleString()}</span></li>`
+      ).join('');
+    }
 
-    const giftCardsLista = giftCards && giftCards.length > 0
-      ? giftCards.map((gc: any) => `<li style="margin-bottom: 8px; color: #92400e;">🎁 Gift Card de Bs. ${gc.monto.toLocaleString()} <span style="font-size: 12px; color: #6b7280;">(Código se enviará al aprobar el pago)</span></li>`).join('')
-      : '';
+    // Construir lista de Gift Cards
+    let giftCardsLista = '';
+    if (giftCards && giftCards.length > 0) {
+      giftCardsLista = giftCards.map((gc: any) => 
+        `<li style="margin-bottom: 8px; color: #92400e; font-weight: 600;">🎁 Gift Card de Bs. ${gc.monto.toLocaleString()} <span style="font-size: 12px; color: #6b7280; font-weight: normal;">(Código se enviará al aprobar el pago)</span></li>`
+      ).join('');
+    }
+
+    // Combinar: si hay gift cards pero no productos, mostrar solo gift cards
+    let listaFinal = '';
+    if (productosLista && giftCardsLista) {
+      listaFinal = `${productosLista}<li style="margin-top: 15px; border-top: 1px dashed #e5e7eb; padding-top: 15px; font-weight: bold;">🎁 Gift Cards incluidas:</li>${giftCardsLista}`;
+    } else if (giftCardsLista) {
+      listaFinal = `<li style="font-weight: bold; margin-bottom: 10px;">🎁 Gift Cards compradas:</li>${giftCardsLista}`;
+    } else if (productosLista) {
+      listaFinal = productosLista;
+    } else {
+      listaFinal = '<li style="color: #9ca3af;">No hay productos</li>';
+    }
 
     const htmlCliente = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; color: #333; background-color: #f9fafb; border-radius: 12px;">
@@ -27,7 +49,7 @@ export async function POST(request: Request) {
         </div>
         <div style="background-color: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e5e7eb;">
           <h3 style="color: #4a3010; border-bottom: 2px solid #f59e0b; padding-bottom: 8px; margin-top: 0;">📦 Resumen de tu pedido:</h3>
-          <ul style="list-style: none; padding: 0; margin: 0;">${productosLista}${giftCardsLista ? `<li style="margin-top: 15px; border-top: 1px dashed #e5e7eb; padding-top: 15px; font-weight: bold;">${giftCardsLista}</li>` : ''}</ul>
+          <ul style="list-style: none; padding: 0; margin: 0;">${listaFinal}</ul>
           <div style="margin-top: 25px; text-align: right; border-top: 2px solid #4a3010; padding-top: 15px;">
             <p style="margin: 0; font-size: 14px; color: #6b7280;">Total a pagar:</p>
             <p style="margin: 5px 0 0 0; font-size: 28px; font-weight: 800; color: #4a3010;">Bs. ${total.toLocaleString()}</p>
