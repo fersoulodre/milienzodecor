@@ -142,7 +142,7 @@ export default async function AdminPedidos({ searchParams }: Props) {
                     )}
 
                     {/* Comprobante de pago */}
-                    <p className="font-semibold mb-2">Comprobante de pago:</p>
+                    <p className="font-semibold mb-2">Comprobante de pagos:</p>
                     {pedido.comprobante_url ? (
                       pedido.comprobante_url.endsWith('.pdf') ? (
                         <a href={pedido.comprobante_url} target="_blank" rel="noopener noreferrer" className="text-blue-600 underline block mb-2 text-sm">
