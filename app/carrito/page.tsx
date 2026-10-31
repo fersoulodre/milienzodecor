@@ -30,6 +30,22 @@ export default function CarritoPage() {
   const totalItems = items.length + giftCards.length;
   const [tipoCambio, setTipoCambio] = useState<number>(11.50);
 
+  const [codigoPais, setCodigoPais] = useState('+591');
+const [showCountryDropdown, setShowCountryDropdown] = useState(false);
+
+// Lista de países con códigos de banderas (usando CDN de flagcdn)
+const paises = [
+  { codigo: '+591', nombre: 'Bolivia', flag: 'bo' },
+  { codigo: '+54', nombre: 'Argentina', flag: 'ar' },
+  { codigo: '+56', nombre: 'Chile', flag: 'cl' },
+  { codigo: '+57', nombre: 'Colombia', flag: 'co' },
+  { codigo: '+593', nombre: 'Ecuador', flag: 'ec' },
+  { codigo: '+51', nombre: 'Perú', flag: 'pe' },
+  { codigo: '+52', nombre: 'México', flag: 'mx' },
+  { codigo: '+1', nombre: 'USA', flag: 'us' },
+  { codigo: '+34', nombre: 'España', flag: 'es' },
+];
+
   useEffect(() => {
     fetch('/api/tipo-cambio')
       .then(res => res.json())
@@ -38,6 +54,14 @@ export default function CarritoPage() {
       })
       .catch(() => setTipoCambio(8.50));
   }, []);
+
+  useEffect(() => {
+  const handleClickOutside = () => setShowCountryDropdown(false);
+  if (showCountryDropdown) {
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }
+}, [showCountryDropdown]);
 
   const montoUSDT = totalConDescuento / tipoCambio;
 
@@ -167,21 +191,64 @@ export default function CarritoPage() {
             
             {/* SELECTOR DE PAÍS CON BANDERAS NATIVAS (100% compatible) */}
             <div className="flex gap-2 md:col-span-2">
-              <select
-  value={codigoPais}
-  onChange={(e) => setCodigoPais(e.target.value)}
-  className="border-2 border-gray-300 rounded-lg p-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white cursor-pointer"
->
-  <option value="+591">🇧🇴 Bolivia +591</option>
-  <option value="+54">🇦🇷 Argentina +54</option>
-  <option value="+56">🇨🇱 Chile +56</option>
-  <option value="+57">🇨🇴 Colombia +57</option>
-  <option value="+593">🇪🇨 Ecuador +593</option>
-  <option value="+51">🇵🇪 Perú +51</option>
-  <option value="+52">🇲🇽 México +52</option>
-  <option value="+1">🇺🇸 USA +1</option>
-  <option value="+34">🇪🇸 España +34</option>
-</select>
+              {/* SELECTOR DE PAÍS PERSONALIZADO CON BANDERAS REALES */}
+<div className="flex gap-2 md:col-span-2">
+  <div className="relative" onClick={(e) => e.stopPropagation()}>
+    <button
+      type="button"
+      onClick={() => setShowCountryDropdown(!showCountryDropdown)}
+      className="border-2 border-gray-300 rounded-lg p-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white cursor-pointer flex items-center gap-2 min-w-[140px]"
+    >
+      <img 
+        src={`https://flagcdn.com/w40/${paises.find(p => p.codigo === codigoPais)?.flag}.png`} 
+        alt="Bandera" 
+        className="w-6 h-auto rounded shadow-sm"
+      />
+      <span>{paises.find(p => p.codigo === codigoPais)?.nombre}</span>
+      <svg className="w-4 h-4 ml-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+
+    {/* Dropdown desplegable */}
+    {showCountryDropdown && (
+      <div className="absolute z-50 mt-2 w-full bg-white border-2 border-gray-300 rounded-lg shadow-xl max-h-60 overflow-auto">
+        {paises.map((pais) => (
+          <button
+            key={pais.codigo}
+            type="button"
+            onClick={() => {
+              setCodigoPais(pais.codigo);
+              setShowCountryDropdown(false);
+            }}
+            className={`w-full flex items-center gap-3 px-3 py-2 hover:bg-gray-100 transition-colors cursor-pointer ${codigoPais === pais.codigo ? 'bg-blue-50' : ''}`}
+          >
+            <img 
+              src={`https://flagcdn.com/w40/${pais.flag}.png`} 
+              alt={pais.nombre} 
+              className="w-6 h-auto rounded shadow-sm"
+            />
+            <span className="font-semibold text-sm">{pais.nombre}</span>
+            <span className="text-gray-500 text-xs ml-auto">{pais.codigo}</span>
+            {codigoPais === pais.codigo && (
+              <svg className="w-4 h-4 text-blue-600 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+              </svg>
+            )}
+          </button>
+        ))}
+      </div>
+    )}
+  </div>
+
+  <input
+    type="tel"
+    value={telefono}
+    onChange={(e) => setTelefono(e.target.value)}
+    placeholder="Tu número de WhatsApp (opcional)"
+    className="border-2 border-gray-300 rounded-lg p-2 text-sm font-medium flex-1 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+  />
+</div>
               <input
                 type="tel"
                 value={telefono}
