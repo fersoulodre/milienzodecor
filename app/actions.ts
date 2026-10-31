@@ -1,5 +1,12 @@
 'use server';
 import { supabase } from '@/lib/supabase';
+import { createClient } from '@supabase/supabase-js';
+
+// Cliente Admin con permisos totales (ignora RLS)
+const supabaseAdmin = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+);
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 
@@ -13,7 +20,7 @@ export async function generateGiftCardCode(monto: number, imagen: string, diasVa
 
    const tipo = diasValidez <= 60 ? 'promocional' : 'comprada';
   
-  const { data, error } = await supabase
+  const { data, error } = await supabaseAdmin 
     .from('gift_cards')
     .insert([{ code, monto, imagen, used: false, fecha_expiracion: fechaStr, tipo }])
     .select()
@@ -27,7 +34,7 @@ export async function generateGiftCardCode(monto: number, imagen: string, diasVa
 }
 
 export async function validateGiftCardCode(code: string) {
-  const { data: card, error } = await supabase
+  const { data: card, error } = await supabaseAdmin
     .from('gift_cards')
     .select('*')
     .eq('code', code)
