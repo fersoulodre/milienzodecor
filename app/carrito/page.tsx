@@ -252,15 +252,16 @@ export default function CarritoPage() {
 )}
   </div>
 
-  <input
-    type="tel"
-    value={telefono}
-    onChange={(e) => setTelefono(e.target.value)}
-    placeholder="Tu número de WhatsApp (opcional)"
-    className="border-2 border-gray-300 rounded-lg p-2 text-sm font-medium flex-1 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
-  />
+  
 </div>
-              
+              <input
+                type="tel"
+                value={telefono}
+                onChange={(e) => setTelefono(e.target.value)}
+                placeholder="Tu número de WhatsApp (opcional)"
+                className="border-2 border-gray-300 rounded-lg p-2 text-sm font-medium flex-1 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              />
+            </div>
           </div>
         </div>
 
