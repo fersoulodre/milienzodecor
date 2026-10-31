@@ -1,3 +1,4 @@
+'use client';
 import { createClient } from '@supabase/supabase-js';
 import { redirect } from 'next/navigation';
 import { actualizarTipoCambio, manejarEstadoPedido } from '@/app/actions';
