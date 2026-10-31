@@ -43,6 +43,23 @@ export default async function AdminPedidos({ searchParams }: Props) {
 
   if (error) return <div className="p-8 text-red-600">Error al cargar pedidos: {error.message}</div>;
 
+  const descargarTarjeta = async (elementId: string, codigo: string) => {
+  const element = document.getElementById(elementId);
+  if (!element) return;
+
+  try {
+    const { toPng } = await import('html-to-image');
+    const dataUrl = await toPng(element, { cacheBust: true, pixelRatio: 2 });
+    const link = document.createElement('a');
+    link.download = `GiftCard-${codigo}.png`;
+    link.href = dataUrl;
+    link.click();
+  } catch (err) {
+    console.error('Error al descargar:', err);
+    alert('No se pudo descargar la imagen');
+  }
+};
+
   return (
     <div className="min-h-screen bg-gray-100 p-8">
       <div className="max-w-6xl mx-auto">
@@ -192,7 +209,6 @@ export default async function AdminPedidos({ searchParams }: Props) {
     ))}
   </div>
 )}
-                   
 
                     {/* Comprobante de pago */}
                     <p className="font-semibold mb-2">Comprobante de pago:</p>
