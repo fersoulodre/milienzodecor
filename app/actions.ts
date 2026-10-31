@@ -229,7 +229,7 @@ export async function manejarEstadoPedido(formData: FormData) {
         // Determinar el asunto según el contenido
 let asunto = '';
 if (codigosGiftCards.length > 0 && items.length > 0) {
-  asunto = `✅ Pedido #${id} Confirmado - Gift Card y Productos`;
+  asunto = `✅ Pedido #${id} Confirmado - Pintura y Gift Card`;
 } else if (codigosGiftCards.length > 0) {
   asunto = `🎁 ¡Tu Gift Card de Bs. ${pedido.total} está lista!`;
 } else {
