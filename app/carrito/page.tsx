@@ -168,20 +168,20 @@ export default function CarritoPage() {
             {/* SELECTOR DE PAÍS CON BANDERAS NATIVAS (100% compatible) */}
             <div className="flex gap-2 md:col-span-2">
               <select
-                value={codigoPais}
-                onChange={(e) => setCodigoPais(e.target.value)}
-                className="border-2 border-gray-300 rounded-lg p-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white cursor-pointer"
-              >
-                <option value="+591">🇧🇴 Bolivia +591</option>
-                <option value="+54">🇦🇷 Argentina +54</option>
-                <option value="+56">🇨🇱 Chile +56</option>
-                <option value="+57">🇨🇴 Colombia +57</option>
-                <option value="+593">🇪🇨 Ecuador +593</option>
-                <option value="+51">🇵🇪 Perú +51</option>
-                <option value="+52">🇲🇽 México +52</option>
-                <option value="+1">🇺🇸 USA +1</option>
-                <option value="+34">🇪🇸 España +34</option>
-              </select>
+  value={codigoPais}
+  onChange={(e) => setCodigoPais(e.target.value)}
+  className="border-2 border-gray-300 rounded-lg p-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white cursor-pointer"
+>
+  <option value="+591">🇧🇴 Bolivia +591</option>
+  <option value="+54">🇦🇷 Argentina +54</option>
+  <option value="+56">🇨🇱 Chile +56</option>
+  <option value="+57">🇨🇴 Colombia +57</option>
+  <option value="+593">🇪🇨 Ecuador +593</option>
+  <option value="+51">🇵🇪 Perú +51</option>
+  <option value="+52">🇲🇽 México +52</option>
+  <option value="+1">🇺🇸 USA +1</option>
+  <option value="+34">🇪🇸 España +34</option>
+</select>
               <input
                 type="tel"
                 value={telefono}
