@@ -190,7 +190,7 @@ export default function CarritoPage() {
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Tu correo electrónico *" className="border border-gray-300 rounded p-2 text-sm w-full" required />
             
             {/* SELECTOR DE PAÍS CON BANDERAS NATIVAS (100% compatible) */}
-            <div className="flex gap-2 md:col-span-2">
+            <div className="flex gap-2">
               {/* SELECTOR DE PAÍS PERSONALIZADO CON BANDERAS REALES */}
 <div className="flex gap-2 md:col-span-2">
   <div className="relative" onClick={(e) => e.stopPropagation()}>
@@ -442,7 +442,7 @@ export default function CarritoPage() {
             </div>
           </div>
 
-          <button onClick={finalizarCompra} disabled={procesando} className="w-full cursor-pointer bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 mt-4 disabled:bg-gray-400">
+          <button onClick={finalizarCompra} disabled={procesando} className="cursor-pointer bg-blue-600 text-white py-3 px-8 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 mt-4 disabled:bg-gray-400 mx-auto">
             {procesando ? 'Procesando...' : (
               <> 
                 <span>2. Ya pagué </span> 
