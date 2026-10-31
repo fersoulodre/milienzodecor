@@ -8,7 +8,7 @@ export async function POST(request: Request) {
     const { email, nombre, codigo, monto, fechaExpiracion } = await request.json();
 
     await resend.emails.send({
-      from: 'Mi Lienzo Decor <soporte@milienzodecor.com>',
+         from: 'Mi Lienzo Decor <onboarding@resend.dev>',
       to: [email],
       subject: `🎁 ¡Tu Gift Card de Bs. ${monto} está lista!`,
       html: `

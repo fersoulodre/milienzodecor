@@ -142,7 +142,7 @@ export async function manejarEstadoPedido(formData: FormData) {
   const id = formData.get('id') as string;
   const nuevoEstado = formData.get('estado') as string;
   
-  // 1. Obtener el pedido actual para ver sus detalles
+  // 1. Obtener el pedido actual
   const { data: pedido } = await supabase
     .from('pedidos')
     .select('*')
@@ -151,43 +151,53 @@ export async function manejarEstadoPedido(formData: FormData) {
 
   let detallesActualizados = pedido?.detalles || {};
 
-  // 2. Si se aprueba el pago y el pedido contiene una Gift Card, generamos el código
-  if ((nuevoEstado === 'pagado' || nuevoEstado === 'aprobado' || nuevoEstado === 'verificado') && pedido?.detalles?.items) {
-    const gcItem = pedido.detalles.items.find((item: any) => item.tipo === 'giftcard' || (item.nombre && item.nombre.toLowerCase().includes('gift card')));
+  // 2. Si se aprueba el pago
+  if (nuevoEstado === 'pagado' || nuevoEstado === 'aprobado' || nuevoEstado === 'verificado') {
     
-    // Si es una gift card y aún no tiene código generado
-    if (gcItem && !detallesActualizados.giftCardCode) {
-      const monto = gcItem.monto || gcItem.precio || 100;
-      const imagen = gcItem.imagen || '/images/giftcard-default.jpg';
+    // Verificamos si el pedido tiene Gift Cards y si el estado anterior era pendiente
+    const codigosGiftCards = detallesActualizados.giftCards || [];
+    const estadoAnterior = pedido?.estado;
+
+    if (codigosGiftCards.length > 0 && (estadoAnterior === 'pendiente_pago' || estadoAnterior === 'pendiente_verificacion')) {
       
-      // Llamamos a la función que ya tienes para generar el código
-            // 1. Capturamos tanto el código como la fecha de expiración que retorna la función
-      const { code, fechaExpiracion } = await generateGiftCardCode(monto, imagen, 180);
-      
-      if (code) {
-        detallesActualizados.giftCardCode = code;
+      // Obtenemos la fecha de expiración real desde la base de datos para el correo
+      const { data: gcData } = await supabase
+        .from('gift_cards')
+        .select('fecha_expiracion, monto')
+        .in('code', codigosGiftCards)
+        .limit(1)
+        .single();
+
+      const fechaExp = gcData?.fecha_expiracion || new Date(Date.now() + 180*24*60*60*1000).toISOString().split('T')[0];
+      const montoGC = gcData?.monto || pedido.total;
+
+      // 📧 Enviar correo automático al cliente
+      try {
+        const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'https://milienzodecor.com';
+        const response = await fetch(`${appUrl}/api/send-gift-card-email`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: pedido.email,
+            nombre: pedido.nombre,
+            codigo: codigosGiftCards.join(', '),
+            monto: montoGC,
+            fechaExpiracion: fechaExp
+          })
+        });
         
-        // 📧 Enviar correo automático al cliente
-        try {
-          await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'https://milienzodecor.com'}/api/send-gift-card-email`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              email: pedido.email,
-              nombre: pedido.nombre,
-              codigo: code,
-              monto: monto,
-              fechaExpiracion: fechaExpiracion // <--- CORREGIDO: usamos la variable retornada
-            })
-          });
-        } catch (err) {
-          console.error('No se pudo enviar el correo automático:', err);
+        if (response.ok) {
+          console.log('✅ Correo de Gift Card enviado exitosamente a:', pedido.email);
+        } else {
+          console.error('❌ La API de correo respondió con error:', await response.text());
         }
+      } catch (err) {
+        console.error('❌ Error de red al enviar el correo:', err);
       }
     }
   }
 
-  // 3. Actualizar el estado y guardar los detalles (con el nuevo código si aplica)
+  // 3. Actualizar el estado del pedido
   await supabase
     .from('pedidos')
     .update({ 
