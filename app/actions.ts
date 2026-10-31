@@ -211,17 +211,31 @@ export async function manejarEstadoPedido(formData: FormData) {
           `;
         }
 
-        // 2. Sección de Productos/Cuadros (si los hay)
+                // 2. Sección de Productos/Cuadros (si los hay)
         let seccionProductos = '';
         if (items.length > 0) {
-          const productosLista = items.map((item: any) => 
-            `<li style="margin-bottom: 8px;">🖼️ ${item.titulo} <span style="color: #6b7280;">- Bs. ${(item.precio || 0).toLocaleString()}</span></li>`
-          ).join('');
+          const productosLista = items.map((item: any) => {
+            // Aseguramos que la imagen tenga la URL completa para que Gmail pueda mostrarla
+            let imgUrl = item.imagen || '';
+            if (imgUrl.startsWith('/')) {
+              imgUrl = `https://milienzodecor.com${imgUrl}`;
+            }
+
+            return `
+              <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #f3f4f6;">
+                <img src="${imgUrl}" alt="${item.titulo}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; border: 1px solid #e5e7eb;" />
+                <div style="flex: 1;">
+                  <p style="margin: 0; font-weight: bold; color: #1f2937; font-size: 14px;">${item.titulo}</p>
+                  <p style="margin: 5px 0 0 0; color: #4a3010; font-weight: 800; font-size: 16px;">Bs. ${(item.precio || 0).toLocaleString()}</p>
+                </div>
+              </div>
+            `;
+          }).join('');
           
           seccionProductos = `
             <div style="background-color: #ffffff; padding: 25px; border-radius: 12px; border: 1px solid #e5e7eb; margin-top: 20px;">
-              <h3 style="color: #4a3010; border-bottom: 2px solid #f59e0b; padding-bottom: 8px; margin-top: 0;">📦 Productos en tu pedido:</h3>
-              <ul style="list-style: none; padding: 0; margin: 0;">${productosLista}</ul>
+              <h3 style="color: #4a3010; border-bottom: 2px solid #f59e0b; padding-bottom: 8px; margin-top: 0; margin-bottom: 15px;">📦 Productos en tu pedido:</h3>
+              ${productosLista}
             </div>
           `;
         }
