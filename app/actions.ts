@@ -161,9 +161,10 @@ export async function manejarEstadoPedido(formData: FormData) {
       const imagen = gcItem.imagen || '/images/giftcard-default.jpg';
       
       // Llamamos a la función que ya tienes para generar el código
-      const { code } = await generateGiftCardCode(monto, imagen, 180);
+            // 1. Capturamos tanto el código como la fecha de expiración que retorna la función
+      const { code, fechaExpiracion } = await generateGiftCardCode(monto, imagen, 180);
       
-            if (code) {
+      if (code) {
         detallesActualizados.giftCardCode = code;
         
         // 📧 Enviar correo automático al cliente
@@ -176,7 +177,7 @@ export async function manejarEstadoPedido(formData: FormData) {
               nombre: pedido.nombre,
               codigo: code,
               monto: monto,
-              fechaExpiracion: fechaStr // Asegúrate de que generateGiftCardCode retorne esto
+              fechaExpiracion: fechaExpiracion // <--- CORREGIDO: usamos la variable retornada
             })
           });
         } catch (err) {
