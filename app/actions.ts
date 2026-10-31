@@ -246,8 +246,9 @@ export async function manejarEstadoPedido(formData: FormData) {
                 <p style="color: #6b7280; font-size: 16px; margin-top: 10px;">Tu pago ha sido verificado exitosamente.</p>
               </div>
               
-              ${seccionGiftCards}
               ${seccionProductos}
+              ${seccionGiftCards}
+
               
               <div style="margin-top: 25px; text-align: right; border-top: 2px solid #4a3010; padding-top: 15px;">
                 <p style="margin: 0; font-size: 14px; color: #6b7280;">Total pagado:</p>
