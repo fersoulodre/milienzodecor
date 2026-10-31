@@ -197,7 +197,7 @@ export default function CarritoPage() {
     <button
       type="button"
       onClick={() => setShowCountryDropdown(!showCountryDropdown)}
-      className="border-2 border-gray-300 rounded-lg p-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white cursor-pointer flex items-center gap-2 min-w-[140px]"
+       className="border-2 border-gray-300 rounded-lg p-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white cursor-pointer flex items-center gap-2 w-[130px]"
     >
       <img 
         src={`https://flagcdn.com/w40/${paises.find(p => p.codigo === codigoPais)?.flag}.png`} 
@@ -216,7 +216,7 @@ export default function CarritoPage() {
     className="absolute z-[9999] mt-2 w-full rounded-lg shadow-2xl max-h-60 overflow-auto border-2 border-gray-300"
     style={{ 
       backgroundColor: 'white',
-      minWidth: '280px',
+      minWidth: '130px',
       boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
     }}
   >
