@@ -212,31 +212,42 @@ export default function CarritoPage() {
 
     {/* Dropdown desplegable */}
     {showCountryDropdown && (
-  <div className="absolute z-50 mt-2 w-full bg-white border-2 border-gray-300 rounded-lg shadow-xl max-h-60 overflow-auto" style={{ minWidth: '280px' }}>
-    {paises.map((pais) => (
-      <button
-        key={pais.codigo}
-        type="button"
-        onClick={() => {
-          setCodigoPais(pais.codigo);
-          setShowCountryDropdown(false);
-        }}
-        className={`w-full flex items-center gap-3 px-3 py-2 hover:bg-gray-100 transition-colors cursor-pointer ${codigoPais === pais.codigo ? 'bg-blue-50' : ''}`}
-      >
-        <img 
-          src={`https://flagcdn.com/w40/${pais.flag}.png`} 
-          alt={pais.nombre} 
-          className="w-6 h-auto rounded shadow-sm flex-shrink-0"
-        />
-        <span className="font-semibold text-sm text-gray-800">{pais.nombre}</span>
-        <span className="text-gray-500 text-xs ml-auto">{pais.codigo}</span>
-        {codigoPais === pais.codigo && (
-          <svg className="w-4 h-4 text-blue-600 ml-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-          </svg>
-        )}
-      </button>
-    ))}
+  <div 
+    className="absolute z-[9999] mt-2 w-full rounded-lg shadow-2xl max-h-60 overflow-auto border-2 border-gray-300"
+    style={{ 
+      backgroundColor: 'white',
+      minWidth: '280px',
+      boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)'
+    }}
+  >
+    <div className="bg-white rounded-lg p-1">
+      {paises.map((pais) => (
+        <button
+          key={pais.codigo}
+          type="button"
+          onClick={() => {
+            setCodigoPais(pais.codigo);
+            setShowCountryDropdown(false);
+          }}
+          className={`w-full flex items-center gap-3 px-3 py-2 rounded-md transition-colors cursor-pointer ${codigoPais === pais.codigo ? 'bg-blue-50' : 'hover:bg-gray-100'}`}
+          style={{ backgroundColor: codigoPais === pais.codigo ? '#eff6ff' : 'transparent' }}
+        >
+          <img 
+            src={`https://flagcdn.com/w40/${pais.flag}.png`} 
+            alt={pais.nombre} 
+            className="w-6 h-auto rounded shadow-sm"
+            style={{ flexShrink: 0 }}
+          />
+          <span className="font-semibold text-sm text-gray-900">{pais.nombre}</span>
+          <span className="text-gray-500 text-xs ml-auto">{pais.codigo}</span>
+          {codigoPais === pais.codigo && (
+            <svg className="w-4 h-4 text-blue-600 ml-2" fill="currentColor" viewBox="0 0 20 20" style={{ flexShrink: 0 }}>
+              <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
+            </svg>
+          )}
+        </button>
+      ))}
+    </div>
   </div>
 )}
   </div>
