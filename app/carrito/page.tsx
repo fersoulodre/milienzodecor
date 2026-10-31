@@ -5,6 +5,7 @@ import { getConfig } from '@/lib/productos';
 import { useState, useEffect } from 'react';
 import { generateGiftCardCode, validateGiftCardCode, crearPedido } from '@/app/actions';
 import { useRouter } from 'next/navigation';
+import ReactCountryFlag from 'react-country-flag';
 
 export default function CarritoPage() {
   const { items, giftCards, removeFromCart, removeGiftCard, clearCart, total } = useCart();
@@ -176,22 +177,45 @@ export default function CarritoPage() {
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Tu correo electrónico *" className="border border-gray-300 rounded p-2 text-sm w-full" required />
             <div className="flex gap-2 md:col-span-2">
   <select
-    value={codigoPais}
-    onChange={(e) => setCodigoPais(e.target.value)}
-    className="border border-gray-300 rounded p-2 text-sm w-28 focus:outline-none focus:ring-2 focus:ring-amber-500"
-  >
-    <option value="+591">🇧🇴 +591</option>
-    <option value="+54">🇦🇷 +54</option>
-    <option value="+56">🇨🇱 +56</option>
-    <option value="+57">🇨🇴 +57</option>
-    <option value="+593">🇪🇨 +593</option>
-    <option value="+51">🇵🇪 +51</option>
-    <option value="+52">🇲🇽 +52</option>
-    <option value="+1">🇺🇸 +1</option>
-    <option value="+34">🇪🇸 +34</option>
-  </select>
-  <input type="tel" value={telefono} onChange={(e) => setTelefono(e.target.value)} placeholder="Tu número de WhatsApp (opcional)" className="border border-gray-300 rounded p-2 text-sm flex-1 focus:outline-none focus:ring-2 focus:ring-amber-500" />
-</div>
+  value={codigoPais}
+  onChange={(e) => setCodigoPais(e.target.value)}
+  className="border-2 border-gray-300 rounded-lg p-2 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white cursor-pointer"
+>
+  <option value="+591">
+    <ReactCountryFlag countryCode="BO" svg /> Bolivia +591
+  </option>
+  <option value="+54">
+    <ReactCountryFlag countryCode="AR" svg /> Argentina +54
+  </option>
+  <option value="+56">
+    <ReactCountryFlag countryCode="CL" svg /> Chile +56
+  </option>
+  <option value="+57">
+    <ReactCountryFlag countryCode="CO" svg /> Colombia +57
+  </option>
+  <option value="+593">
+    <ReactCountryFlag countryCode="EC" svg /> Ecuador +593
+  </option>
+  <option value="+51">
+    <ReactCountryFlag countryCode="PE" svg /> Perú +51
+  </option>
+  <option value="+52">
+    <ReactCountryFlag countryCode="MX" svg /> México +52
+  </option>
+  <option value="+1">
+    <ReactCountryFlag countryCode="US" svg /> USA +1
+  </option>
+  <option value="+34">
+    <ReactCountryFlag countryCode="ES" svg /> España +34
+  </option>
+</select>
+  <input
+  type="tel"
+  value={telefono}
+  onChange={(e) => setTelefono(e.target.value)}
+  placeholder="Tu número de WhatsApp (opcional)"
+  className="border-2 border-gray-300 rounded-lg p-2 text-sm font-medium flex-1 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+/>
           </div>
         </div>
 
