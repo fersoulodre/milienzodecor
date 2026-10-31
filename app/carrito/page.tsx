@@ -5,7 +5,6 @@ import { getConfig } from '@/lib/productos';
 import { useState, useEffect } from 'react';
 import { generateGiftCardCode, validateGiftCardCode, crearPedido } from '@/app/actions';
 import { useRouter } from 'next/navigation';
-import ReactCountryFlag from 'react-country-flag';
 
 export default function CarritoPage() {
   const { items, giftCards, removeFromCart, removeGiftCard, clearCart, total } = useCart();
@@ -41,17 +40,14 @@ export default function CarritoPage() {
   }, []);
 
   const montoUSDT = totalConDescuento / tipoCambio;
-    // Función para formatear la fecha (ej: "31 Dic 2024")
- 
 
-  // Función para calcular la fecha de expiración (hoy + 30 días)
   const calcularFechaExpiracion = () => {
     const hoy = new Date();
     const fechaExp = new Date(hoy);
     fechaExp.setDate(hoy.getDate() + 30);
     return fechaExp.toISOString().split('T')[0];
   };
-  // Función para formatear la fecha
+
   const formatearFecha = (fechaString: string) => {
     if (!fechaString) return '';
     const fecha = new Date(fechaString);
@@ -74,7 +70,7 @@ export default function CarritoPage() {
     setApplyingCode(false);
   };
 
-    const finalizarCompra = async () => {
+  const finalizarCompra = async () => {
     if (!email || !nombre) {
       alert('Por favor, ingresa tu nombre y correo electrónico para continuar.');
       return;
@@ -83,7 +79,6 @@ export default function CarritoPage() {
     setProcesando(true);
 
     try {
-      // 1. Generar códigos de Gift Card si las hay en el carrito
       let codigosGenerados: string[] = [];
       if (giftCards.length > 0) {
         for (const gc of giftCards) {
@@ -94,13 +89,11 @@ export default function CarritoPage() {
         }
       }
 
-      // 2. Determinar el método de pago correcto (Corregido para incluir 'reserva')
       const metodoPagoFinal = 
         metodoPago === 'banco' ? 'transferencia_banco' : 
         metodoPago === 'reserva' ? 'reserva_contra_entrega' : 
         'binance_pay';
 
-      // 3. Crear el pedido en la base de datos
       const respuesta = await crearPedido({
         email,
         nombre,
@@ -110,7 +103,6 @@ export default function CarritoPage() {
         detalles: { items, giftCards: codigosGenerados, discount }
       });
 
-      // 4. Si se creó exitosamente
       if (respuesta.success && respuesta.pedidoId) {
         try {
           await fetch('/api/send-order-email', {
@@ -131,18 +123,15 @@ export default function CarritoPage() {
           console.error('No se pudo enviar el correo, pero el pedido se guardó:', error);
         }
 
-        // ✅ Limpiar carrito y redirigir
         sessionStorage.setItem('email_compra', email);
         clearCart();
         router.push(`/subir-comprobante?pedido=${respuesta.pedidoId}`);
       } else {
-        // ❌ Mostrar el error exacto que devuelve la base de datos
         console.error('Error al crear pedido:', respuesta);
         alert(`Hubo un error al procesar tu pedido: ${respuesta.error || 'Intenta de nuevo.'}`);
         setProcesando(false);
       }
     } catch (error) {
-      // ❌ Capturar cualquier error inesperado del sistema
       console.error('Error inesperado en finalizarCompra:', error);
       alert('Ocurrió un error inesperado. Revisa la consola del navegador (F12) para más detalles.');
       setProcesando(false);
@@ -175,47 +164,32 @@ export default function CarritoPage() {
           <div className="grid md:grid-cols-2 gap-4">
             <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} placeholder="Tu nombre completo *" className="border border-gray-300 rounded p-2 text-sm w-full" required />
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Tu correo electrónico *" className="border border-gray-300 rounded p-2 text-sm w-full" required />
+            
+            {/* SELECTOR DE PAÍS CON BANDERAS NATIVAS (100% compatible) */}
             <div className="flex gap-2 md:col-span-2">
-  <select
-  value={codigoPais}
-  onChange={(e) => setCodigoPais(e.target.value)}
-  className="border-2 border-gray-300 rounded-lg p-2 text-sm font-semibold focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white cursor-pointer"
->
-  <option value="+591">
-    <ReactCountryFlag countryCode="BO" svg /> Bolivia +591
-  </option>
-  <option value="+54">
-    <ReactCountryFlag countryCode="AR" svg /> Argentina +54
-  </option>
-  <option value="+56">
-    <ReactCountryFlag countryCode="CL" svg /> Chile +56
-  </option>
-  <option value="+57">
-    <ReactCountryFlag countryCode="CO" svg /> Colombia +57
-  </option>
-  <option value="+593">
-    <ReactCountryFlag countryCode="EC" svg /> Ecuador +593
-  </option>
-  <option value="+51">
-    <ReactCountryFlag countryCode="PE" svg /> Perú +51
-  </option>
-  <option value="+52">
-    <ReactCountryFlag countryCode="MX" svg /> México +52
-  </option>
-  <option value="+1">
-    <ReactCountryFlag countryCode="US" svg /> USA +1
-  </option>
-  <option value="+34">
-    <ReactCountryFlag countryCode="ES" svg /> España +34
-  </option>
-</select>
-  <input
-  type="tel"
-  value={telefono}
-  onChange={(e) => setTelefono(e.target.value)}
-  placeholder="Tu número de WhatsApp (opcional)"
-  className="border-2 border-gray-300 rounded-lg p-2 text-sm font-medium flex-1 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
-/>
+              <select
+                value={codigoPais}
+                onChange={(e) => setCodigoPais(e.target.value)}
+                className="border-2 border-gray-300 rounded-lg p-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500 bg-white cursor-pointer"
+              >
+                <option value="+591">🇧🇴 Bolivia +591</option>
+                <option value="+54">🇦🇷 Argentina +54</option>
+                <option value="+56">🇨🇱 Chile +56</option>
+                <option value="+57">🇨🇴 Colombia +57</option>
+                <option value="+593">🇪🇨 Ecuador +593</option>
+                <option value="+51">🇵🇪 Perú +51</option>
+                <option value="+52">🇲🇽 México +52</option>
+                <option value="+1">🇺🇸 USA +1</option>
+                <option value="+34">🇪🇸 España +34</option>
+              </select>
+              <input
+                type="tel"
+                value={telefono}
+                onChange={(e) => setTelefono(e.target.value)}
+                placeholder="Tu número de WhatsApp (opcional)"
+                className="border-2 border-gray-300 rounded-lg p-2 text-sm font-medium flex-1 focus:outline-none focus:ring-2 focus:ring-amber-500 focus:border-amber-500"
+              />
+            </div>
           </div>
         </div>
 
@@ -236,7 +210,6 @@ export default function CarritoPage() {
           ))}
         </div>
 
-        {/* Vista previa de Gift Card Canjeada con el rótulo de fecha */}
         {giftCardImage && (
           <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4 flex items-center gap-4">
             <div className="relative w-32 h-20 bg-gray-100 rounded overflow-hidden flex-shrink-0">
@@ -286,38 +259,36 @@ export default function CarritoPage() {
             <div className="flex flex-col">
               <div className="mb-4">
                 <h2 className="font-bold text-base mb-2">Método de Pago</h2>
+                <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                  <h3 className="font-bold text-sm text-blue-800 mb-2">💳 Opciones de Pago:</h3>
+                  <ul className="text-xs text-gray-700 space-y-2">
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold text-blue-600">1. Pago Total por QR:</span>
+                      <span>Pagas el 100% del valor ahora. Ideal para asegurar tu compra inmediatamente.</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <span className="font-bold text-green-600">2. Reserva + Contra Entrega:</span>
+                      <span>Pagas solo <strong>Bs. {MONTO_RESERVA}</strong> ahora para agendar tu pedido. El saldo restante lo pagas en efectivo al recibir tu cuadro.</span>
+                    </li>
+                  </ul>
+                </div>
 
-{/* Texto explicativo nuevo */}
-<div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-  <h3 className="font-bold text-sm text-blue-800 mb-2">💳 Opciones de Pago:</h3>
-  <ul className="text-xs text-gray-700 space-y-2">
-    <li className="flex items-start gap-2">
-      <span className="font-bold text-blue-600">1. Pago Total por QR:</span>
-      <span>Pagas el 100% del valor ahora. Ideal para asegurar tu compra inmediatamente.</span>
-    </li>
-    <li className="flex items-start gap-2">
-      <span className="font-bold text-green-600">2. Reserva + Contra Entrega:</span>
-      <span>Pagas solo <strong>Bs. {MONTO_RESERVA}</strong> ahora para agendar tu pedido. El saldo restante lo pagas en efectivo al recibir tu cuadro.</span>
-    </li>
-  </ul>
-</div>
-
-<div className="grid grid-cols-3 gap-3">
-  <button onClick={() => setMetodoPago('banco')} className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${metodoPago === 'banco' ? 'border-blue-600 bg-blue-50 text-blue-700' : 'border-gray-300 text-gray-600 hover:border-gray-400'}`}>
-    🏦 Pago Total QR
-  </button>
-  <button onClick={() => setMetodoPago('reserva')} className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${metodoPago === 'reserva' ? 'border-green-600 bg-green-50 text-green-700' : 'border-gray-300 text-gray-600 hover:border-gray-400'}`}>
-    🏠 Reserva + Entrega
-  </button>
-  <button onClick={() => setMetodoPago('binance')} className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${metodoPago === 'binance' ? 'border-yellow-500 bg-yellow-50 text-yellow-700' : 'border-gray-300 text-gray-600 hover:border-gray-400'}`}>
-    <Image src="/images/logo-binance.png" alt="Binance" width={20} height={20} className="object-contain" />
-    Binance
-  </button>
-</div>
+                <div className="grid grid-cols-3 gap-3">
+                  <button onClick={() => setMetodoPago('banco')} className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${metodoPago === 'banco' ? 'border-blue-600 bg-blue-50 text-blue-700' : 'border-gray-300 text-gray-600 hover:border-gray-400'}`}>
+                    🏦 Pago Total QR
+                  </button>
+                  <button onClick={() => setMetodoPago('reserva')} className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${metodoPago === 'reserva' ? 'border-green-600 bg-green-50 text-green-700' : 'border-gray-300 text-gray-600 hover:border-gray-400'}`}>
+                    🏠 Reserva + Entrega
+                  </button>
+                  <button onClick={() => setMetodoPago('binance')} className={`p-3 rounded-lg border-2 font-semibold transition-all text-sm flex items-center justify-center gap-2 cursor-pointer ${metodoPago === 'binance' ? 'border-yellow-500 bg-yellow-50 text-yellow-700' : 'border-gray-300 text-gray-600 hover:border-gray-400'}`}>
+                    <Image src="/images/logo-binance.png" alt="Binance" width={20} height={20} className="object-contain" />
+                    Binance
+                  </button>
+                </div>
                 <p className="mt-2 text-xs text-gray-600">Aceptamos pagos con <strong>USDT (Tether)</strong> y otras criptomonedas vía Binance.</p>
               </div>
 
-                            <div className="flex flex-col items-center">
+              <div className="flex flex-col items-center">
                 <h2 className="font-bold text-base mb-2 w-full text-left">
                   1. Escanea el QR ({metodoPago === 'binance' ? 'Binance' : 'Banco'})
                 </h2>
@@ -374,7 +345,6 @@ export default function CarritoPage() {
                   </div>
                 )}
               </div>
-                
             </div>
           </div>
 
@@ -401,7 +371,14 @@ export default function CarritoPage() {
           </div>
 
           <button onClick={finalizarCompra} disabled={procesando} className="w-full cursor-pointer bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors flex items-center justify-center gap-2 mt-4 disabled:bg-gray-400">
-            {procesando ? 'Procesando...' : (<> <span>2. Ya pagué </span> <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg> </>)}
+            {procesando ? 'Procesando...' : (
+              <> 
+                <span>2. Ya pagué </span> 
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg> 
+              </>
+            )}
           </button>
           
           <p className="text-xs text-gray-500 text-center mt-2">Al finalizar, serás redirigido para adjuntar tu captura de pantalla de forma segura.</p>
@@ -409,3 +386,4 @@ export default function CarritoPage() {
       </div>
     </div>
   );
+}
