@@ -226,13 +226,15 @@ export async function manejarEstadoPedido(formData: FormData) {
           `;
         }
 
-        // 3. Determinar el asunto según el contenido
-        let asunto = `✅ Pago aprobado - Pedido #${id}`;
-        if (codigosGiftCards.length > 0 && items.length > 0) {
-          asunto = `🎁 Tu Gift Card + Confirmación de Pedido #${id}`;
-        } else if (codigosGiftCards.length > 0) {
-          asunto = `🎁 ¡Tu Gift Card de Bs. ${pedido.total} está lista!`;
-        }
+        // Determinar el asunto según el contenido
+let asunto = '';
+if (codigosGiftCards.length > 0 && items.length > 0) {
+  asunto = `✅ Pedido #${id} Confirmado - Gift Card y Productos`;
+} else if (codigosGiftCards.length > 0) {
+  asunto = ` ¡Tu Gift Card de Bs. ${montoGC || pedido.total} está lista!`;
+} else {
+  asunto = `✅ Pago aprobado - Pedido #${id} en proceso`;
+}
 
         // 4. Enviar el correo unificado
         await resend.emails.send({
