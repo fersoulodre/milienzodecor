@@ -14,7 +14,8 @@ export default function CarritoPage() {
   const [email, setEmail] = useState('');
   const [nombre, setNombre] = useState('');
   const [telefono, setTelefono] = useState('');
-   
+  const [codigoPais, setCodigoPais] = useState('+591');
+  const [codigoPais, setCodigoPais] = useState('+591'); 
   const MONTO_RESERVA = 80;
   const [metodoPago, setMetodoPago] = useState<'banco' | 'binance' | 'reserva'>('banco');
 
@@ -102,7 +103,7 @@ export default function CarritoPage() {
       const respuesta = await crearPedido({
         email,
         nombre,
-        telefono,
+        telefono: codigoPais + telefono,
         total: totalConDescuento,
         metodo_pago: metodoPagoFinal,
         detalles: { items, giftCards: codigosGenerados, discount }
@@ -117,7 +118,7 @@ export default function CarritoPage() {
             body: JSON.stringify({
               nombre,
               email,
-              telefono,
+              telefono: codigoPais + telefono,
               metodo_pago: metodoPagoFinal,
               total: totalConDescuento,
               items,
@@ -173,7 +174,24 @@ export default function CarritoPage() {
           <div className="grid md:grid-cols-2 gap-4">
             <input type="text" value={nombre} onChange={(e) => setNombre(e.target.value)} placeholder="Tu nombre completo *" className="border border-gray-300 rounded p-2 text-sm w-full" required />
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Tu correo electrónico *" className="border border-gray-300 rounded p-2 text-sm w-full" required />
-            <input type="tel" value={telefono} onChange={(e) => setTelefono(e.target.value)} placeholder="Tu número de WhatsApp (opcional)" className="border border-gray-300 rounded p-2 text-sm w-full md:col-span-2" />
+            <div className="flex gap-2 md:col-span-2">
+  <select
+    value={codigoPais}
+    onChange={(e) => setCodigoPais(e.target.value)}
+    className="border border-gray-300 rounded p-2 text-sm w-28 focus:outline-none focus:ring-2 focus:ring-amber-500"
+  >
+    <option value="+591">🇧🇴 +591</option>
+    <option value="+54">🇦🇷 +54</option>
+    <option value="+56">🇨🇱 +56</option>
+    <option value="+57">🇨🇴 +57</option>
+    <option value="+593">🇪🇨 +593</option>
+    <option value="+51">🇵🇪 +51</option>
+    <option value="+52">🇲🇽 +52</option>
+    <option value="+1">🇺🇸 +1</option>
+    <option value="+34">🇪🇸 +34</option>
+  </select>
+  <input type="tel" value={telefono} onChange={(e) => setTelefono(e.target.value)} placeholder="Tu número de WhatsApp (opcional)" className="border border-gray-300 rounded p-2 text-sm flex-1 focus:outline-none focus:ring-2 focus:ring-amber-500" />
+</div>
           </div>
         </div>
 
