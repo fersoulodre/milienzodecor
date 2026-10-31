@@ -231,7 +231,7 @@ let asunto = '';
 if (codigosGiftCards.length > 0 && items.length > 0) {
   asunto = `✅ Pedido #${id} Confirmado - Gift Card y Productos`;
 } else if (codigosGiftCards.length > 0) {
-  asunto = ` ¡Tu Gift Card de Bs. ${montoGC || pedido.total} está lista!`;
+  asunto = `🎁 ¡Tu Gift Card de Bs. ${pedido.total} está lista!`;
 } else {
   asunto = `✅ Pago aprobado - Pedido #${id} en proceso`;
 }
