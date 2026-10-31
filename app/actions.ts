@@ -163,8 +163,25 @@ export async function manejarEstadoPedido(formData: FormData) {
       // Llamamos a la función que ya tienes para generar el código
       const { code } = await generateGiftCardCode(monto, imagen, 180);
       
-      if (code) {
+            if (code) {
         detallesActualizados.giftCardCode = code;
+        
+        // 📧 Enviar correo automático al cliente
+        try {
+          await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'https://milienzodecor.com'}/api/send-gift-card-email`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: pedido.email,
+              nombre: pedido.nombre,
+              codigo: code,
+              monto: monto,
+              fechaExpiracion: fechaStr // Asegúrate de que generateGiftCardCode retorne esto
+            })
+          });
+        } catch (err) {
+          console.error('No se pudo enviar el correo automático:', err);
+        }
       }
     }
   }
