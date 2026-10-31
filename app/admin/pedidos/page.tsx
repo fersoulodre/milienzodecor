@@ -116,29 +116,82 @@ export default async function AdminPedidos({ searchParams }: Props) {
 
                     {/* Mostrar códigos de Gift Card y botón de WhatsApp */}
                     {pedido.detalles?.giftCards && pedido.detalles.giftCards.length > 0 && (
-                      <div className="bg-yellow-50 border-2 border-yellow-300 p-4 rounded-lg mb-4 text-center">
-                        <p className="text-xs text-yellow-800 font-bold uppercase tracking-wider mb-3">🎁 Código(s) de Gift Card</p>
-                        
-                        {pedido.detalles.giftCards.map((codigo: string, idx: number) => (
-                          <div key={idx} className="mb-4 last:mb-0">
-                            <p className="text-2xl font-mono font-black text-yellow-900 tracking-widest mb-3">{codigo}</p>
-                            
-                            {/* Botón de WhatsApp */}
-                            {pedido.telefono && (
-                              <a 
-                                href={`https://wa.me/591${pedido.telefono.replace(/\D/g, '')}?text=${encodeURIComponent(`¡Hola ${pedido.nombre}! 🎉 Tu Gift Card de Bs. ${pedido.total} está aprobada. Tu código es: *${codigo}*. ¡Úsalo en milienzodecor.com!`)}`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="inline-flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-600 transition-colors cursor-pointer"
-                              >
-                                💬 Enviar por WhatsApp
-                              </a>
-                            )}
-                          </div>
-                        ))}
-                        
-                        <p className="text-xs text-yellow-700 mt-3">Copia y envía este código al cliente.</p>
-                      </div>
+  <div className="bg-yellow-50 border-2 border-yellow-300 p-4 rounded-lg mb-4 text-center">
+    <p className="text-xs text-yellow-800 font-bold uppercase tracking-wider mb-3">🎁 Código(s) de Gift Card</p>
+    
+    {pedido.detalles.giftCards.map((codigo: string, idx: number) => (
+      <div key={idx} className="mb-4 last:mb-0">
+        <p className="text-2xl font-mono font-black text-yellow-900 tracking-widest mb-3">{codigo}</p>
+        
+        {pedido.telefono && (
+          <a 
+            href={`https://wa.me/591${pedido.telefono.replace(/\D/g, '')}?text=${encodeURIComponent(`¡Hola ${pedido.nombre}! 🎉 Tu Gift Card de Bs. ${pedido.total} está aprobada. Tu código es: *${codigo}*. ¡Úsalo en milienzodecor.com!`)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 bg-green-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-green-600 transition-colors cursor-pointer"
+          >
+            💬 Enviar por WhatsApp
+          </a>
+        )}
+      </div>
+    ))}
+    
+    <p className="text-xs text-yellow-700 mt-3">Copia y envía este código al cliente.</p>
+  </div>
+)}
+
+{/* Tarjeta visual descargable */}
+{pedido.detalles?.giftCards && pedido.detalles.giftCards.length > 0 && (
+  <div className="mt-6">
+    <h3 className="font-semibold text-gray-800 mb-3">🖼️ Tarjeta Visual (Descargable):</h3>
+    
+    {pedido.detalles.giftCards.map((codigo: string, idx: number) => (
+      <div key={idx} className="mb-4">
+        <div id={`gift-card-${pedido.id}-${idx}`} className="w-[600px] h-[340px] bg-gradient-to-br from-[#4a3010] to-[#8b5a2b] rounded-2xl p-8 flex flex-col justify-between text-white shadow-2xl relative overflow-hidden border border-yellow-600/30 mx-auto">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-yellow-500/10 rounded-full -mr-20 -mt-20 blur-2xl"></div>
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-black/20 rounded-full -ml-10 -mb-10 blur-xl"></div>
+          
+          <div className="flex justify-between items-start z-10">
+            <div className="w-36 h-auto flex items-center">
+              <img 
+                src="/logo.png" 
+                alt="Logo Mi Lienzo Decor" 
+                className="w-full h-auto object-contain" 
+                crossOrigin="anonymous" 
+              />
+            </div>
+            <span className="bg-yellow-500/20 border border-yellow-400/50 px-4 py-1 rounded-full text-sm font-semibold text-yellow-100 backdrop-blur-sm">GIFT CARD</span>
+          </div>
+
+          <div className="z-10 text-center my-2">
+            <p className="text-yellow-200/80 text-sm uppercase tracking-widest mb-1">Valor de regalo</p>
+            <p className="text-5xl font-bold text-white drop-shadow-lg">Bs. {pedido.total}</p>
+          </div>
+
+          <div className="flex justify-between items-end z-10 bg-black/30 p-5 rounded-xl backdrop-blur-md border border-white/10">
+            <div>
+              <p className="text-yellow-200/70 text-[10px] uppercase tracking-widest mb-1">Código de canje</p>
+              <p className="text-2xl font-mono font-black tracking-widest text-yellow-50">{codigo}</p>
+            </div>
+            <div className="text-right">
+              <p className="text-yellow-200/70 text-[10px] uppercase tracking-widest mb-1">Válido hasta</p>
+              <p className="text-sm font-semibold text-white">
+                {pedido.detalles.fechaExpiracion ? new Date(pedido.detalles.fechaExpiracion).toLocaleDateString('es-ES', { day: '2-digit', month: 'short', year: 'numeric' }) : '180 días'}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <button
+          onClick={() => descargarTarjeta(`gift-card-${pedido.id}-${idx}`, codigo)}
+          className="mt-3 w-full bg-amber-600 text-white py-2 rounded-lg font-semibold hover:bg-amber-700 transition-colors cursor-pointer flex items-center justify-center gap-2"
+        >
+          📥 Descargar Imagen PNG
+        </button>
+      </div>
+    ))}
+  </div>
+)}
                     )}
 
                     {/* Comprobante de pago */}
