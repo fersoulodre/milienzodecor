@@ -15,7 +15,7 @@ export default function CarritoPage() {
   const [nombre, setNombre] = useState('');
   const [telefono, setTelefono] = useState('');
   const [codigoPais, setCodigoPais] = useState('+591');
-  const [codigoPais, setCodigoPais] = useState('+591'); 
+  
   const MONTO_RESERVA = 80;
   const [metodoPago, setMetodoPago] = useState<'banco' | 'binance' | 'reserva'>('banco');
 
