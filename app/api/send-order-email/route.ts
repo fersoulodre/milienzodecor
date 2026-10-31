@@ -62,7 +62,7 @@ export async function POST(request: Request) {
     await resend.emails.send({
       from: 'Mi Lienzo Decor <soporte@milienzodecor.com>',
       to: [email],
-      subject: `✅ Confirmación de Pedido #${pedidoId} - Mi Lienzo Decor`,
+      subject: `✅ Hemos recibido tu pedido #${pedidoId} - Mi Lienzo Decor`,
       html: htmlCliente,
     });
 
