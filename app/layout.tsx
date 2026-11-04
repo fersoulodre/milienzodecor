@@ -11,7 +11,10 @@ export const metadata: Metadata = {
     template: '%s - Mi Lienzo Decor',
   },
   description: 'Tienda online de cuadros modernos, arte abstracto y lienzos personalizados en Bolivia. Envío a todo el país. Compra cuadros para sala, dormitorio y oficina.',
-  keywords: [
+  icons: {
+    icon: '/favicon2.png',
+  },
+keywords: [
   'cuadros Bolivia',
   'arte Bolivia',
   'cuadros modernos',
