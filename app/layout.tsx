@@ -11,6 +11,7 @@ export const metadata = {
   },
   other: {
     'color-scheme': 'light', // <--- ESTA LÍNEA BLOQUEA EL MODO OSCURO
+    'google-site-verification': '<meta name="google-site-verification" content="FpPaOpxRamThC6skFZFkySkz_K-HUyQi8Piy_3wlUJk" />',
   },
 };
 
@@ -31,3 +32,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   );
 }
+
