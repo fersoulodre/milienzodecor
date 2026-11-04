@@ -69,6 +69,12 @@ keywords: [
       'max-snippet': -1,
     },
   },
+  other: {
+    'color-scheme': 'light',
+    'google-site-verification': 'FpPaOpxRamThC6skFZFkySkz_K-HUyQi8Piy_3wlUJk',
+    'fb:app_id': '2993740184313700', // <--- AQUÍ ESTÁ TU APP ID DE FACEBOOK
+  },
+};
   verification: {
     google: 'FpPaOpxRamThC6skFZFkySkz_K-HUyQi8Piy_3wlUJk',
   },
