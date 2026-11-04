@@ -3,15 +3,57 @@ import { CartProvider } from '@/components/CartContext';
 import LayoutContent from '@/components/LayoutContent';
 import WhatsAppButton from '@/components/WhatsAppButton'; // <-- 1. Importamos el botón
 
-export const metadata = {
-  title: 'Mi Lienzo Decor | Arte y Cuadros en Bolivia',
-  description: 'Transforma tus espacios con arte único. Venta de cuadros modernos, lienzos personalizados y Gift Cards en Bolivia con envío a todo el país.',
-  icons: {
-    icon: '/favicon2.png',
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: {
+    default: 'Mi Lienzo Decor | Cuadros y Arte en Bolivia',
+    template: '%s - Mi Lienzo Decor',
   },
-  other: {
-    'color-scheme': 'light', // <--- ESTA LÍNEA BLOQUEA EL MODO OSCURO
-    'google-site-verification': 'FpPaOpxRamThC6skFZFkySkz_K-HUyQi8Piy_3wlUJk',
+  description: 'Tienda online de cuadros modernos, arte abstracto y lienzos personalizados en Bolivia. Envío a todo el país. Compra cuadros para sala, dormitorio y oficina.',
+  keywords: ['cuadros Bolivia', 'arte Bolivia', 'cuadros modernos', 'lienzos personalizados', 'decoración hogar', 'arte abstracto', 'gift cards arte'],
+  authors: [{ name: 'Mi Lienzo Decor' }],
+  creator: 'Mi Lienzo Decor',
+  publisher: 'Mi Lienzo Decor',
+  metadataBase: new URL('https://milienzodecor.com'),
+  alternates: {
+    canonical: '/',
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'es_BO',
+    url: 'https://milienzodecor.com',
+    title: 'Mi Lienzo Decor | Cuadros y Arte en Bolivia',
+    description: 'Tienda online de cuadros modernos y arte personalizado en Bolivia. Envío a todo el país.',
+    siteName: 'Mi Lienzo Decor',
+    images: [
+      {
+        url: '/images/og-image.jpg', // Crea esta imagen (1200x630px)
+        width: 1200,
+        height: 630,
+        alt: 'Mi Lienzo Decor - Cuadros y Arte en Bolivia',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Mi Lienzo Decor | Cuadros y Arte en Bolivia',
+    description: 'Tienda online de cuadros modernos y arte personalizado en Bolivia.',
+    images: ['/images/og-image.jpg'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  verification: {
+    google: 'FpPaOpxRamThC6skFZFkySkz_K-HUyQi8Piy_3wlUJk',
   },
 };
 
