@@ -80,7 +80,7 @@ export default function Footer() {
           <div className="mt-6 flex justify-center md:justify-start gap-5">
             {/* Facebook (Azul oficial) */}
             <a 
-              href="https://facebook.com/https://www.facebook.com/milienzodecor.shop" 
+              href="https://www.facebook.com/milienzodecor.shop" 
               target="_blank" 
               rel="noopener noreferrer"
               className="text-[#1877F2] hover:text-[#166fe5] transition-colors transform hover:scale-110"
