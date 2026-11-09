@@ -8,7 +8,7 @@ import { Producto } from '@/lib/productos';
 const PRECIO_POR_M2_IMPRESION = 670; 
 const AREA_MINIMA_M2 = 0.09; // Área mínima en metros cuadrados (ej: 30x30cm = 0.09m²)
 
-export default function ProductDetailClient({ producto }: { producto: Producto }) {
+export default function ProductDetailClient({ producto, descripcionSEO }: { producto: Producto; descripcionSEO: string }) {
   const router = useRouter();
   const { addToCart } = useCart();
   const [added, setAdded] = useState(false);
@@ -138,6 +138,10 @@ export default function ProductDetailClient({ producto }: { producto: Producto }
           <div className="flex flex-col justify-center">
             <span className="text-sm text-gray-500 uppercase">{producto.estilo}</span>
             <h1 className="text-4xl font-bold mt-2">{producto.titulo}</h1>
+
+            <p className="text-sm text-gray-600 mt-3 leading-relaxed italic">
+  {descripcionSEO}
+</p>
             
             {producto.stock === 1 && (
               <p className="text-red-600 font-semibold mt-2 flex items-center gap-2 text-sm md:text-base">
