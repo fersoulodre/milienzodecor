@@ -138,7 +138,7 @@ export default function ProductDetailClient({ producto, descripcionSEO }: { prod
           <div className="flex flex-col justify-center">
             <span className="text-sm text-gray-500 uppercase">{producto.estilo}</span>
 <h1 className="text-4xl font-bold mt-2">
-  {producto.estilo} {producto.id.split('-').pop()}
+  {producto.id.split('-').pop()}
 </h1>
 
             <p className="text-sm text-gray-600 mt-3 leading-relaxed italic">
